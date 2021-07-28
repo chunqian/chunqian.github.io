@@ -1,6 +1,6 @@
 Use [httpie](https://httpie.io) for http request
 
-## 获取存货列表
+## 获取存货列表 /api/inventory/getPagedInventories
 
 ```bash
 http --timeout=300 GET http://192.168.20.82:3000/api/inventory/getPagedInventories \
@@ -45,7 +45,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 }
 ```
 
-## 获取存货
+## 获取存货 /api/inventory/getInventory
 
 ```bash
 http --timeout=300 GET http://192.168.20.82:3000/api/inventory/getInventory \
