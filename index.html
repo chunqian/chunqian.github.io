@@ -22,17 +22,17 @@
       maxLevel: 3,
       subMaxLevel: 3,
       markdown: {
-        // renderer: {
-        //     link: function(href, title, text) {
-        //       href = href.replace(/https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//i, '/cute_framework/')
-        //       title = title ? title : ""
-        //       if (/^(?!http:\/\/|https:\/\/).*/.test(href)) {
-        //         return `<a href="#${href}" title="${title}">${text}</a>`
-        //       } else {
-        //         return `<a href="${href}" target="_blank" rel="noopener" title="${title}">${text}</a>`
-        //       }
-        //     }
-        // }
+        renderer: {
+            link: function(href, title, text) {
+              href = href.replace(/https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//i, '/cute_framework/')
+              title = title ? title : ""
+              if (/^(?!http:\/\/|https:\/\/).*/.test(href)) {
+                return `<a href="#${href}" title="${title}">${text}</a>`
+              } else {
+                return `<a href="${href}" target="_blank" rel="noopener" title="${title}">${text}</a>`
+              }
+            }
+        }
       },
       alias: {
         '/../cute_framework/.*/_sidebar.md': '/cute_framework/_sidebar.md',
