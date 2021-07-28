@@ -47,11 +47,11 @@ Invoke-Expression (Invoke-Webrequest 'https://xmake.io/psget.text' -UseBasicPars
 
 ## 简单的工程描述
 
-![](https://chunqian.github.io/xmake/assets/img/index/showcode1.png ':size=240')
+<img src="https://chunqian.github.io/xmake/assets/img/index/showcode1.png" width="240" />
 
 ## 包依赖描述
 
-![](https://chunqian.github.io/xmake/assets/img/index/add_require.png ':size=420')
+<img src="https://chunqian.github.io/xmake/assets/img/index/add_require.png" width="420" />
 
 官方的xmake包管理仓库: [xmake-repo](https://github.com/xmake-io/xmake-repo)
 
@@ -86,7 +86,7 @@ $ xmake
 $ xmake f --menu
 ```
 
-![](https://chunqian.github.io/xmake/assets/img/index/menuconf.png ':size=650')
+<img src="https://chunqian.github.io/xmake/assets/img/index/menuconf.png" width="650px" />
 
 ## 跟ninja一样快的构建速度
 
@@ -115,11 +115,11 @@ $ xmake f --menu
 
 ### 下载和编译
 
-![](https://chunqian.github.io/xmake/assets/img/index/package_manage.png ':size=650')
+<img src="https://chunqian.github.io/xmake/assets/img/index/package_manage.png" width="650px" />
 
 ### 架构和流程
 
-![](https://chunqian.github.io/xmake/assets/img/index/package_arch.png ':size=650')
+<img src="https://chunqian.github.io/xmake/assets/img/index/package_arch.png" width="650px" />
 
 ### 支持的包管理仓库
 

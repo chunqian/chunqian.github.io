@@ -3,22 +3,21 @@ xmake项目属于个人开源项目，它的发展需要您的帮助，如果您
 
 ## 支付宝
 
-<!-- <img src="/assets/img/alipay.png" alt="alipay" width="256" height="256"> -->
-![alipay](assets/img/alipay.png ':size=256')
+<img src="https://chunqian.github.io/xmake/assets/img/alipay.png" alt="alipay" width="256" height="256">
 
 账号：waruqi@gmail.com
 
 ## 微信 
 
-<img src="/assets/img/weixin.png" alt="weixin" width="218" height="218">
+<img src="https://chunqian.github.io/xmake/assets/img/weixin.png" alt="weixin" width="218" height="218">
 
 ## Github Sponsor
 
-[![Github Sponsor](/assets/img/github_sponsor.png)](https://github.com/sponsors/waruqi)
+[![Github Sponsor](https://chunqian.github.io/xmake/assets/img/github_sponsor.png)](https://github.com/sponsors/waruqi)
 
 ## Paypal
 
-[![Paypal Me](/assets/img/paypal.png)](https://paypal.me/tboox/5)
+[![Paypal Me](https://chunqian.github.io/xmake/assets/img/paypal.png)](https://paypal.me/tboox/5)
 
 ## OpenCollective
  
