@@ -1,27 +1,27 @@
 <!-- sidebar -->
 
-- [App](https://chunqian.github.io/cute_framework/app/)
+- [App](/../cute_framework/app/README)
 
-- [Audio](https://chunqian.github.io/cute_framework/audio/)
+- [Audio](/../cute_framework/audio/README)
 
-- [Clipboard](https://chunqian.github.io/cute_framework/clipboard/)
+- [Clipboard](/../cute_framework/clipboard/README)
 
-- [Data_structures](https://chunqian.github.io/cute_framework/data_structures/)
+- [Data_structures](/../cute_framework/data_structures/README)
 
-- [Ecs](https://chunqian.github.io/cute_framework/ecs/)
+- [Ecs](/../cute_framework/ecs/README)
 
-- [Graphics](https://chunqian.github.io/cute_framework/graphics/)
+- [Graphics](/../cute_framework/graphics/README)
 
-- [Input](https://chunqian.github.io/cute_framework/input/input)
+- [Input](/../cute_framework/input/input)
 
-- [Math](https://chunqian.github.io/cute_framework/math/)
+- [Math](/../cute_framework/math/README)
 
-- [Serialization](https://chunqian.github.io/cute_framework/serialization/)
+- [Serialization](/../cute_framework/serialization/README)
 
-- [String](https://chunqian.github.io/cute_framework/string/)
+- [String](/../cute_framework/string/README)
 
-- [Time](https://chunqian.github.io/cute_framework/time/)
+- [Time](/../cute_framework/time/README)
 
-- [Window](https://chunqian.github.io/cute_framework/window/)
+- [Window](/../cute_framework/window/README)
 
-- [Protocol](https://chunqian.github.io/cute_framework/protocol.md)
+- [Protocol](/../cute_framework/protocol)
