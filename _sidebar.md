@@ -1,9 +1,9 @@
 <!-- sidebar -->
 
-- [xc_tplusstd_server](/xc_tplusstd_server/README)
+- [xc_tplusstd_server](/xc_tplusstd_server/)
 
-- [cute_framework](/cute_framework/README)
+- [cute_framework](/cute_framework/)
 
-- [xmake](/xmake/README)
+- [xmake](/xmake/)
 
-- [test](/test/README)
+- [test](/test/)
