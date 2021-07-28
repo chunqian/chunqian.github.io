@@ -1,6 +1,6 @@
 <!-- sidebar -->
 
-- [back](../)
+- [back](/../)
 
     - [App](/../cute_framework/app/README)
     - [Audio](/../cute_framework/audio/README)
