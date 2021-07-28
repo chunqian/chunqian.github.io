@@ -92,11 +92,11 @@ $ xmake project -k [vsxmake2010|vsxmake2013|vsxmake2015|..] -m "debug;release"
 $ xmake project -k vsxmake -m "debug,release"
 ```
 
-![](/assets/img/manual/qt_vs.png)
+![](https://chunqian.github.io/xmake/assets/img/manual/qt_vs.png)
 
 另外，vsxmake插件还会额外生成一个自定义的配置属性页，用于在vs里面，方便灵活的修改和追加一些xmake编译配置，甚至可以在里面配置切换到其他交叉工具链，实现在vs中对android, linux等其他平台的交叉编译。
 
-![](/assets/img/manual/property_page_vsxmake.png)
+![](https://chunqian.github.io/xmake/assets/img/manual/property_page_vsxmake.png)
 
 v2.5.1 版本提供了一个 `add_rules("plugin.vsxmake.autoupdate")` 规则，如果应用此规则，生产的vs工程在编译完成后，会检测 xmake.lua 和代码文件列表的改动，如果有变化，就会自动更新 vs 工程。
 

@@ -2618,7 +2618,7 @@ target("test6")
 
 生成的 vs 工程目录结构效果如下：
 
-![](assets/img/manual/set_group.png)
+![](https://chunqian.github.io/xmake/assets/img/manual/set_group.png)
 
 其中 `set_group("group1/group2")` 可以将 target 设置到二级分组中去。
 

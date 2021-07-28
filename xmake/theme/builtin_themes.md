@@ -2,7 +2,7 @@
 
 这个也就是咱们安装xmake后默认的显示主题，主题名：default，它默认会提供色彩输出，适合一些深色背景的终端。
 
-<img src="/assets/img/theme/default.png" width="60%" />
+<img src="https://chunqian.github.io/xmake/assets/img/theme/default.png" width="60%" />
 
 我们也可以通过下面的命令切回默认主题：
 
@@ -20,7 +20,7 @@ $ xmake g --theme=default
 $ xmake g --theme=ninja
 ```
 
-<img src="/assets/img/theme/ninja.png" width="60%" />
+<img src="https://chunqian.github.io/xmake/assets/img/theme/ninja.png" width="60%" />
 
 ## Emoji主题
 
@@ -30,7 +30,7 @@ $ xmake g --theme=ninja
 $ xmake g --theme=emoji
 ```
 
-<img src="/assets/img/theme/emoji.png" width="60%" />
+<img src="https://chunqian.github.io/xmake/assets/img/theme/emoji.png" width="60%" />
 
 ## Dark主题
 

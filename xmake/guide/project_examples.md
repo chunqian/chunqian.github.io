@@ -173,7 +173,7 @@ $ xmake run
 
 效果如下：
 
-![](/assets/img/guide/qt_quickapp.png)
+![](https://chunqian.github.io/xmake/assets/img/guide/qt_quickapp.png)
 
 ### Widgets应用程序
 
@@ -203,7 +203,7 @@ target("qt_widgetapp")
 
 运行效果如下：
 
-![](/assets/img/guide/qt_widgetapp.png)
+![](https://chunqian.github.io/xmake/assets/img/guide/qt_widgetapp.png)
 
 ### Android应用程序
 
@@ -540,7 +540,7 @@ $ xmake run
 
 效果如下：
 
-![](/assets/img/guide/macapp.png)
+![](https://chunqian.github.io/xmake/assets/img/guide/macapp.png)
 
 #### 生成程序包
 
