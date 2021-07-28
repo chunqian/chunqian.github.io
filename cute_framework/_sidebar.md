@@ -1,27 +1,27 @@
 <!-- sidebar -->
 
-- [App](/../cute_framework/app/README)
+- [App](/../cute_framework/app/)
 
-- [Audio](/../cute_framework/audio/README)
+- [Audio](/../cute_framework/audio/)
 
-- [Clipboard](/../cute_framework/clipboard/README)
+- [Clipboard](/../cute_framework/clipboard/)
 
-- [Data_structures](/../cute_framework/data_structures/README)
+- [Data_structures](/../cute_framework/data_structures/)
 
-- [Ecs](/../cute_framework/ecs/README)
+- [Ecs](/../cute_framework/ecs/)
 
-- [Graphics](/../cute_framework/graphics/README)
+- [Graphics](/../cute_framework/graphics/)
 
 - [Input](/../cute_framework/input/input)
 
-- [Math](/../cute_framework/math/README)
+- [Math](/../cute_framework/math/)
 
-- [Serialization](/../cute_framework/serialization/README)
+- [Serialization](/../cute_framework/serialization/)
 
-- [String](/../cute_framework/string/README)
+- [String](/../cute_framework/string/)
 
-- [Time](/../cute_framework/time/README)
+- [Time](/../cute_framework/time/)
 
-- [Window](/../cute_framework/window/README)
+- [Window](/../cute_framework/window/)
 
 - [Protocol](/../cute_framework/protocol)
