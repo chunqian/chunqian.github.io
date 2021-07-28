@@ -24,7 +24,7 @@
       markdown: {
         renderer: {
             link: function(href, title, text) {
-              href = href.replace(/https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//i, '/cute_framework/')
+              href = href.replace(/https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//i, '/../cute_framework/')
               title = title ? title : ""
               if (/^(?!http:\/\/|https:\/\/).*/.test(href)) {
                 return `<a href="#${href}" title="${title}">${text}</a>`
