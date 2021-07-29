@@ -36,29 +36,27 @@ Content-Type:'application/json; charset=UTF-8' <<< \
     "data": {
         "inventories": [
             {
-                "goodsId": 1, // 小六商品id
-                "goodsName": "伦晚橙", // 小六商品名称
+                "goodsId": 100418, // 小六商品id
+                "goodsName": "海南贵妃芒特级【预售】", // 小六商品名称
                 "goodsSpecification": "盒/2斤", // 小六规格型号
                 "goodsStatus": 1, // 映射状态
-                "id": 1, // 自增id 无用
-                "inventoryCode": "xl_1_1", // 存货编码
-                "inventoryId": 2511, // 存货id
-                "inventoryName": "伦晚橙", // 存货名称
-                "inventorySpecification": "盒/2斤" // 存货规格型号
+                "inventoryCode": "xl_100418_1", // 存货编码
+                "inventoryId": 3624, // 存货id
+                "inventoryName": "冷冻小八爪鱼", // 存货名称
+                "inventorySpecification": "约200g" // 存货规格型号
             },
             {
-                "goodsId": 100001,
-                "goodsName": "改价日志测试1",
-                "goodsSpecification": "规格1",
+                "goodsId": 100417,
+                "goodsName": "小葱(赠品)单买无效",
+                "goodsSpecification": "30g",
                 "goodsStatus": 1,
-                "id": 2,
-                "inventoryCode": "xl_100001_1",
-                "inventoryId": 3236,
-                "inventoryName": "丹丹豆豉",
-                "inventorySpecification": "150g/袋"
+                "inventoryCode": "xl_100417_1",
+                "inventoryId": 3623,
+                "inventoryName": "冷冻风干带鱼",
+                "inventorySpecification": "约250g"
             }
         ],
-        "inventories_count": 100
+        "inventories_count": 2
     },
     "msg": "success"
 }
