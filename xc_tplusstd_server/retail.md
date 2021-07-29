@@ -6,9 +6,26 @@ Use [httpie](https://httpie.io) for http request
 http --timeout=300 GET http://192.168.20.82:3000/api/inventory/getPagedInventories \
 Content-Type:'application/json; charset=UTF-8' <<< \
 '{
+    "classifyId": 0,
+    "levelType": 1,
+    "goodsName": "",
+    "goodsStatus": 1,
     "pageIndex": 0,
     "pageSize": 2
 }'
+```
+
+## request
+
+```json
+{
+    "classifyId": 0, // 分类id
+    "levelType": 1, // 分类层级
+    "goodsName": "", // 商品名称
+    "goodsStatus": 1, // 映射状态
+    "pageIndex": 0, // 页码
+    "pageSize": 2 // 数量
+}
 ```
 
 ## response
