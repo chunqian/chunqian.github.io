@@ -1,15 +1,21 @@
 ## Introduction
 
 <style type="text/css">
+div.f0{
+    font-size: 0;
+}
 img {
     object-fit: cover;
 }
 </style>
 
-<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/MasterArt_1080.jpg" width="33%" height="200px" />
-<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot1.jpg-eq-900-500.jpg" width="33%" height="200px" />
-<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot1.png-eq-900-500.jpg.png" width="33%" height="200px" />
-<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot4.jpg-eq-900-500.jpg" width="33%" height="200px" />
+<div class="f0">
+    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/MasterArt_1080.jpg" width="25%" height="200px" />
+    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot1.jpg-eq-900-500.jpg" width="25%" height="200px" />
+    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot1.png-eq-900-500.jpg.png" width="25%" height="200px" />
+</div>
+
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot4.jpg-eq-900-500.jpg" width="75%" />
 
 Writing a 2D platformer engine can be tricky if you don’t really know where you’re going. Using a clean and simple base is essential. You know the KiSS principle ? Keep It Short and Simple : that’s the way I do it.
 
