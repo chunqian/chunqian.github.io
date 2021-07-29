@@ -25,6 +25,7 @@
         renderer: {
             link: function(href, title, text) {
               href = href.replace(/https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//i, '/cute_framework/')
+              href = href.replace(/https:\/\/github.com\/chunqian\/chunqian.github.io\/(blob|tree)\/main\/deepnight.net\//i, '/deepnight.net/')
               title = title ? title : ""
               if (/^(?!http:\/\/|https:\/\/).*/.test(href)) {
                 return `<a href="#${href}" title="${title}">${text}</a>`
@@ -38,7 +39,9 @@
         '/cute_framework/.*/_sidebar.md': '/cute_framework/_sidebar.md',
         '/cute_framework/.*/_navbar.md': '/cute_framework/_navbar.md',
         '/xmake/.*/_sidebar.md': '/xmake/_sidebar.md',
-        '/xmake/.*/_navbar.md': '/xmake/_navbar.md'
+        '/xmake/.*/_navbar.md': '/xmake/_navbar.md',
+        '/deepnight.net/.*/_sidebar.md': '/deepnight.net/_sidebar.md',
+        '/deepnight.net/.*/_navbar.md': '/deepnight.net/_navbar.md'
       },
       search: {
         maxAge: 86400000, 
@@ -65,5 +68,6 @@
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-json.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-go.min.js"></script>
   <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-lua.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-haxe.min.js"></script>
 </body>
 </html>

@@ -6,4 +6,6 @@
 
 - [xmake](/xmake/)
 
+- [deepnight.net](/deepnight.net/)
+
 - [test](/test/)
