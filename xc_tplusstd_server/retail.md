@@ -21,6 +21,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
             {
                 "goodsId": 1, // 小六商品id
                 "goodsName": "伦晚橙", // 小六商品名称
+                "goodsSpecification": "盒/2斤", // 小六规格型号
                 "goodsStatus": 1, // 映射状态
                 "id": 1, // 自增id 无用
                 "inventoryCode": "xl_1_1", // 存货编码
@@ -31,6 +32,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
             {
                 "goodsId": 100001,
                 "goodsName": "改价日志测试1",
+                "goodsSpecification": "规格1",
                 "goodsStatus": 1,
                 "id": 2,
                 "inventoryCode": "xl_100001_1",
