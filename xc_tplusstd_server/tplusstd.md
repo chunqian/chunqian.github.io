@@ -7,7 +7,7 @@ http --timeout=300 GET http://192.168.20.82:3000/tplus/loginManagerLogin \
 Content-Type:'application/x-www-form-urlencoded; charset=UTF-8'
 ```
 
-## response
+### response
 
 ```json
 {}
@@ -24,7 +24,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 }'
 ```
 
-## response
+### response
 
 ```json
 {}
@@ -42,7 +42,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 }'
 ```
 
-## response
+### response
 
 ```json
 {}
@@ -58,7 +58,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 }'
 ```
 
-## response
+### response
 
 ```json
 {}
@@ -75,7 +75,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 }'
 ```
 
-## response
+### response
 
 ```json
 {}
@@ -91,7 +91,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 }'
 ```
 
-## response
+### response
 
 ```json
 {}
@@ -104,7 +104,7 @@ http --timeout=300 GET http://192.168.20.82:3000/tplus/syncBomData \
 Content-Type:'application/x-www-form-urlencoded; charset=UTF-8'
 ```
 
-## response
+### response
 
 ```json
 {}
@@ -117,7 +117,7 @@ http --timeout=300 GET http://192.168.20.82:3000/tplus/syncInventoryData \
 Content-Type:'application/x-www-form-urlencoded; charset=UTF-8'
 ```
 
-## response
+### response
 
 ```json
 {}
