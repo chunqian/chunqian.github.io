@@ -4,10 +4,10 @@
 div.font-size0{
     font-size: 0;
 }
-img.vw_15_vh_20 {
+img.vw_15_vw_12 {
     object-fit: cover;
     width: 15vw;
-    height: 20vh;
+    height: 12vw;
 }
 img.vw_45 {
     object-fit: cover;
@@ -16,9 +16,9 @@ img.vw_45 {
 </style>
 
 <div class="font-size0">
-    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/MasterArt_1080.jpg" class="vw_15_vh_20" />
-    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot1.jpg-eq-900-500.jpg" class="vw_15_vh_20" />
-    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot1.png-eq-900-500.jpg.png" class="vw_15_vh_20" />
+    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/MasterArt_1080.jpg" class="vw_15_vw_12" />
+    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot1.jpg-eq-900-500.jpg" class="vw_15_vw_12" />
+    <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot1.png-eq-900-500.jpg.png" class="vw_15_vw_12" />
 </div>
 
 <img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/deepnight.net/assets/img/tutorials/2982-shot4.jpg-eq-900-500.jpg" class="vw_45" />
