@@ -59,14 +59,20 @@
                   'https://chunqian.github.io/'
                   )
                 html = html.replace(
-                  /https:\/\/github.com\/chunqian\/chunqian.github.io\/(blob|tree)\/main\/deepnight.net\//gi,
+                  /https:\/\/github.com\/chunqian\/chunqian.github.io\/blob\/main\/deepnight.net\//gi,
                   '/deepnight.net/'
                   )
                 break
               case '/cute_framework/':
                 html = html.replace(
-                  /https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//gi,
+                  /https:\/\/github.com\/RandyGaul\/cute_framework\/blob\/master\/doc\//gi,
                   '/cute_framework/'
+                  )
+                break
+              case '/rizz/':
+                html = html.replace(
+                  /https:\/\/github.com\/chunqian\/chunqian.github.io\/blob\/main\/rizz\//gi,
+                  '/rizz/'
                   )
                 break
             }

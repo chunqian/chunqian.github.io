@@ -1,5 +1,14 @@
 # **_rizz_ Architecture and Basic usage**  
 
+<style type="text/css">
+img.vw_45 {
+    width: 45vw;
+}
+img.vw_30 {
+    width: 30vw;
+}
+</style>
+
 This document is subject to change  
 Revision 1.16: 10 December 2020  
 
@@ -37,7 +46,8 @@ First of all, the project uses [_cmake_](https://cmake.org) as it's primary buil
 
 _rizz_ is divided into five main groups, which can be seen in the figure below:
 
-![Figure [build-chart]: build chart](rizz-basics-build-chart.png)
+<!-- ![Figure [build-chart]: build chart](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-build-chart.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-build-chart.png" class="vw_45" />
 
 - **sx (foundation library)**: built as static library. This is the foundation library that abstracts system level functionality, like threads, basic vector math, OS, memory management, etc. This library is almost linked with every other project directly. It's relationship with other modules is shown with straight arrow lines in figure #1.
 - **rizz**: Can be built as stand-alone executable or static library based on wither we are building in BUNDLE mode or not. I will get to that later in this section. Other plugins and games usually depend on this module and uses it's various APIs for their purposes. The dotted lines in figure #1 indicates module depends on this but linking is not necessary.
@@ -48,7 +58,8 @@ _rizz_ is divided into five main groups, which can be seen in the figure below:
 ## "Host" vs. "BUNDLE" build
 **Host build**, which is the default mode on desktop OSes (Windows/Linux/MacOS), builds _rizz_ project as an executable host program. It hosts other plugins and the application itself as dynamic modules, so they can all be reloaded on change. This is default on desktop systems because it provides live C/C++ module reloading and is better suited for development setup.
 
-![Figure [build-host]: host build model](rizz-basics-host-model.png)
+<!-- ![Figure [build-host]: host build model](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-host-model.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-host-model.png" class="vw_30" />
 
 **BUNDLE build**, which is the default mode on mobile OSes (android/iOS), builds _rizz_ and all plugins as static libraries, then links them to android's game dynamic library or iOS game bundle. This is mostly suitable for deployment, because it provides a single stand-alone executable. To enable this mode, you have to set `BUNDLE=1` and define bundle properties like the example below:
 
@@ -58,7 +69,8 @@ cmake .. -DBUNDLE=1 -DBUNDLE_TARGET_NAME=your_project -DBUNDLE_PLUGINS="imgui;so
 
 In this example, we set our project (name is `your_project`) to build as _BUNDLE_ mode and indicates that the project requires _imgui_ and _sound_ plugins.
 
-![Figure [build-bundle]: _BUNDLE_ build model](rizz-basics-bundle-model.png)
+<!-- ![Figure [build-bundle]: _BUNDLE_ build model](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-bundle-model.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-bundle-model.png" class="vw_30" />
 
 ## pre-built binary tools
 There are bunch of command line utilities included in the project as a pre-built binary. Of course they are all open source projects and can be built by fetching their source code independently. But I included their binaries for convenience and not to clutter the project. These tools reside in `tools/${platform}` directory.
@@ -162,7 +174,8 @@ These APIs can be fetched in main entry of the plugin/app with `get_api` functio
 
 All the sub-systems and their relationships are shown in the figure below:
 
-![Figure [systems]: sub-systems](rizz-basics-systems.png)
+<!-- ![Figure [systems]: sub-systems](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-systems.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-systems.png" class="vw_45" />
 
 - **core (rizz_api_core)**: core handles many primary functionality, like job dispatching, memory allocators, logging, profiling, etc. Almost all of other modules and sub-systems use this module.
 - **app (rizz_api_app)**: This is the main entry of the program, creates the app and it's window, handles message loop, GPU device contexts and stuff like that. This process is invisible to user, but there is an API which you can query or control certain aspects of the program, like getting window dimensions, showing mouse pointer, quit the application and functions related to the main app.
@@ -185,7 +198,8 @@ Plugins have various events which is triggered by the host (_rizz_) through a ca
 
 The plugin system accepts a base directory where all of the plugins should be located. Then the game or other plugins define the plugins they would need. After this, a dependency graph will be created in the plugin system in order to update, load and unload each plugin in order considering their parent/child relationship. Then, the main loop will update game/application after all plugins are updated.
 
-![Figure [plugins]: Plugin dependency graph example. Order of execution is shown with arrows for each event](rizz-basics-plugins.png)
+<!-- ![Figure [plugins]: Plugin dependency graph example. Order of execution is shown with arrows for each event](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-plugins.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-plugins.png" class="vw_45" />
 
 As you can see in the example above, our game uses _sound_, _input_ and _sprite_ plugins, and every one of those plugins, depend on _imgui_ for their debugging functionality, so the blue squares shows plugin dependency graph. When _update_ and _init_ events happen, they are triggered by the host and goes from top to bottom of the hierarchy. But _shutdown_ event will execute in reverse order and starts with the game itself then goes up to the hierarchy.
 
@@ -440,7 +454,8 @@ Asset manager in _rizz_ is designed to be flexible so the 3rdparty user can exte
 ## Design
 Internally, it works by issuing file requests to the *virtual file-system* (`src/rizz/vfs.c`) which is an async call by default. After the file is loaded from the IO, it will load the actual asset data by spawning a new job for the job-system. You can see the overview of the design in the image below:
 
-![Figure [asset-design]: asset system data flow (from left to right): load process](rizz-basics-asset-design.png)
+<!-- ![Figure [asset-design]: asset system data flow (from left to right): load process](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-asset-design.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-asset-design.png" class="vw_45" />
 
 - When a `load` request comes in from the API, the *asset manager* returns a newly created handle back to the user, so it can be saved. But the handle points to a temporary *async* object, which is just a placeholder and not the actual asset being loaded. 
 - Internally, *asset manager* requests the *virtual file-system* the file data, which runs in async mode (for example, for files on disk, it loads them in another thread). 
@@ -531,7 +546,8 @@ api->end();
 
 All graphics commands will be queued in command-lists, but not submitted to the backend API immediately. After the frame is finished, all of them are sorted by exeution order and their stage dependencies, and then submitted to the graphics backend API in bulk! This decision is made to lower the latency of the drawing calls. 
 
-![Figure [stages-example]: A simple example of stages and their dependencies (showed with arrows), the execution order of the calls will be from left to right](rizz-basics-stages-example.png)
+<!-- ![Figure [stages-example]: A simple example of stages and their dependencies (showed with arrows), the execution order of the calls will be from left to right](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-stages-example.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-stages-example.png" class="vw_45" />
 
 All of the *staged* draw API functions (`the_gfx->staged`), can be called in job-system's worker threads. However, there are certain rules that you should follow:
 
@@ -548,7 +564,8 @@ The catch here is to be careful about the `the_gfx->present_commands` call. It s
 
 Here's an example of how you can implement this functionality:
 
-![Figure [draw-mt]: Example of a multi-threading scenario and submitting command-queues to the GPU in the middle of the frame](rizz-basics-draw-mt.png)
+<!-- ![Figure [draw-mt]: Example of a multi-threading scenario and submitting command-queues to the GPU in the middle of the frame](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-draw-mt.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/rizz-basics-draw-mt.png" class="vw_45" />
 
 As you can see in the image below, **Present** (`the_gfx->presend_commands`) call should only happen when you are not drawing on job threads, after a successful present call, you can safely call **Commit** (`the_gfx->commit_commands`) even if other threads are drawing. Because internally, the graphics system, stores two command-queue buffers, and switches between them after you call present. Basically, one buffer is meant to be fed by draw commands, another buffer is meant to sort and submit calls to the GPU. **Note** that on "Frame end", both command-queue buffers (feed and render) will be flushed and submitted to the GPU.
 
@@ -732,7 +749,8 @@ However, there are exceptions to this. Some built-in logging backends, like **Te
 ## Log window
 When using `imgui` plugin, you will get a log window along with console command. By default, pressing "~" shortcut key will bring it up. 
 
-![log-console-window](log-console-window.png)
+<!-- ![log-console-window](https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/log-console-window.png) -->
+<img src="https://raw.githubusercontent.com/chunqian/chunqian.github.io/main/rizz/assets/img/log-console-window.png" class="vw_45" />
 
 You can issue commands, filter out entries based on their level and channel bits (0-31). Also, double clicking on each entry will copy it to the clipboard.
 
@@ -741,14 +759,12 @@ When registering application to the engine, we define a _config_ function (see [
 
 The steps that configuration data is filled and overrided are as follows:
 
-*************************************************************************************
-*                                                                                   *
-* .--------------------.      .------------.       .------------------------------. *
-* | hardcoded default  +----->| rizz.ini   +------>|  rizz_game_decl_config(conf) | *
-* |       values       |      '------------'       '------------------------------' *
-* '--------------------'                                                            *
-*                                                                                   *
-*************************************************************************************
+```
+    .--------------------.      .------------.       .------------------------------.
+    | hardcoded default  +----->| rizz.ini   +------>|  rizz_game_decl_config(conf) |
+    |       values       |      '------------'       '------------------------------'
+    '--------------------'                                                           
+```
 
 So, first it is filled with hardcoded default values by the engine, then it tries to read *rizz.ini* from current directory, reads it's values and override *rizz_config* fields. At last, it is passed to the program's config function (rizz_game_decl_config flag) for final override.
 
