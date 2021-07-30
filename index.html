@@ -21,20 +21,6 @@
       auto2top: true,
       maxLevel: 3,
       subMaxLevel: 3,
-      markdown: {
-        renderer: {
-            link: function(href, title, text) {
-              href = href.replace(/https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//i, '/cute_framework/')
-              href = href.replace(/https:\/\/github.com\/chunqian\/chunqian.github.io\/(blob|tree)\/main\/deepnight.net\//i, '/deepnight.net/')
-              title = title ? title : ""
-              if (/^(?!http:\/\/|https:\/\/).*/.test(href)) {
-                return `<a href="#${href}" title="${title}">${text}</a>`
-              } else {
-                return `<a href="${href}" target="_blank" rel="noopener" title="${title}">${text}</a>`
-              }
-            }
-        }
-      },
       alias: {
         '/cute_framework/.*/_sidebar.md': '/cute_framework/_sidebar.md',
         '/cute_framework/.*/_navbar.md': '/cute_framework/_navbar.md',
@@ -56,6 +42,36 @@
         namespace: 'chunqian.github.io',
         hideOtherSidebarContent: false
       },
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (html) {
+            editPath = /^\/[\w.]+\//i.exec(vm.route.path)
+            if (!editPath) {
+              return html
+            }
+            editPath = editPath[0]
+            switch (editPath) {
+              case '/deepnight.net/':
+                html = html.replace(
+                  /https:\/\/raw.githubusercontent.com\/chunqian\/chunqian.github.io\/main\//gi,
+                  'https://chunqian.github.io/'
+                  )
+                html = html.replace(
+                  /https:\/\/github.com\/chunqian\/chunqian.github.io\/(blob|tree)\/main\/deepnight.net\//gi,
+                  '/deepnight.net/'
+                  )
+                break
+              case '/cute_framework/':
+                html = html.replace(
+                  /https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//gi,
+                  '/cute_framework/'
+                  )
+                break
+            }
+            return html
+          })
+        }
+      ]
     }
   </script>
   <!-- Docsify v4 -->
