@@ -8,4 +8,6 @@
 
 - [deepnight.net](/deepnight.net/)
 
+- [rizz](/rizz/)
+
 - [test](/test/)
