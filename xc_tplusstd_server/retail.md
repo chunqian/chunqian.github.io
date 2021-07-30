@@ -3,7 +3,7 @@ Use [httpie](https://httpie.io) for http request
 ## 获取存货列表 /api/inventory/getPagedInventories
 
 ```bash
-http --timeout=300 GET http://192.168.20.82:3000/api/inventory/getPagedInventories \
+http --timeout=300 POST http://192.168.20.82:3000/api/inventory/getPagedInventories \
 Content-Type:'application/json; charset=UTF-8' <<< \
 '{
     "classifyId": 0,
@@ -65,11 +65,19 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 ## 获取存货 /api/inventory/getInventory
 
 ```bash
-http --timeout=300 GET http://192.168.20.82:3000/api/inventory/getInventory \
+http --timeout=300 POST http://192.168.20.82:3000/api/inventory/getInventory \
 Content-Type:'application/json; charset=UTF-8' <<< \
 '{
-    "id": 2511
+    "goodsId": 1
 }'
+```
+
+## request
+
+```json
+{
+    "goodsId": 1 // 小六商品id
+}
 ```
 
 ## response
