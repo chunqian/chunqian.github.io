@@ -724,7 +724,7 @@ body {
   border-radius: 2px;
   color: #c695c6;
   margin: 0 2px;
-  padding: 2px 5px;
+  padding: 1px 5px;
   white-space: pre-wrap;
 }
 .markdown-section > :not(h1):not(h2):not(h3):not(h4):not(h5):not(h6) code {
