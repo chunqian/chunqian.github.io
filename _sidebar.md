@@ -2,12 +2,12 @@
 
 - [xc_tplusstd_server](/xc_tplusstd_server/)
 
-- [cute_framework](/cute_framework/)
+<!-- - [cute_framework](/cute_framework/) -->
 
-- [xmake](/xmake/)
+<!-- - [xmake](/xmake/) -->
 
 - [deepnight.net](/deepnight.net/)
 
-- [rizz](/rizz/)
+<!-- - [rizz](/rizz/) -->
 
 - [test](/test/)
