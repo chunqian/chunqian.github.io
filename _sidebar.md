@@ -4,7 +4,7 @@
 
 <!-- - [cute_framework](/cute_framework/) -->
 
-<!-- - [xmake](/xmake/) -->
+- [xmake](/xmake/)
 
 - [deepnight.net](/deepnight.net/)
 
