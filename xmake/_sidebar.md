@@ -1,6 +1,6 @@
 - [back](/)
 
-  - 关于
+  <!-- - 关于
     
     - [介绍](/xmake/about/introduction)
     - [联系](/xmake/about/contact)
@@ -10,7 +10,7 @@
     - [谁在使用 Xmake](/xmake/about/who_is_using_xmake)
     - [技术支持](/xmake/about/technical_support)
     - [Awesome Xmake](/xmake/about/awesome)
-    - [更新日志](/xmake/about/changelog)
+    - [更新日志](/xmake/about/changelog) -->
    
   - 快速入门
 
@@ -22,19 +22,19 @@
     - [其他特性](/xmake/guide/other_features)
     - [问答](/xmake/guide/faq)
 
-  - 包依赖管理
+  <!-- - 包依赖管理
 
     - [使用本地包 (Old)](/xmake/package/local_package_old)
     - [使用本地包 (New)](/xmake/package/local_package)
     - [使用系统包](/xmake/package/system_package)
     - [使用远程包](/xmake/package/remote_package)
-    - [Xrepo C/C++ 包管理器](https://chunqian.github.io/https://xrepo.xmake.io/#/zh-cn/getting_started)
+    - [Xrepo C/C++ 包管理器](https://chunqian.github.io/https://xrepo.xmake.io/#/zh-cn/getting_started) -->
 
   - 插件介绍
 
     - [插件开发](/xmake/plugin/plugin_development)
     - [内置插件](/xmake/plugin/builtin_plugins)
-    - [更多插件](/xmake/plugin/more_plugins)
+    <!-- - [更多插件](/xmake/plugin/more_plugins) -->
 
   - API手册
 
@@ -46,7 +46,7 @@
     - [插件任务](/xmake/manual/plugin_task)
     - [自定义规则](/xmake/manual/custom_rule)
     - [自定义工具链](/xmake/manual/custom_toolchain)
-    - [包依赖管理](/xmake/manual/package_dependencies)
+    <!-- - [包依赖管理](/xmake/manual/package_dependencies) -->
     - [内置变量](/xmake/manual/builtin_variables)
     - [内置模块](/xmake/manual/builtin_modules)
     - [扩展模块](/xmake/manual/extension_modules)
