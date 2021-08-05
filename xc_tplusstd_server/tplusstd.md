@@ -38,7 +38,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 '{
     "InventoryClassId": "278",
     "PageIndex": 0,
-    "PageSize": 1000
+    "PageSize": 100
 }'
 ```
 
@@ -71,7 +71,7 @@ http --timeout=300 POST https://xc-tplus-test.leyonb.com/tplus/bomDoubleListPage
 Content-Type:'application/json; charset=UTF-8' <<< \
 '{
     "PageIndex": 0,
-    "PageSize": 1000
+    "PageSize": 100
 }'
 ```
 
