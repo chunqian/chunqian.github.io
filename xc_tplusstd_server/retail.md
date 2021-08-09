@@ -183,7 +183,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 http --timeout=300 POST https://xc-tplus-test.leyonb.com/api/bom/getBom \
 Content-Type:'application/json; charset=UTF-8' <<< \
 '{
-    "bomId": 55
+    "bomId": 3554
 }'
 ```
 
@@ -191,7 +191,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 
 ```json
 {
-    "bomId": 55 // 物料id
+    "bomId": 3554 // 物料id
 }
 ```
 
@@ -216,10 +216,12 @@ Content-Type:'application/json; charset=UTF-8' <<< \
                 "goodsId": null, // 小六商品id
                 "requiredQuantity": "1.00", // 需用数量
                 "specification": "约500g/份", // 规格
+                "unit": "斤", // 单位
                 "wasteRate": "0.0000" // 损耗率
             }
         ],
         "unit": "份", // 单位
+        "voucherState": "01", // 审核状态 "00"(未审) "01"(已审)
         "yieldRate": "1.00" // 成品率
     },
     "msg": "success"
