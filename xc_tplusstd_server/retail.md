@@ -113,3 +113,115 @@ Content-Type:'application/json; charset=UTF-8' <<< \
     "msg": "success"
 }
 ```
+
+## 获取物料列表 /api/bom/getPagedBoms
+
+```bash
+http --timeout=300 POST https://xc-tplus-test.leyonb.com/api/bom/getPagedBoms \
+Content-Type:'application/json; charset=UTF-8' <<< \
+'{
+    "classifyId": 0,
+    "levelType": 1,
+    "productName": "",
+    "materialName": "",
+    "pageIndex": 0,
+    "pageSize": 2
+}'
+```
+
+### request
+
+```json
+{
+    "classifyId": 0, // 分类id
+    "levelType": 1, // 分类层级
+    "productName": "", // 商品名称
+    "materialName": "", // 原料名称
+    "pageIndex": 0, // 页码
+    "pageSize": 2 // 数量
+}
+```
+
+### response
+
+```json
+{
+    "code": 0,
+    "data": {
+        "boms": [
+            {
+                "bomCode": "xl_100389_1", // 物料编码
+                "bomDisabled": 0, // 状态
+                "bomId": 111, // 物料id
+                "bomName": "不知火丑橘", // 物料名称
+                "bomVersion": "1", // 版本
+                "produceQuantity": "1.00", // 生产数量
+                "specification": "约1kg/份", // 规格
+                "unit": "份" // 单位
+            },
+            {
+                "bomCode": "xl_100340_1",
+                "bomDisabled": 0,
+                "bomId": 55,
+                "bomName": "红心李",
+                "bomVersion": "1",
+                "produceQuantity": "1.00",
+                "specification": "约500g",
+                "unit": "份"
+            }
+        ],
+        "boms_count": 2
+    },
+    "msg": "success"
+}
+
+```
+
+## 获取物料 /api/bom/getBom
+
+```bash
+http --timeout=300 POST https://xc-tplus-test.leyonb.com/api/bom/getBom \
+Content-Type:'application/json; charset=UTF-8' <<< \
+'{
+    "bomId": 55
+}'
+```
+
+### request
+
+```json
+{
+    "bomId": 55 // 物料id
+}
+```
+
+### response
+
+```json
+{
+    "code": 0,
+    "data": {
+        "bomCode": "xl_100340_1", // 物料编码
+        "bomDisabled": 0, // 状态
+        "bomId": 55, // 物料id
+        "bomName": "红心李", // 物料名称
+        "bomVersion": "1", // 版本
+        "goodsId": 100340, // 小六商品id
+        "produceQuantity": "1.00", // 生产数量
+        "specification": "约500g", // 规格
+        "subBoms": [
+            {
+                "bomCode": "YL-360", // 原料编码
+                "bomName": "红心李_原料", // 原料名称
+                "goodsId": null, // 小六商品id
+                "requiredQuantity": "1.00", // 需用数量
+                "specification": "约500g/份", // 规格
+                "wasteRate": "0.0000" // 损耗率
+            }
+        ],
+        "unit": "份", // 单位
+        "yieldRate": "1.00" // 成品率
+    },
+    "msg": "success"
+}
+```
