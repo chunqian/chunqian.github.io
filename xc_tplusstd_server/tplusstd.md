@@ -100,7 +100,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 ## 全量同步物料清单数据 /tplus/syncBomData
 
 ```bash
-http --timeout=300 GET https://xc-tplus-test.leyonb.com/tplus/syncBomData \
+http GET https://xc-tplus-test.leyonb.com/tplus/syncBomData \
 Content-Type:'application/x-www-form-urlencoded; charset=UTF-8'
 ```
 
@@ -113,7 +113,7 @@ Content-Type:'application/x-www-form-urlencoded; charset=UTF-8'
 ## 全量同步存货数据 /tplus/syncInventoryData
 
 ```bash
-http --timeout=300 GET https://xc-tplus-test.leyonb.com/tplus/syncInventoryData \
+http GET https://xc-tplus-test.leyonb.com/tplus/syncInventoryData \
 Content-Type:'application/x-www-form-urlencoded; charset=UTF-8'
 ```
 
