@@ -22,7 +22,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
     "classifyId": 0, // 分类id
     "levelType": 1, // 分类层级
     "goodsName": "", // 商品名称
-    "goodsStatus": 1, // 映射状态
+    "goodsStatus": 1, // 映射状态 0(全部显示) 1(只显示已映射) 2(只显示未映射) 3(只显示用友已停用)
     "pageIndex": 0, // 页码
     "pageSize": 2 // 数量
 }
@@ -202,7 +202,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
     "code": 0,
     "data": {
         "bomCode": "xl_100340_1", // 物料编码
-        "bomDisabled": 0, // 状态
+        "bomDisabled": 0, // 状态 0(启用) 1(停用)
         "bomId": 55, // 物料id
         "bomName": "红心李", // 物料名称
         "bomVersion": "1", // 版本
