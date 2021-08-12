@@ -10,7 +10,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
     "levelType": 1,
     "goodsName": "",
     "goodsStatus": 1,
-    "pageIndex": 0,
+    "pageIndex": 1,
     "pageSize": 2
 }'
 ```
@@ -23,7 +23,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
     "levelType": 1, // 分类层级
     "goodsName": "", // 商品名称
     "goodsStatus": 1, // 映射状态 0(全部显示) 1(只显示已映射) 2(只显示未映射) 3(只显示用友已停用)
-    "pageIndex": 0, // 页码
+    "pageIndex": 1, // 页码
     "pageSize": 2 // 数量
 }
 ```
@@ -124,7 +124,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
     "levelType": 1,
     "productName": "",
     "materialName": "",
-    "pageIndex": 0,
+    "pageIndex": 1,
     "pageSize": 2
 }'
 ```
@@ -137,7 +137,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
     "levelType": 1, // 分类层级
     "productName": "", // 商品名称
     "materialName": "", // 原料名称
-    "pageIndex": 0, // 页码
+    "pageIndex": 1, // 页码
     "pageSize": 2 // 数量
 }
 ```
