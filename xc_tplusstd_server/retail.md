@@ -68,7 +68,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 http --timeout=300 POST https://xc-tplus-test.leyonb.com/api/inventory/getInventory \
 Content-Type:'application/json; charset=UTF-8' <<< \
 '{
-    "goodsId": 1
+    "inventoryId": 2511
 }'
 ```
 
@@ -76,7 +76,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 
 ```json
 {
-    "goodsId": 1 // 小六商品id
+    "inventoryId": 2511 // 存货id
 }
 ```
 
