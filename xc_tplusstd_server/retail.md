@@ -8,7 +8,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 '{
     "classifyId": 0,
     "levelType": 1,
-    "goodsName": "",
+    "inventoryName": "",
     "goodsStatus": 1,
     "pageIndex": 1,
     "pageSize": 2
@@ -21,7 +21,7 @@ Content-Type:'application/json; charset=UTF-8' <<< \
 {
     "classifyId": 0, // 分类id
     "levelType": 1, // 分类层级
-    "goodsName": "", // 商品名称
+    "inventoryName": "", // 存货名称
     "goodsStatus": 1, // 映射状态 0(全部显示) 1(只显示已映射) 2(只显示未映射) 3(只显示用友已停用)
     "pageIndex": 1, // 页码
     "pageSize": 2 // 数量
