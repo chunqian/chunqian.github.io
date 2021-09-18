@@ -6,290 +6,290 @@
     
         * 什么是面向对象
         
-            * [面向对象与面向过程](to_be_top_javaer/basics/object-oriented/object-oriented-vs-procedure-oriented.md)
+            * [面向对象与面向过程](/to_be_top_javaer/basics/object-oriented/object-oriented-vs-procedure-oriented.md)
         
-            * [面向对象的三大基本特征](to_be_top_javaer/basics/object-oriented/characteristics.md)
+            * [面向对象的三大基本特征](/to_be_top_javaer/basics/object-oriented/characteristics.md)
         
-            * [面向对象的五大基本原则](to_be_top_javaer/basics/object-oriented/principle.md)
+            * [面向对象的五大基本原则](/to_be_top_javaer/basics/object-oriented/principle.md)
             
         * 封装、继承、多态
-            * [什么是多态](to_be_top_javaer/basics/object-oriented/polymorphism.md)
+            * [什么是多态](/to_be_top_javaer/basics/object-oriented/polymorphism.md)
             
-            * [方法重写与重载](to_be_top_javaer/basics/object-oriented/overloading-vs-overriding.md)
+            * [方法重写与重载](/to_be_top_javaer/basics/object-oriented/overloading-vs-overriding.md)
             
-            * [Java的继承与实现](to_be_top_javaer/basics/object-oriented/extends-implement.md)
+            * [Java的继承与实现](/to_be_top_javaer/basics/object-oriented/extends-implement.md)
             
-            * [Java为什么不支持多继承](to_be_top_javaer/basics/object-oriented/multiple-inheritance.md)
+            * [Java为什么不支持多继承](/to_be_top_javaer/basics/object-oriented/multiple-inheritance.md)
         
-            * [Java的继承与组合](to_be_top_javaer/basics/object-oriented/inheritance-composition.md)
+            * [Java的继承与组合](/to_be_top_javaer/basics/object-oriented/inheritance-composition.md)
         
-            * [构造函数与默认构造函数](to_be_top_javaer/basics/object-oriented/constructor.md)
+            * [构造函数与默认构造函数](/to_be_top_javaer/basics/object-oriented/constructor.md)
             
-            * [类变量、成员变量和局部变量](to_be_top_javaer/basics/object-oriented/variable.md)
+            * [类变量、成员变量和局部变量](/to_be_top_javaer/basics/object-oriented/variable.md)
             
-            * [成员变量和方法作用域](to_be_top_javaer/basics/object-oriented/scope.md)
+            * [成员变量和方法作用域](/to_be_top_javaer/basics/object-oriented/scope.md)
             
         * 平台无关性
         
-            * [Java如何实现的平台无关性的](to_be_top_javaer/basics/object-oriented/platform-independent.md)
+            * [Java如何实现的平台无关性的](/to_be_top_javaer/basics/object-oriented/platform-independent.md)
             
-            * [JVM还支持哪些语言](to_be_top_javaer/basics/object-oriented/jvm-language.md)
+            * [JVM还支持哪些语言](/to_be_top_javaer/basics/object-oriented/jvm-language.md)
         
         * 值传递
     
-            * [值传递、引用传递](to_be_top_javaer/basics/object-oriented/java-pass-by.md)
+            * [值传递、引用传递](/to_be_top_javaer/basics/object-oriented/java-pass-by.md)
     
-            * [为什么说Java中只有值传递](to_be_top_javaer/basics/object-oriented/why-pass-by-reference.md)
+            * [为什么说Java中只有值传递](/to_be_top_javaer/basics/object-oriented/why-pass-by-reference.md)
       
     * Java基础知识
         
         * 基本数据类型
 
-            * [8种基本数据类型](to_be_top_javaer/basics/java-basic/basic-data-types.md)
+            * [8种基本数据类型](/to_be_top_javaer/basics/java-basic/basic-data-types.md)
 
-            * [整型中byte、short、int、long的取值范围](to_be_top_javaer/basics/java-basic/integer-scope.md)
+            * [整型中byte、short、int、long的取值范围](/to_be_top_javaer/basics/java-basic/integer-scope.md)
 
-            * [什么是浮点型？](to_be_top_javaer/basics/java-basic/float.md)
+            * [什么是浮点型？](/to_be_top_javaer/basics/java-basic/float.md)
 
-            * [什么是单精度和双精度？](to_be_top_javaer/basics/java-basic/single-double-float.md)
+            * [什么是单精度和双精度？](/to_be_top_javaer/basics/java-basic/single-double-float.md)
 
-            * [为什么不能用浮点型表示金额？](to_be_top_javaer/basics/java-basic/float-amount.md)
+            * [为什么不能用浮点型表示金额？](/to_be_top_javaer/basics/java-basic/float-amount.md)
 
         * 自动拆装箱
 
-            * [自动拆装箱](to_be_top_javaer/basics/java-basic/boxing-unboxing.md)
+            * [自动拆装箱](/to_be_top_javaer/basics/java-basic/boxing-unboxing.md)
 
-            * [Integer的缓存机制](to_be_top_javaer/basics/java-basic/integer-cache.md)
+            * [Integer的缓存机制](/to_be_top_javaer/basics/java-basic/integer-cache.md)
             
-            * [如何正确定义接口的返回值(boolean/Boolean)类型及命名(success/isSuccess)](to_be_top_javaer/basics/java-basic/success-isSuccess-and-boolean-Boolean.md)
+            * [如何正确定义接口的返回值(boolean/Boolean)类型及命名(success/isSuccess)](/to_be_top_javaer/basics/java-basic/success-isSuccess-and-boolean-Boolean.md)
 
         * String
 
-            * [字符串的不可变性](to_be_top_javaer/basics/java-basic/final-string.md)
+            * [字符串的不可变性](/to_be_top_javaer/basics/java-basic/final-string.md)
 
-            * [JDK 6和JDK 7中substring的原理及区别](to_be_top_javaer/basics/java-basic/substring.md)
+            * [JDK 6和JDK 7中substring的原理及区别](/to_be_top_javaer/basics/java-basic/substring.md)
 
-            * [replaceFirst、replaceAll、replace区别](to_be_top_javaer/basics/java-basic/replace-in-string.md)
+            * [replaceFirst、replaceAll、replace区别](/to_be_top_javaer/basics/java-basic/replace-in-string.md)
 
-            * [String对“+”的重载](to_be_top_javaer/basics/java-basic/string-append.md)
+            * [String对“+”的重载](/to_be_top_javaer/basics/java-basic/string-append.md)
 
-            * [字符串拼接的几种方式和区别](to_be_top_javaer/basics/java-basic/string-concat.md)
+            * [字符串拼接的几种方式和区别](/to_be_top_javaer/basics/java-basic/string-concat.md)
             
-            * [Java 8中的StringJoiner](to_be_top_javaer/basics/java-basic/stringjoiner-in-java8.md)
+            * [Java 8中的StringJoiner](/to_be_top_javaer/basics/java-basic/stringjoiner-in-java8.md)
 
-            * [String.valueOf和Integer.toString的区别](to_be_top_javaer/basics/java-basic/value-of-vs-to-string.md)
+            * [String.valueOf和Integer.toString的区别](/to_be_top_javaer/basics/java-basic/value-of-vs-to-string.md)
 
-            * [switch对String的支持](to_be_top_javaer/basics/java-basic/switch-string.md)
+            * [switch对String的支持](/to_be_top_javaer/basics/java-basic/switch-string.md)
             
-            * [字符串池](to_be_top_javaer/basics/java-basic/string-pool.md)
+            * [字符串池](/to_be_top_javaer/basics/java-basic/string-pool.md)
             
-            * [Class常量池](to_be_top_javaer/basics/java-basic/class-contant-pool.md)
+            * [Class常量池](/to_be_top_javaer/basics/java-basic/class-contant-pool.md)
             
-            * [运行时常量池](to_be_top_javaer/basics/java-basic/Runtime-Constant-Pool.md)
+            * [运行时常量池](/to_be_top_javaer/basics/java-basic/Runtime-Constant-Pool.md)
             
-            * [intern](to_be_top_javaer/basics/java-basic/intern.md)
+            * [intern](/to_be_top_javaer/basics/java-basic/intern.md)
             
-            * [String有没有长度限制？](to_be_top_javaer/basics/java-basic/length-of-string.md)
+            * [String有没有长度限制？](/to_be_top_javaer/basics/java-basic/length-of-string.md)
             
         * Java中各种关键字
         
-            * [transient](to_be_top_javaer/basics/java-basic/transient-in-java.md)
+            * [transient](/to_be_top_javaer/basics/java-basic/transient-in-java.md)
             
-            * [instanceof](to_be_top_javaer/basics/java-basic/instanceof-in-java.md)
+            * [instanceof](/to_be_top_javaer/basics/java-basic/instanceof-in-java.md)
             
-            * [volatile](to_be_top_javaer/basics/concurrent-coding/volatile.md)
+            * [volatile](/to_be_top_javaer/basics/concurrent-coding/volatile.md)
             
-            * [synchronized](to_be_top_javaer/basics/concurrent-coding/synchronized.md)
+            * [synchronized](/to_be_top_javaer/basics/concurrent-coding/synchronized.md)
             
-            * [final](to_be_top_javaer/basics/java-basic/final-in-java.md)
+            * [final](/to_be_top_javaer/basics/java-basic/final-in-java.md)
             
-            * [static](to_be_top_javaer/basics/java-basic/static-in-java.md)
+            * [static](/to_be_top_javaer/basics/java-basic/static-in-java.md)
             
-            * [const](to_be_top_javaer/basics/java-basic/const-in-java.md)
+            * [const](/to_be_top_javaer/basics/java-basic/const-in-java.md)
             
         * 集合类
         
-            * [Collection和Collections区别](to_be_top_javaer/basics/java-basic/Collection-vs-Collections.md)
+            * [Collection和Collections区别](/to_be_top_javaer/basics/java-basic/Collection-vs-Collections.md)
             
             * 常用集合类的使用
             
-            * [Set和List区别？](to_be_top_javaer/basics/java-basic/set-vs-list.md)
+            * [Set和List区别？](/to_be_top_javaer/basics/java-basic/set-vs-list.md)
         
-            * [ArrayList和LinkedList和Vector的区别](to_be_top_javaer/basics/java-basic/arraylist-vs-linkedlist-vs-vector.md)
+            * [ArrayList和LinkedList和Vector的区别](/to_be_top_javaer/basics/java-basic/arraylist-vs-linkedlist-vs-vector.md)
             
-            * [ArrayList使用了transient关键字进行存储优化，而Vector没有，为什么？](to_be_top_javaer/basics/java-basic/why-transient-in-arraylist.md) 
+            * [ArrayList使用了transient关键字进行存储优化，而Vector没有，为什么？](/to_be_top_javaer/basics/java-basic/why-transient-in-arraylist.md) 
             
-            * [SynchronizedList和Vector的区别](to_be_top_javaer/basics/java-basic/synchronizedlist-vector.md)
+            * [SynchronizedList和Vector的区别](/to_be_top_javaer/basics/java-basic/synchronizedlist-vector.md)
             
-            * [Set如何保证元素不重复?](to_be_top_javaer/basics/java-basic/set-repetition.md)
+            * [Set如何保证元素不重复?](/to_be_top_javaer/basics/java-basic/set-repetition.md)
             
-            * [HashMap、HashTable、ConcurrentHashMap区别](to_be_top_javaer/basics/java-basic/HashMap-HashTable-ConcurrentHashMap.md)
+            * [HashMap、HashTable、ConcurrentHashMap区别](/to_be_top_javaer/basics/java-basic/HashMap-HashTable-ConcurrentHashMap.md)
             
             * Java 8中Map相关的红黑树的引用背景、原理等
             
-            * [HashMap的容量、扩容](to_be_top_javaer/basics/java-basic/hashmap-capacity.md)
+            * [HashMap的容量、扩容](/to_be_top_javaer/basics/java-basic/hashmap-capacity.md)
             
-            * [HashMap中hash方法的原理](to_be_top_javaer/basics/java-basic/hash-in-hashmap.md)
+            * [HashMap中hash方法的原理](/to_be_top_javaer/basics/java-basic/hash-in-hashmap.md)
             
-            * [为什么HashMap的默认容量设置成16](to_be_top_javaer/basics/java-basic/hashmap-default-capacity.md)
+            * [为什么HashMap的默认容量设置成16](/to_be_top_javaer/basics/java-basic/hashmap-default-capacity.md)
             
-            * [为什么HashMap的默认负载因子设置成0.75](to_be_top_javaer/basics/java-basic/hashmap-default-loadfactor.md)
+            * [为什么HashMap的默认负载因子设置成0.75](/to_be_top_javaer/basics/java-basic/hashmap-default-loadfactor.md)
             
-            * [为什么建议设置HashMap的初始容量，设置多少合适](to_be_top_javaer/basics/java-basic/hashmap-init-capacity.md)
+            * [为什么建议设置HashMap的初始容量，设置多少合适](/to_be_top_javaer/basics/java-basic/hashmap-init-capacity.md)
             
-            * [Java 8中stream相关用法](to_be_top_javaer/basics/java-basic/stream.md)
+            * [Java 8中stream相关用法](/to_be_top_javaer/basics/java-basic/stream.md)
             
-            * [Apache集合处理工具类的使用](to_be_top_javaer/basics/java-basic/apache-collections.md)
+            * [Apache集合处理工具类的使用](/to_be_top_javaer/basics/java-basic/apache-collections.md)
             
             * 不同版本的JDK中HashMap的实现的区别以及原因
             
-            * [Arrays.asList获得的List使用时需要注意什么](to_be_top_javaer/basics/java-basic/Arrays-asList.md)
+            * [Arrays.asList获得的List使用时需要注意什么](/to_be_top_javaer/basics/java-basic/Arrays-asList.md)
             
-            * [Collection如何迭代](to_be_top_javaer/basics/java-basic/iteration-of-collection.md)
+            * [Collection如何迭代](/to_be_top_javaer/basics/java-basic/iteration-of-collection.md)
             
-            * [Enumeration和Iterator区别](to_be_top_javaer/basics/java-basic/Enumeration-vs-Iterator.md)
+            * [Enumeration和Iterator区别](/to_be_top_javaer/basics/java-basic/Enumeration-vs-Iterator.md)
             
-            * [fail-fast 和 fail-safe](to_be_top_javaer/basics/java-basic/fail-fast-vs-fail-safe.md)
+            * [fail-fast 和 fail-safe](/to_be_top_javaer/basics/java-basic/fail-fast-vs-fail-safe.md)
             
-            * [如何在遍历的同时删除ArrayList中的元素](to_be_top_javaer/basics/java-basic/delete-while-iterator.md)
+            * [如何在遍历的同时删除ArrayList中的元素](/to_be_top_javaer/basics/java-basic/delete-while-iterator.md)
             
-            * [CopyOnWriteArrayList](to_be_top_javaer/basics/java-basic/CopyOnWriteArrayList.md)
+            * [CopyOnWriteArrayList](/to_be_top_javaer/basics/java-basic/CopyOnWriteArrayList.md)
             
-            * [ConcurrentSkipListMap](to_be_top_javaer/basics/java-basic/ConcurrentSkipListMap.md)
+            * [ConcurrentSkipListMap](/to_be_top_javaer/basics/java-basic/ConcurrentSkipListMap.md)
 
         * 枚举
 
-            * [枚举的用法](to_be_top_javaer/basics/java-basic/enum-usage.md)
+            * [枚举的用法](/to_be_top_javaer/basics/java-basic/enum-usage.md)
             
-            * [枚举的实现](to_be_top_javaer/basics/java-basic/enum-impl.md)
+            * [枚举的实现](/to_be_top_javaer/basics/java-basic/enum-impl.md)
             
-            * [枚举与单例](to_be_top_javaer/basics/java-basic/enum-singleton.md)
+            * [枚举与单例](/to_be_top_javaer/basics/java-basic/enum-singleton.md)
             
-            * [Enum类](to_be_top_javaer/basics/java-basic/enum-class.md)
+            * [Enum类](/to_be_top_javaer/basics/java-basic/enum-class.md)
             
-            * [Java枚举如何比较](to_be_top_javaer/basics/java-basic/enum-compare.md)
+            * [Java枚举如何比较](/to_be_top_javaer/basics/java-basic/enum-compare.md)
             
-            * [switch对枚举的支持](to_be_top_javaer/basics/java-basic/enum-switch.md)
+            * [switch对枚举的支持](/to_be_top_javaer/basics/java-basic/enum-switch.md)
             
-            * [枚举的序列化如何实现](to_be_top_javaer/basics/java-basic/enum-serializable.md)
+            * [枚举的序列化如何实现](/to_be_top_javaer/basics/java-basic/enum-serializable.md)
             
-            * [枚举的线程安全性问题](to_be_top_javaer/basics/java-basic/enum-thread-safe.md)
+            * [枚举的线程安全性问题](/to_be_top_javaer/basics/java-basic/enum-thread-safe.md)
             
-            * [为什么不建议在对外接口中使用枚举](to_be_top_javaer/basics/java-basic/stop-use-enum-in-api.md)
+            * [为什么不建议在对外接口中使用枚举](/to_be_top_javaer/basics/java-basic/stop-use-enum-in-api.md)
             
         * IO
             
-            * [字符流、字节流](to_be_top_javaer/basics/java-basic/byte-stream-vs-character-stream.md)
+            * [字符流、字节流](/to_be_top_javaer/basics/java-basic/byte-stream-vs-character-stream.md)
             
-            * [输入流、输出流](to_be_top_javaer/basics/java-basic/input-stream-vs-output-stream.md)
+            * [输入流、输出流](/to_be_top_javaer/basics/java-basic/input-stream-vs-output-stream.md)
             
-            * [字节流和字符流之间的相互转换](to_be_top_javaer/basics/java-basic/convert-bytestream-characterstream.md)
+            * [字节流和字符流之间的相互转换](/to_be_top_javaer/basics/java-basic/convert-bytestream-characterstream.md)
             
-            * [同步、异步](to_be_top_javaer/basics/java-basic/synchronized-vs-asynchronization.md)
+            * [同步、异步](/to_be_top_javaer/basics/java-basic/synchronized-vs-asynchronization.md)
             
-            * [阻塞、非阻塞](to_be_top_javaer/basics/java-basic/block-vs-non-blocking.md)
+            * [阻塞、非阻塞](/to_be_top_javaer/basics/java-basic/block-vs-non-blocking.md)
             
-            * [Linux 5种IO模型](to_be_top_javaer/basics/java-basic/linux-io.md)
+            * [Linux 5种IO模型](/to_be_top_javaer/basics/java-basic/linux-io.md)
             
-            * [BIO、NIO和AIO的区别、三种IO的用法与原理](to_be_top_javaer/basics/java-basic/bio-vs-nio-vs-aio.md)
+            * [BIO、NIO和AIO的区别、三种IO的用法与原理](/to_be_top_javaer/basics/java-basic/bio-vs-nio-vs-aio.md)
             
-            * [netty](to_be_top_javaer/basics/java-basic/netty.md)
+            * [netty](/to_be_top_javaer/basics/java-basic/netty.md)
             
         * 反射
         
-            * [反射](to_be_top_javaer/basics/java-basic/reflection.md)
+            * [反射](/to_be_top_javaer/basics/java-basic/reflection.md)
         
-            * [反射有什么作用](to_be_top_javaer/basics/java-basic/usage-of-reflection.md)
+            * [反射有什么作用](/to_be_top_javaer/basics/java-basic/usage-of-reflection.md)
         
-            * [Class类](to_be_top_javaer/basics/java-basic/Class.md)
+            * [Class类](/to_be_top_javaer/basics/java-basic/Class.md)
             
-            * [反射与工厂模式实现Spring IOC](to_be_top_javaer/basics/java-basic/ioc-implement-with-factory-and-reflection.md)
+            * [反射与工厂模式实现Spring IOC](/to_be_top_javaer/basics/java-basic/ioc-implement-with-factory-and-reflection.md)
         
             * `java.lang.reflect.*`
             
         * 动态代理
             
-            * [静态代理](to_be_top_javaer/basics/java-basic/static-proxy.md)
+            * [静态代理](/to_be_top_javaer/basics/java-basic/static-proxy.md)
             
-            * [动态代理](to_be_top_javaer/basics/java-basic/dynamic-proxy.md)
+            * [动态代理](/to_be_top_javaer/basics/java-basic/dynamic-proxy.md)
             
-            * [动态代理和反射的关系](to_be_top_javaer/basics/java-basic/dynamic-proxy-vs-reflection.md)
+            * [动态代理和反射的关系](/to_be_top_javaer/basics/java-basic/dynamic-proxy-vs-reflection.md)
             
-            * [动态代理的几种实现方式](to_be_top_javaer/basics/java-basic/dynamic-proxy-implementation.md)
+            * [动态代理的几种实现方式](/to_be_top_javaer/basics/java-basic/dynamic-proxy-implementation.md)
             
-            * [AOP](to_be_top_javaer/basics/java-basic/aop-vs-proxy.md)
+            * [AOP](/to_be_top_javaer/basics/java-basic/aop-vs-proxy.md)
            
         * 序列化
            
-           * [什么是序列化与反序列化](to_be_top_javaer/basics/java-basic/serialize.md)
+           * [什么是序列化与反序列化](/to_be_top_javaer/basics/java-basic/serialize.md)
            
-           * [Java如何实现序列化与反序列化](to_be_top_javaer/basics/java-basic/serialize-in-java.md)
+           * [Java如何实现序列化与反序列化](/to_be_top_javaer/basics/java-basic/serialize-in-java.md)
            
-           * [Serializable 和 Externalizable 有何不同](to_be_top_javaer/basics/java-basic/diff-serializable-vs-externalizable.md)
+           * [Serializable 和 Externalizable 有何不同](/to_be_top_javaer/basics/java-basic/diff-serializable-vs-externalizable.md)
            
            * 为什么序列化
            
-           * [serialVersionUID](to_be_top_javaer/basics/java-basic/serialVersionUID.md)
+           * [serialVersionUID](/to_be_top_javaer/basics/java-basic/serialVersionUID.md)
            
-           * [为什么serialVersionUID不能随便改](to_be_top_javaer/basics/java-basic/serialVersionUID-modify.md)
+           * [为什么serialVersionUID不能随便改](/to_be_top_javaer/basics/java-basic/serialVersionUID-modify.md)
            
-           * [transient](to_be_top_javaer/basics/java-basic/transient-in-java.md)
+           * [transient](/to_be_top_javaer/basics/java-basic/transient-in-java.md)
            
-           * [序列化底层原理](to_be_top_javaer/basics/java-basic/serialize-principle.md)
+           * [序列化底层原理](/to_be_top_javaer/basics/java-basic/serialize-principle.md)
            
-           * [序列化如何破坏单例模式](to_be_top_javaer/basics/java-basic/serialize-singleton.md)
+           * [序列化如何破坏单例模式](/to_be_top_javaer/basics/java-basic/serialize-singleton.md)
            
-           * [protobuf](to_be_top_javaer/basics/java-basic/protobuf.md)
+           * [protobuf](/to_be_top_javaer/basics/java-basic/protobuf.md)
            
-           * [Apache-Commons-Collections的反序列化漏洞](to_be_top_javaer/basics/java-basic/bug-in-apache-commons-collections.md)
+           * [Apache-Commons-Collections的反序列化漏洞](/to_be_top_javaer/basics/java-basic/bug-in-apache-commons-collections.md)
            
-           * [fastjson的反序列化漏洞](to_be_top_javaer/basics/java-basic/bug-in-fastjson.md)
+           * [fastjson的反序列化漏洞](/to_be_top_javaer/basics/java-basic/bug-in-fastjson.md)
            
         * 注解
            
-           * [元注解](to_be_top_javaer/basics/java-basic/meta-annotation.md)
+           * [元注解](/to_be_top_javaer/basics/java-basic/meta-annotation.md)
            
-           * [自定义注解](to_be_top_javaer/basics/java-basic/custom-annotation.md)
+           * [自定义注解](/to_be_top_javaer/basics/java-basic/custom-annotation.md)
            
-           * [Java中常用注解使用](to_be_top_javaer/basics/java-basic/annotation-in-java.md)
+           * [Java中常用注解使用](/to_be_top_javaer/basics/java-basic/annotation-in-java.md)
            
-           * [注解与反射的结合](to_be_top_javaer/basics/java-basic/annotion-and-reflect.md)
+           * [注解与反射的结合](/to_be_top_javaer/basics/java-basic/annotion-and-reflect.md)
            
-           * [如何自定义一个注解？](to_be_top_javaer/basics/java-basic/create-annotation.md)
+           * [如何自定义一个注解？](/to_be_top_javaer/basics/java-basic/create-annotation.md)
            
-           * [Spring常用注解](to_be_top_javaer/basics/java-basic/annotation-in-spring.md)
+           * [Spring常用注解](/to_be_top_javaer/basics/java-basic/annotation-in-spring.md)
             
         * 泛型
             
-            * [什么是泛型](to_be_top_javaer/basics/java-basic/generics.md)
+            * [什么是泛型](/to_be_top_javaer/basics/java-basic/generics.md)
             
-            * [类型擦除](to_be_top_javaer/basics/java-basic/type-erasue.md)
+            * [类型擦除](/to_be_top_javaer/basics/java-basic/type-erasue.md)
             
-            * [泛型带来的问题](to_be_top_javaer/basics/java-basic/generics-problem.md)
+            * [泛型带来的问题](/to_be_top_javaer/basics/java-basic/generics-problem.md)
             
-            * [泛型中K T V E ？ object等的含义](to_be_top_javaer/basics/java-basic/k-t-v-e.md)
+            * [泛型中K T V E ？ object等的含义](/to_be_top_javaer/basics/java-basic/k-t-v-e.md)
             
             * 泛型各种用法
             
-            * [限定通配符和非限定通配符](to_be_top_javaer/basics/java-basic/Wildcard-Character.md)
+            * [限定通配符和非限定通配符](/to_be_top_javaer/basics/java-basic/Wildcard-Character.md)
             
-            * [上下界限定符extends 和 super](to_be_top_javaer/basics/java-basic/extends-vs-super.md)
+            * [上下界限定符extends 和 super](/to_be_top_javaer/basics/java-basic/extends-vs-super.md)
             
-            * [`List<Object>`和原始类型`List`之间的区别?](to_be_top_javaer/basics/java-basic/genericity-list.md)
+            * [`List<Object>`和原始类型`List`之间的区别?](/to_be_top_javaer/basics/java-basic/genericity-list.md)
             
-            * [`List<?>`和`List<Object>`之间的区别是什么?](to_be_top_javaer/basics/java-basic/genericity-list-wildcard.md)
+            * [`List<?>`和`List<Object>`之间的区别是什么?](/to_be_top_javaer/basics/java-basic/genericity-list-wildcard.md)
             
         * 单元测试
             
-            * [junit](to_be_top_javaer/basics/java-basic/junit.md)
+            * [junit](/to_be_top_javaer/basics/java-basic/junit.md)
             
             * junit 和Spring 的结合
             
-            * [mock](to_be_top_javaer/basics/java-basic/mock.md)
+            * [mock](/to_be_top_javaer/basics/java-basic/mock.md)
             
-            * [JMockit](to_be_top_javaer/basics/java-basic/ut-with-jmockit.md)
+            * [JMockit](/to_be_top_javaer/basics/java-basic/ut-with-jmockit.md)
             
-            * [内存数据库（h2）](to_be_top_javaer/basics/java-basic/h2-db.md)
+            * [内存数据库（h2）](/to_be_top_javaer/basics/java-basic/h2-db.md)
             
         * 正则表达式
             
@@ -309,79 +309,79 @@
             
             * API
             
-            * [API和SPI的关系和区别](to_be_top_javaer/basics/java-basic/api-vs-spi.md)
+            * [API和SPI的关系和区别](/to_be_top_javaer/basics/java-basic/api-vs-spi.md)
             
-            * [如何定义SPI](to_be_top_javaer/basics/java-basic/create-spi.md)
+            * [如何定义SPI](/to_be_top_javaer/basics/java-basic/create-spi.md)
             
-            * [SPI的实现原理](to_be_top_javaer/basics/java-basic/spi-principle.md)
+            * [SPI的实现原理](/to_be_top_javaer/basics/java-basic/spi-principle.md)
             
         * 异常
             
-            * [Error和Exception](to_be_top_javaer/basics/java-basic/error-vs-exception.md)
+            * [Error和Exception](/to_be_top_javaer/basics/java-basic/error-vs-exception.md)
             
-            * [异常类型](to_be_top_javaer/basics/java-basic/exception-type.md)
+            * [异常类型](/to_be_top_javaer/basics/java-basic/exception-type.md)
             
-            * [异常相关关键字](to_be_top_javaer/basics/java-basic/keyword-about-exception.md)
+            * [异常相关关键字](/to_be_top_javaer/basics/java-basic/keyword-about-exception.md)
             
-            * [正确处理异常](to_be_top_javaer/basics/java-basic/handle-exception.md)
+            * [正确处理异常](/to_be_top_javaer/basics/java-basic/handle-exception.md)
             
-            * [自定义异常](to_be_top_javaer/basics/java-basic/define-exception.md)
+            * [自定义异常](/to_be_top_javaer/basics/java-basic/define-exception.md)
             
-            * [异常链](to_be_top_javaer/basics/java-basic/exception-chain.md)
+            * [异常链](/to_be_top_javaer/basics/java-basic/exception-chain.md)
             
-            * [try-with-resources](to_be_top_javaer/basics/java-basic/try-with-resources.md)
+            * [try-with-resources](/to_be_top_javaer/basics/java-basic/try-with-resources.md)
             
-            * [finally和return的执行顺序](to_be_top_javaer/basics/java-basic/order-about-finllly-return.md)
+            * [finally和return的执行顺序](/to_be_top_javaer/basics/java-basic/order-about-finllly-return.md)
             
         * 时间处理
             
-            * [时区](to_be_top_javaer/basics/java-basic/time-zone.md)
+            * [时区](/to_be_top_javaer/basics/java-basic/time-zone.md)
             
-            * [冬令时和夏令时](to_be_top_javaer/basics/java-basic/StandardTime-vs-daylightSavingTime.md)
+            * [冬令时和夏令时](/to_be_top_javaer/basics/java-basic/StandardTime-vs-daylightSavingTime.md)
             
-            * [时间戳](to_be_top_javaer/basics/java-basic/timestamp.md)
+            * [时间戳](/to_be_top_javaer/basics/java-basic/timestamp.md)
             
             * Java中时间API
             
-            * [格林威治时间](to_be_top_javaer/basics/java-basic/GMT.md)
+            * [格林威治时间](/to_be_top_javaer/basics/java-basic/GMT.md)
             
-            * [CET,UTC,GMT,CST几种常见时间的含义和关系](to_be_top_javaer/basics/java-basic/CET-UTC-GMT-CST.md)
+            * [CET,UTC,GMT,CST几种常见时间的含义和关系](/to_be_top_javaer/basics/java-basic/CET-UTC-GMT-CST.md)
             
-            * [SimpleDateFormat的线程安全性问题](to_be_top_javaer/basics/java-basic/simpledateformat-thread-safe.md)
+            * [SimpleDateFormat的线程安全性问题](/to_be_top_javaer/basics/java-basic/simpledateformat-thread-safe.md)
             
-            * [Java 8中的时间处理](to_be_top_javaer/basics/java-basic/time-in-java8.md)
+            * [Java 8中的时间处理](/to_be_top_javaer/basics/java-basic/time-in-java8.md)
             
-            * [如何在东八区的计算机上获取美国时间](to_be_top_javaer/basics/java-basic/get-los_angeles-time.md)
+            * [如何在东八区的计算机上获取美国时间](/to_be_top_javaer/basics/java-basic/get-los_angeles-time.md)
             
-            * [yyyy和YYYY有什么区别？](to_be_top_javaer/basics/java-basic/YYYY-vs-yyyy.md)
+            * [yyyy和YYYY有什么区别？](/to_be_top_javaer/basics/java-basic/YYYY-vs-yyyy.md)
             
             * 为什么日期格式化时必须有使用y表示年，而不能用Y？ 
             
         * 编码方式
             
-            * [什么是ASCII？](to_be_top_javaer/basics/java-basic/ASCII.md)
+            * [什么是ASCII？](/to_be_top_javaer/basics/java-basic/ASCII.md)
             
-            * [Unicode](to_be_top_javaer/basics/java-basic/UNICODE.md)
+            * [Unicode](/to_be_top_javaer/basics/java-basic/UNICODE.md)
             
-            * [有了Unicode为啥还需要UTF-8](to_be_top_javaer/basics/java-basic/why-utf8.md)
+            * [有了Unicode为啥还需要UTF-8](/to_be_top_javaer/basics/java-basic/why-utf8.md)
             
-            * [UTF8、UTF16、UTF32区别](to_be_top_javaer/basics/java-basic/UTF8-UTF16-UTF32.md)
+            * [UTF8、UTF16、UTF32区别](/to_be_top_javaer/basics/java-basic/UTF8-UTF16-UTF32.md)
             
-            * [有了UTF8为什么还需要GBK？](to_be_top_javaer/basics/java-basic/why-gbk.md)
+            * [有了UTF8为什么还需要GBK？](/to_be_top_javaer/basics/java-basic/why-gbk.md)
             
-            * [GBK、GB2312、GB18030之间的区别](to_be_top_javaer/basics/java-basic/gbk-gb2312-gb18030.md)
+            * [GBK、GB2312、GB18030之间的区别](/to_be_top_javaer/basics/java-basic/gbk-gb2312-gb18030.md)
             
-            * [URL编解码](to_be_top_javaer/basics/java-basic/url-encode.md)
+            * [URL编解码](/to_be_top_javaer/basics/java-basic/url-encode.md)
             
-            * [Big Endian和Little Endian](to_be_top_javaer/basics/java-basic/big-endian-vs-little-endian.md)
+            * [Big Endian和Little Endian](/to_be_top_javaer/basics/java-basic/big-endian-vs-little-endian.md)
             
             * 如何解决乱码问题
             
         * 语法糖
             
-            *  [Java中语法糖原理、解语法糖](to_be_top_javaer/basics/java-basic/syntactic-sugar.md)
+            *  [Java中语法糖原理、解语法糖](/to_be_top_javaer/basics/java-basic/syntactic-sugar.md)
             
-            *  [语法糖介绍](to_be_top_javaer/basics/java-basic/syntactic-sugar.md)
+            *  [语法糖介绍](/to_be_top_javaer/basics/java-basic/syntactic-sugar.md)
             
         * JMS
             
@@ -399,17 +399,17 @@
             
             * 为什么0.1+0.2不等于0.3
             
-            * [为什么不能使用BigDecimal的equals比较大小](to_be_top_javaer/basics/java-basic/stop-using-equlas-in-bigdecimal.md)
+            * [为什么不能使用BigDecimal的equals比较大小](/to_be_top_javaer/basics/java-basic/stop-using-equlas-in-bigdecimal.md)
             
             * 为什么不能直接使用double创建一个BigDecimal
             
         * Java 8
             
-            * [lambda表达式](to_be_top_javaer/basics/java-basic/lambda.md)
+            * [lambda表达式](/to_be_top_javaer/basics/java-basic/lambda.md)
             
-            * [Stream API](to_be_top_javaer/basics/java-basic/stream.md)
+            * [Stream API](/to_be_top_javaer/basics/java-basic/stream.md)
             
-            * [时间API](to_be_top_javaer/basics/java-basic/time-in-java8.md)
+            * [时间API](/to_be_top_javaer/basics/java-basic/time-in-java8.md)
             
         * 阅读源代码
             
@@ -437,39 +437,39 @@
             
         * 并发与并行
             
-            * [什么是并发](to_be_top_javaer/basics/concurrent-coding/concurrent.md)
+            * [什么是并发](/to_be_top_javaer/basics/concurrent-coding/concurrent.md)
             
-            * [什么是并行](to_be_top_javaer/basics/concurrent-coding/parallel.md)
+            * [什么是并行](/to_be_top_javaer/basics/concurrent-coding/parallel.md)
             
-            * [并发与并行的区别](to_be_top_javaer/basics/concurrent-coding/concurrent-vs-parallel.md)
+            * [并发与并行的区别](/to_be_top_javaer/basics/concurrent-coding/concurrent-vs-parallel.md)
             
         * 线程
         
-            * [线程与进程的区别](to_be_top_javaer/basics/concurrent-coding/progress-vs-thread.md)
+            * [线程与进程的区别](/to_be_top_javaer/basics/concurrent-coding/progress-vs-thread.md)
             
-            * [线程的特点](to_be_top_javaer/basics/concurrent-coding/thread.md)
+            * [线程的特点](/to_be_top_javaer/basics/concurrent-coding/thread.md)
             
-            * [线程的实现](to_be_top_javaer/basics/concurrent-coding/implement-of-thread.md)
+            * [线程的实现](/to_be_top_javaer/basics/concurrent-coding/implement-of-thread.md)
             
-            * [线程的状态](to_be_top_javaer/basics/concurrent-coding/state-of-thread.md)
+            * [线程的状态](/to_be_top_javaer/basics/concurrent-coding/state-of-thread.md)
             
-            * [线程优先级](to_be_top_javaer/basics/concurrent-coding/priority-of-thread.md)
+            * [线程优先级](/to_be_top_javaer/basics/concurrent-coding/priority-of-thread.md)
             
-            * [线程调度](to_be_top_javaer/basics/concurrent-coding/thread-scheduling.md)
+            * [线程调度](/to_be_top_javaer/basics/concurrent-coding/thread-scheduling.md)
             
-            * [多线程如何Debug](to_be_top_javaer/basics/concurrent-coding/debug-in-multithread.md)
+            * [多线程如何Debug](/to_be_top_javaer/basics/concurrent-coding/debug-in-multithread.md)
             
-            * [守护线程](to_be_top_javaer/basics/concurrent-coding/deamon-thread.md)
+            * [守护线程](/to_be_top_javaer/basics/concurrent-coding/deamon-thread.md)
             
         * 创建线程的多种方式
             
-            * [继承Thread类创建线程](to_be_top_javaer/basics/concurrent-coding/create-thread-with-extends.md)
+            * [继承Thread类创建线程](/to_be_top_javaer/basics/concurrent-coding/create-thread-with-extends.md)
             
-            * [实现Runnable接口创建线程](to_be_top_javaer/basics/concurrent-coding/create-thread-with-Implement.md)
+            * [实现Runnable接口创建线程](/to_be_top_javaer/basics/concurrent-coding/create-thread-with-Implement.md)
             
-            * [通过Callable和FutureTask创建线程](to_be_top_javaer/basics/concurrent-coding/create-thread-with-callback-future-task.md)
+            * [通过Callable和FutureTask创建线程](/to_be_top_javaer/basics/concurrent-coding/create-thread-with-callback-future-task.md)
             
-            * [通过线程池创建线程](to_be_top_javaer/basics/concurrent-coding/create-thread-with-thead-pool.md)
+            * [通过线程池创建线程](/to_be_top_javaer/basics/concurrent-coding/create-thread-with-thead-pool.md)
             
         * 线程池
             
@@ -531,7 +531,7 @@
             
         * 死锁
         
-            * [什么是死锁](to_be_top_javaer/basics/concurrent-coding/deadlock-java-level.md)
+            * [什么是死锁](/to_be_top_javaer/basics/concurrent-coding/deadlock-java-level.md)
         
             * 死锁的原因
         
@@ -543,7 +543,7 @@
     
         * synchronized
             
-            * [synchronized是如何实现的？](to_be_top_javaer/basics/concurrent-coding/synchronized.md)
+            * [synchronized是如何实现的？](/to_be_top_javaer/basics/concurrent-coding/synchronized.md)
             
             * synchronized和lock之间关系
             
@@ -619,19 +619,19 @@
             
             * 运行时数据区
             
-            * [运行时数据区哪些是线程独享](to_be_top_javaer/basement/jvm/exclusive-in-runtime-area.md)
+            * [运行时数据区哪些是线程独享](/to_be_top_javaer/basement/jvm/exclusive-in-runtime-area.md)
             
             * 堆和栈区别
             
             * 方法区在不同版本JDK中的位置
             
-            * [运行时常量池](to_be_top_javaer/basics/java-basic/Runtime-Constant-Pool.md)
+            * [运行时常量池](/to_be_top_javaer/basics/java-basic/Runtime-Constant-Pool.md)
             
             * 堆外内存
               
             * TLAB
               
-            * [Java中的对象一定在堆上分配吗？](to_be_top_javaer/basement/jvm/stack-alloc.md)
+            * [Java中的对象一定在堆上分配吗？](/to_be_top_javaer/basement/jvm/stack-alloc.md)
             
         * 垃圾回收
             
@@ -737,25 +737,25 @@
         
         * 如何判断JVM中类和其他类是不是同一个类
         
-        * [双亲委派原则](to_be_top_javaer/basement/jvm/parents-delegate.md)
+        * [双亲委派原则](/to_be_top_javaer/basement/jvm/parents-delegate.md)
         
-        * [为什么需要双亲委派？](to_be_top_javaer/basement/jvm/why-parents-delegate.md)
+        * [为什么需要双亲委派？](/to_be_top_javaer/basement/jvm/why-parents-delegate.md)
         
-        * [“父子加载器”之间的关系是继承吗？](to_be_top_javaer/basement/jvm/relation-with-parents-delegate.md)
+        * [“父子加载器”之间的关系是继承吗？](/to_be_top_javaer/basement/jvm/relation-with-parents-delegate.md)
         
-        * [双亲委派是如何实现的？](to_be_top_javaer/basement/jvm/implements-of-parents-delegate.md)
+        * [双亲委派是如何实现的？](/to_be_top_javaer/basement/jvm/implements-of-parents-delegate.md)
         
-        * [如何打破双亲委派](to_be_top_javaer/basement/jvm/ibreak-parants-delegate.md)
+        * [如何打破双亲委派](/to_be_top_javaer/basement/jvm/ibreak-parants-delegate.md)
         
-        * [如何自定义类加载器](to_be_top_javaer/basement/jvm/define-class-loader.md)
+        * [如何自定义类加载器](/to_be_top_javaer/basement/jvm/define-class-loader.md)
         
-        * [双亲委派被破坏的例子](to_be_top_javaer/basement/jvm/sample-of-break-parents-delegate.md)
+        * [双亲委派被破坏的例子](/to_be_top_javaer/basement/jvm/sample-of-break-parents-delegate.md)
         
-        * [为什么JNDI，JDBC等需要破坏双亲委派？](to_be_top_javaer/basement/jvm/spi-parents-delegate.md)
+        * [为什么JNDI，JDBC等需要破坏双亲委派？](/to_be_top_javaer/basement/jvm/spi-parents-delegate.md)
         
-        * [为什么Tomcat要破坏双亲委派](to_be_top_javaer/basement/jvm/tomcat-parents-delegate.md)
+        * [为什么Tomcat要破坏双亲委派](/to_be_top_javaer/basement/jvm/tomcat-parents-delegate.md)
         
-        * [模块化（jboss modules、osgi、jigsaw）](to_be_top_javaer/basement/jvm/moduler.md)
+        * [模块化（jboss modules、osgi、jigsaw）](/to_be_top_javaer/basement/jvm/moduler.md)
         
     * 打包工具
         
@@ -771,7 +771,7 @@
         
         * 什么是反编译
         
-        * [Class常量池](to_be_top_javaer/basics/java-basic/class-contant-pool.md)
+        * [Class常量池](/to_be_top_javaer/basics/java-basic/class-contant-pool.md)
         
         * 编译工具：javac
                 
@@ -814,19 +814,19 @@
             
         * 创建型设计模式
         
-            * [单例模式](to_be_top_javaer/advance/design-patterns/singleton-pattern.md)
+            * [单例模式](/to_be_top_javaer/advance/design-patterns/singleton-pattern.md)
             
-            * [抽象工厂模式](to_be_top_javaer/advance/design-patterns/abstract-factory-pattern.md)
+            * [抽象工厂模式](/to_be_top_javaer/advance/design-patterns/abstract-factory-pattern.md)
             
-            * [建造者模式](to_be_top_javaer/advance/design-patterns/builder-pattern.md)
+            * [建造者模式](/to_be_top_javaer/advance/design-patterns/builder-pattern.md)
             
-            * [工厂模式](to_be_top_javaer/advance/design-patterns/factory-method-pattern.md)
+            * [工厂模式](/to_be_top_javaer/advance/design-patterns/factory-method-pattern.md)
             
             * 原型模式
             
         * 结构型设计模式
         
-            * [适配器模式](to_be_top_javaer/advance/design-patterns/adapter-pattern.md)
+            * [适配器模式](/to_be_top_javaer/advance/design-patterns/adapter-pattern.md)
             
             * 桥接模式
             
@@ -846,7 +846,7 @@
             
             * 命令模式
             
-            * [迭代器模式](to_be_top_javaer/advance/design-patterns/iterator-pattern.md)
+            * [迭代器模式](/to_be_top_javaer/advance/design-patterns/iterator-pattern.md)
             
             * 观察者模式
             
@@ -858,7 +858,7 @@
             
             * 状态模式
             
-            * [策略模式](to_be_top_javaer/advance/design-patterns/strategy-pattern.md)
+            * [策略模式](/to_be_top_javaer/advance/design-patterns/strategy-pattern.md)
             
             * 责任链模式
             
