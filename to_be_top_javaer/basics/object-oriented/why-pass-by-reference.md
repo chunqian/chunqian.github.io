@@ -8,20 +8,22 @@
 
 而且很多人还可以举出以下的代码示例：
 
-    public static void main(String[] args) {
-      Test pt = new Test();
-    
-      User hollis = new User();
-      hollis.setName("Hollis");
-      hollis.setGender("Male");
-      pt.pass(hollis);
-      System.out.println("print in main , user is " + hollis);
-    }
-    
-    public void pass(User user) {
-      user.setName("hollischuang");
-      System.out.println("print in pass , user is " + user);
-    }
+```java
+public static void main(String[] args) {
+  Test pt = new Test();
+
+  User hollis = new User();
+  hollis.setName("Hollis");
+  hollis.setGender("Male");
+  pt.pass(hollis);
+  System.out.println("print in main , user is " + hollis);
+}
+
+public void pass(User user) {
+  user.setName("hollischuang");
+  System.out.println("print in pass , user is " + user);
+}
+```
     
 
 输出结果：
@@ -84,11 +86,13 @@
 
 那么，如果我们改动一下pass方法的内容：
 
-    public void pass(User user) {
-      user = new User();
-      user.setName("hollischuang");
-      System.out.println("print in pass , user is " + user);
-    }
+```java
+public void pass(User user) {
+  user = new User();
+  user.setName("hollischuang");
+  System.out.println("print in pass , user is " + user);
+}
+```
     
 
 上面的代码中，我们在pass方法中，重新new了一个user对象，并改变了他的值，输出结果如下：
