@@ -1,29 +1,33 @@
 自从Java 1.5开始，提供了Callable和Future，通过它们可以在任务执行完毕之后得到任务执行结果。
 
-    public class MultiThreads {
-        public static void main(String[] args) throws InterruptedException {
-            CallableThread callableThread = new CallableThread();
-            FutureTask futureTask = new FutureTask<>(callableThread);
-            new Thread(futureTask).start();
-            System.out.println(futureTask.get());
+```java
+public class MultiThreads {
+    public static void main(String[] args) throws InterruptedException {
+        CallableThread callableThread = new CallableThread();
+        FutureTask futureTask = new FutureTask<>(callableThread);
+        new Thread(futureTask).start();
+        System.out.println(futureTask.get());
+}
+
+class CallableThread implements Callable {
+    @Override
+    public Object call() throws Exception {
+        System.out.println(Thread.currentThread().getName());
+        return "Hollis";
     }
-    
-    class CallableThread implements Callable {
-        @Override
-        public Object call() throws Exception {
-            System.out.println(Thread.currentThread().getName());
-            return "Hollis";
-        }
-    
-    }
-    
+
+}
+```
+
 
 输出结果：
 
-    main
-    通过Callable和FutureTask创建线程
-    Thread-2
-    Hollis
+```
+main
+通过Callable和FutureTask创建线程
+Thread-2
+Hollis
+```
     
 
 Callable位于java.util.concurrent包下，它也是一个接口，在它里面也只声明了一个方法，只不过这个方法call()，和Runnable接口中的run()方法不同的是，call()方法有返回值。
@@ -40,18 +44,20 @@ FutureTask可用于异步获取执行结果或取消执行任务的场景。通�
 
 以上代码改造下就是如下内容：
 
-    public class MultiThreads {
-        public static void main(String[] args) throws InterruptedException {
-            CallableThread callableThread = new CallableThread();
-            FutureTask futureTask = new FutureTask<>(callableThread);
-            new Thread(futureTask).start();
-    
-            System.out.println("主线程先做其他重要的事情");
-            if(!futureTask.isDone()){
-                // 继续做其他事儿
-            }
-            System.out.println(future.get()); // 可能会阻塞等待结果
-    }
+```java
+public class MultiThreads {
+    public static void main(String[] args) throws InterruptedException {
+        CallableThread callableThread = new CallableThread();
+        FutureTask futureTask = new FutureTask<>(callableThread);
+        new Thread(futureTask).start();
+
+        System.out.println("主线程先做其他重要的事情");
+        if(!futureTask.isDone()){
+            // 继续做其他事儿
+        }
+        System.out.println(future.get()); // 可能会阻塞等待结果
+}
+```
     
 
 一般，我们会把Callable放到线程池中，然后让线程池去执行Callable中的代码。关于线程池前面介绍过了，是一种避免重复创建线程的开销的技术手段，线程池也可以用来创建线程。

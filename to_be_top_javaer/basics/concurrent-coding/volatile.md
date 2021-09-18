@@ -10,20 +10,22 @@
 
 `volatile`的用法比较简单，只需要在声明一个可能被多线程同时访问的变量时，使用`volatile`修饰就可以了。
 
-    public class Singleton {  
-        private volatile static Singleton singleton;  
-        private Singleton (){}  
-        public static Singleton getSingleton() {  
+```java
+public class Singleton {  
+    private volatile static Singleton singleton;  
+    private Singleton (){}  
+    public static Singleton getSingleton() {  
+    if (singleton == null) {  
+        synchronized (Singleton.class) {  
         if (singleton == null) {  
-            synchronized (Singleton.class) {  
-            if (singleton == null) {  
-                singleton = new Singleton();  
-            }  
-            }  
+            singleton = new Singleton();  
         }  
-        return singleton;  
         }  
     }  
+    return singleton;  
+    }  
+}
+```
 
 
 如以上代码，是一个比较典型的使用双重锁校验的形式实现单例的，其中使用`volatile`关键字修饰可能被多个线程同时访问到的singleton。
@@ -80,29 +82,31 @@ volatile可以禁止指令重排，这就保证了代码的程序会严格按照
 
 我们来看一下volatile和原子性的例子：
 
-    public class Test {
-        public volatile int inc = 0;
-    
-        public void increase() {
-            inc++;
-        }
-    
-        public static void main(String[] args) {
-            final Test test = new Test();
-            for(int i=0;i<10;i++){
-                new Thread(){
-                    public void run() {
-                        for(int j=0;j<1000;j++)
-                            test.increase();
-                    };
-                }.start();
-            }
-    
-            while(Thread.activeCount()>1)  //保证前面的线程都执行完
-                Thread.yield();
-            System.out.println(test.inc);
-        }
+```java
+public class Test {
+    public volatile int inc = 0;
+
+    public void increase() {
+        inc++;
     }
+
+    public static void main(String[] args) {
+        final Test test = new Test();
+        for(int i=0;i<10;i++){
+            new Thread(){
+                public void run() {
+                    for(int j=0;j<1000;j++)
+                        test.increase();
+                };
+            }.start();
+        }
+
+        while(Thread.activeCount()>1)  //保证前面的线程都执行完
+            Thread.yield();
+        System.out.println(test.inc);
+    }
+}
+```
 
 
 以上代码比较简单，就是创建10个线程，然后分别执行1000次`i++`操作。正常情况下，程序的输出结果应该是10000，但是，多次执行的结果都小于10000。这其实就是`volatile`无法满足原子性的原因。
@@ -115,20 +119,22 @@ volatile可以禁止指令重排，这就保证了代码的程序会严格按照
 
 那么，我们再来看一下双重校验锁实现的单例，已经使用了`synchronized`，为什么还需要`volatile`？
 
-    public class Singleton {  
-        private volatile static Singleton singleton;  
-        private Singleton (){}  
-        public static Singleton getSingleton() {  
+```java
+public class Singleton {  
+    private volatile static Singleton singleton;  
+    private Singleton (){}  
+    public static Singleton getSingleton() {  
+    if (singleton == null) {  
+        synchronized (Singleton.class) {  
         if (singleton == null) {  
-            synchronized (Singleton.class) {  
-            if (singleton == null) {  
-                singleton = new Singleton();  
-            }  
-            }  
+            singleton = new Singleton();  
         }  
-        return singleton;  
         }  
     }  
+    return singleton;  
+    }  
+}
+```
 
 
 答案，我们在下一篇文章：既生synchronized，何生亮volatile中介绍，敬请关注我的博客(http://47.103.216.138)和公众号(Hollis)。

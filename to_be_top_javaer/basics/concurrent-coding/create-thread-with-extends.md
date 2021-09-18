@@ -1,33 +1,36 @@
 
+```java
+/**
+ * @author Hollis
+ */
+public class MultiThreads {
 
-    /**
-     * @author Hollis
-     */
-    public class MultiThreads {
-    
-        public static void main(String[] args) throws InterruptedException {
-            System.out.println(Thread.currentThread().getName());
-    
-            System.out.println("继承Thread类创建线程");
-            SubClassThread subClassThread = new SubClassThread();
-            subClassThread.start();  
-        }
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println(Thread.currentThread().getName());
+
+        System.out.println("继承Thread类创建线程");
+        SubClassThread subClassThread = new SubClassThread();
+        subClassThread.start();  
     }
-    
-    class SubClassThread extends Thread {
-    
-        @Override
-        public void run() {
-            System.out.println(getName());
-        }
+}
+
+class SubClassThread extends Thread {
+
+    @Override
+    public void run() {
+        System.out.println(getName());
     }
+}
+```
     
 
 输出结果：
 
-    main
-    继承Thread类创建线程
-    Thread-0
+```
+main
+继承Thread类创建线程
+Thread-0
+```
     
 
 SubClassThread是一个继承了Thread类的子类，继承Thread类，并重写其中的run方法。然后new 一个SubClassThread的对象，并调用其start方法，即可启动一个线程。之后就会运行run中的代码。

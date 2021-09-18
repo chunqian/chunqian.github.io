@@ -12,22 +12,24 @@
 
 `synchronized`是Java提供的一个并发控制的关键字。主要有两种用法，分别是同步方法和同步代码块。也就是说，`synchronized`既可以修饰方法也可以修饰代码块。
 
-    /**
-     * @author Hollis 18/08/04.
-     */
-    public class SynchronizedDemo {
-         //同步方法
-        public synchronized void doSth(){
+```java
+/**
+ * @author Hollis 18/08/04.
+ */
+public class SynchronizedDemo {
+     //同步方法
+    public synchronized void doSth(){
+        System.out.println("Hello World");
+    }
+
+    //同步代码块
+    public void doSth1(){
+        synchronized (SynchronizedDemo.class){
             System.out.println("Hello World");
         }
-    
-        //同步代码块
-        public void doSth1(){
-            synchronized (SynchronizedDemo.class){
-                System.out.println("Hello World");
-            }
-        }
     }
+}
+```
     
 
 被`synchronized`修饰的代码块及方法，在同一时间，只能被单个线程访问。

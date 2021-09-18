@@ -17,42 +17,46 @@ Java 线程优先级使用 1 ~ 10 的整数表示。默认的优先级是5。
 
 以下代码演示如何设置和获取线程的优先：
 
-    /**
-     * @author Hollis
-     */
-    public class Main {
-    
-        public static void main(String[] args) {
-            Thread t = Thread.currentThread();
-            System.out.println("Main Thread  Priority:" + t.getPriority());
-    
-            Thread t1 = new Thread();
-            System.out.println("Thread(t1) Priority:" + t1.getPriority());
-            t1.setPriority(Thread.MAX_PRIORITY - 1);
-            System.out.println("Thread(t1) Priority:" + t1.getPriority());
-    
-            t.setPriority(Thread.NORM_PRIORITY);
-            System.out.println("Main Thread  Priority:" + t.getPriority());
-    
-            Thread t2 = new Thread();
-            System.out.println("Thread(t2) Priority:" + t2.getPriority());
-    
-            // Change thread t2 priority to minimum
-            t2.setPriority(Thread.MIN_PRIORITY);
-            System.out.println("Thread(t2) Priority:" + t2.getPriority());
-        }
-    
+```java
+/**
+ * @author Hollis
+ */
+public class Main {
+
+    public static void main(String[] args) {
+        Thread t = Thread.currentThread();
+        System.out.println("Main Thread  Priority:" + t.getPriority());
+
+        Thread t1 = new Thread();
+        System.out.println("Thread(t1) Priority:" + t1.getPriority());
+        t1.setPriority(Thread.MAX_PRIORITY - 1);
+        System.out.println("Thread(t1) Priority:" + t1.getPriority());
+
+        t.setPriority(Thread.NORM_PRIORITY);
+        System.out.println("Main Thread  Priority:" + t.getPriority());
+
+        Thread t2 = new Thread();
+        System.out.println("Thread(t2) Priority:" + t2.getPriority());
+
+        // Change thread t2 priority to minimum
+        t2.setPriority(Thread.MIN_PRIORITY);
+        System.out.println("Thread(t2) Priority:" + t2.getPriority());
     }
+
+}
+```
     
 
 输出结果为：
 
-    Main Thread  Priority:5
-    Thread(t1) Priority:5
-    Thread(t1) Priority:9
-    Main Thread  Priority:5
-    Thread(t2) Priority:5
-    Thread(t2) Priority:1
+```
+Main Thread  Priority:5
+Thread(t1) Priority:5
+Thread(t1) Priority:9
+Main Thread  Priority:5
+Thread(t2) Priority:5
+Thread(t2) Priority:1
+```
     
 
 在上面的代码中，Java虚拟机启动时，就会通过main方法启动一个线程，JVM就会一直运行下去，直到以下任意一个条件发生：

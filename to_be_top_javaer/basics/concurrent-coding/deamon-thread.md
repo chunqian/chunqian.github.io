@@ -6,102 +6,113 @@
 
 可以使用`isDaemon()`方法来检查线程是否是守护线程。
 
-    /**
-     * @author Hollis
-     */
-    public class Main {
-        public static void main(String[] args) {
-    
-            Thread t1 = new Thread();
-            System.out.println(t1.isDaemon());
-            t1.setDaemon(true);
-            System.out.println(t1.isDaemon());
-            t1.start();
-            t1.setDaemon(false);
-        }
+```java
+/**
+ * @author Hollis
+ */
+public class Main {
+    public static void main(String[] args) {
+
+        Thread t1 = new Thread();
+        System.out.println(t1.isDaemon());
+        t1.setDaemon(true);
+        System.out.println(t1.isDaemon());
+        t1.start();
+        t1.setDaemon(false);
     }
+}
+```
     
 
 以上代码输出结果：
-
-    false
-    true
-    Exception in thread "main" java.lang.IllegalThreadStateException
-        at java.lang.Thread.setDaemon(Thread.java:1359)
-        at com.hollis.Main.main(Main.java:16)
+```
+false
+true
+Exception in thread "main" java.lang.IllegalThreadStateException
+    at java.lang.Thread.setDaemon(Thread.java:1359)
+    at com.hollis.Main.main(Main.java:16)
+```
     
 
 我们提到，当JVM中只剩下守护线程的时候，JVM就会退出，那么写一段代码测试下：
 
-    /**
-     * @author Hollis
-     */
-    public class Main {
-        public static void main(String[] args) {
-    
-            Thread childThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        System.out.println("I'm child thread..");
-                        try {
-                            TimeUnit.MILLISECONDS.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+```java
+/**
+ * @author Hollis
+ */
+public class Main {
+    public static void main(String[] args) {
+
+        Thread childThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    System.out.println("I'm child thread..");
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-            });
-            childThread.start();
-            System.out.println("I'm main thread...");
-        }
+            }
+        });
+        childThread.start();
+        System.out.println("I'm main thread...");
     }
+}
+```
     
 
 以上代码中，我们在Main线程中开启了一个子线程，在并没有显示将其设置为守护线程的情况下，他是一个用户线程，代码比较好理解，就是子线程处于一个while(true)循环中，每隔一秒打印一次`I'm child thread..`
 
 输出结果为：
 
-    I'm main thread...
-    I'm child thread..
-    I'm child thread..
-    .....
-    I'm child thread..
-    I'm child thread..
+```
+I'm main thread...
+I'm child thread..
+I'm child thread..
+.....
+I'm child thread..
+I'm child thread..
+```
     
 
 我们再把子线程设置成守护线程，重新运行以上代码。
 
-    /**
-     * @author Hollis
-     */
-    public class Main {
-        public static void main(String[] args) {
-    
-            Thread childThread = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    while (true) {
-                        System.out.println("I'm child thread..");
-                        try {
-                            TimeUnit.MILLISECONDS.sleep(1000);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
+```java
+/**
+ * @author Hollis
+ */
+public class Main {
+    public static void main(String[] args) {
+
+        Thread childThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    System.out.println("I'm child thread..");
+                    try {
+                        TimeUnit.MILLISECONDS.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-            });
-            childThread.setDaemon(true);
-            childThread.start();
-            System.out.println("I'm main thread...");
-        }
+            }
+        });
+        childThread.setDaemon(true);
+        childThread.start();
+        System.out.println("I'm main thread...");
     }
+}
+```
     
 
 以上代码，我们通过`childThread.setDaemon(true);`把子线程设置成守护线程，然后运行，得到以下结果：
 
-    I'm main thread...
-    I'm child thread..
+```
+I'm main thread...
+I'm child thread..
+```
     
 
 子线程只打印了一次，也就是，在main线程执行结束后，由于子线程是一个守护线程，JVM就会直接退出了。

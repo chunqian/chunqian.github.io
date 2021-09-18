@@ -16,6 +16,7 @@ java级别死锁
 
 ## 二、动手写死锁
 根据条件，我们让两个线程互相请求保持。
+
 ```java
 public class DeadLockDemo implements Runnable{
 

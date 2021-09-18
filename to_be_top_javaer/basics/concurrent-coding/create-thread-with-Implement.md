@@ -1,31 +1,34 @@
 
+```java
+public class MultiThreads {
+    public static void main(String[] args) throws InterruptedException {
+        System.out.println(Thread.currentThread().getName());
 
-    public class MultiThreads {
-        public static void main(String[] args) throws InterruptedException {
-            System.out.println(Thread.currentThread().getName());
-    
-    
-            System.out.println("实现Runnable接口创建线程");
-            RunnableThread runnableThread = new RunnableThread();
-            new Thread(runnableThread).start();
-    
-          }
+
+        System.out.println("实现Runnable接口创建线程");
+        RunnableThread runnableThread = new RunnableThread();
+        new Thread(runnableThread).start();
+
+      }
+}
+
+class RunnableThread implements Runnable {
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName());
     }
-    
-    class RunnableThread implements Runnable {
-    
-        @Override
-        public void run() {
-            System.out.println(Thread.currentThread().getName());
-        }
-    }
+}
+```
     
 
 输出结果：
 
-    main
-    实现Runnable接口创建线程
-    Thread-1
+```
+main
+实现Runnable接口创建线程
+Thread-1
+```
     
 
 通过实现接口，同样覆盖`run()`就可以创建一个新的线程了。

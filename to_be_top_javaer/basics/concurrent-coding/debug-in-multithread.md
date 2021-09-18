@@ -4,33 +4,35 @@
 
 首先我们写一个多线程的例子，使用继承Runnable接口的方式定义多个线程，并启动执行。
 
-    /**
-     * @author Hollis
-     */
-    public class MultiThreadDebug {
-    
-        public static void main(String[] args) {
-            MyThread myThread = new MyThread();
-    
-            Thread thread1 = new Thread(myThread, "thread 1");
-            Thread thread2 = new Thread(myThread, "thread 2");
-            Thread thread3 = new Thread(myThread, "thread 3");
-    
-            thread1.start();
-    
-            thread2.start();
-    
-            thread3.start();
-        }
+```java
+/**
+ * @author Hollis
+ */
+public class MultiThreadDebug {
+
+    public static void main(String[] args) {
+        MyThread myThread = new MyThread();
+
+        Thread thread1 = new Thread(myThread, "thread 1");
+        Thread thread2 = new Thread(myThread, "thread 2");
+        Thread thread3 = new Thread(myThread, "thread 3");
+
+        thread1.start();
+
+        thread2.start();
+
+        thread3.start();
     }
-    
-    class MyThread implements Runnable {
-    
-        @Override
-        public void run() {
-            System.out.println(Thread.currentThread().getName() + " running");
-        }
+}
+
+class MyThread implements Runnable {
+
+    @Override
+    public void run() {
+        System.out.println(Thread.currentThread().getName() + " running");
     }
+}
+```
     
     我们尝试在代码中设置断点，并使用debug模式启动。
     
