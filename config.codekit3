@@ -6691,8 +6691,8 @@
     "creationDate" : 648613725.66195297,
     "displayValue" : "chunqian.github.io",
     "displayValueWasSetByUser" : 0,
-    "iconImageName" : "brackets-pink",
-    "iconImageWasSetByUser" : 0,
+    "iconImageName" : "brackets_brown",
+    "iconImageWasSetByUser" : 1,
     "lastBuiltDate" : 648625954.67332697
   },
   "projectSettings" : {
