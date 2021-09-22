@@ -6,7 +6,9 @@
 
 如下为ClassLoader中父加载器的定义：
 
-    public abstract class ClassLoader {
-        // The parent class loader for delegation
-        private final ClassLoader parent;
-    }
+```java
+public abstract class ClassLoader {
+    // The parent class loader for delegation
+    private final ClassLoader parent;
+}
+```

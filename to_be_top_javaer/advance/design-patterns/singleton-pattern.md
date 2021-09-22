@@ -24,31 +24,35 @@
 
 下面是一个简单的单例的实现：
 
-    //code 1
-    public class Singleton {
-        //在类内部实例化一个实例
-        private static Singleton instance = new Singleton();
-        //私有的构造函数,外部无法访问
-        private Singleton() {
-        }
-        //对外提供获取实例的静态方法
-        public static Singleton getInstance() {
-            return instance;
-        }
+```java
+//code 1
+public class Singleton {
+    //在类内部实例化一个实例
+    private static Singleton instance = new Singleton();
+    //私有的构造函数,外部无法访问
+    private Singleton() {
     }
+    //对外提供获取实例的静态方法
+    public static Singleton getInstance() {
+        return instance;
+    }
+}
+```
     
 
 使用以下代码测试：
 
-    //code2
-    public class SingletonClient {
-    
-        public static void main(String[] args) {
-            SimpleSingleton simpleSingleton1 = SimpleSingleton.getInstance();
-            SimpleSingleton simpleSingleton2 = SimpleSingleton.getInstance();
-            System.out.println(simpleSingleton1==simpleSingleton2);
-        }
+```java
+//code2
+public class SingletonClient {
+
+    public static void main(String[] args) {
+        SimpleSingleton simpleSingleton1 = SimpleSingleton.getInstance();
+        SimpleSingleton simpleSingleton2 = SimpleSingleton.getInstance();
+        System.out.println(simpleSingleton1==simpleSingleton2);
     }
+}
+```
     
 
 输出结果：
@@ -62,22 +66,24 @@ code 1就是一个简单的单例的实现，这种实现方式我们称之为�
 
 还有一种饿汉模式的变种：
 
-    //code 3
-    public class Singleton2 {
-        //在类内部定义
-        private static Singleton2 instance;
-        static {
-            //实例化该实例
-            instance = new Singleton2();
-        }
-        //私有的构造函数,外部无法访问
-        private Singleton2() {
-        }
-        //对外提供获取实例的静态方法
-        public static Singleton2 getInstance() {
-            return instance;
-        }
+```java
+//code 3
+public class Singleton2 {
+    //在类内部定义
+    private static Singleton2 instance;
+    static {
+        //实例化该实例
+        instance = new Singleton2();
     }
+    //私有的构造函数,外部无法访问
+    private Singleton2() {
+    }
+    //对外提供获取实例的静态方法
+    public static Singleton2 getInstance() {
+        return instance;
+    }
+}
+```
     
 
 code 3和code 1其实是一样的，都是在类被加载的时候实例化一个对象。
@@ -88,20 +94,22 @@ code 3和code 1其实是一样的，都是在类被加载的时候实例化一�
 
 先来看通过静态内部类的方式解决上面的问题：
 
-    //code 4
-    public class StaticInnerClassSingleton {
-        //在静态内部类中初始化实例对象
-        private static class SingletonHolder {
-            private static final StaticInnerClassSingleton INSTANCE = new StaticInnerClassSingleton();
-        }
-        //私有的构造方法
-        private StaticInnerClassSingleton() {
-        }
-        //对外提供获取实例的静态方法
-        public static final StaticInnerClassSingleton getInstance() {
-            return SingletonHolder.INSTANCE;
-        }
+```java
+//code 4
+public class StaticInnerClassSingleton {
+    //在静态内部类中初始化实例对象
+    private static class SingletonHolder {
+        private static final StaticInnerClassSingleton INSTANCE = new StaticInnerClassSingleton();
     }
+    //私有的构造方法
+    private StaticInnerClassSingleton() {
+    }
+    //对外提供获取实例的静态方法
+    public static final StaticInnerClassSingleton getInstance() {
+        return SingletonHolder.INSTANCE;
+    }
+}
+```
     
 
 这种方式同样利用了classloder的机制来保证初始化`instance`时只有一个线程，它跟饿汉式不同的是（很细微的差别）：饿汉式是只要`Singleton`类被装载了，那么`instance`就会被实例化（没有达到lazy loading效果），而这种方式是`Singleton`类被装载了，`instance`不一定被初始化。因为`SingletonHolder`类没有被主动使用，只有显示通过调用`getInstance`方法时，才会显示装载`SingletonHolder`类，从而实例化`instance`。想象一下，如果实例化`instance`很消耗资源，我想让他延迟加载，另外一方面，我不希望在`Singleton`类加载时就实例化，因为我不能确保`Singleton`类还可能在其他的地方被主动使用从而被加载，那么这个时候实例化`instance`显然是不合适的。这个时候，这种方式相比饿汉式更加合理。
@@ -110,21 +118,23 @@ code 3和code 1其实是一样的，都是在类被加载的时候实例化一�
 
 下面看另外一种在该对象真正被使用的时候才会实例化的单例模式——懒汉模式。
 
-    //code 5
-    public class Singleton {
-        //定义实例
-        private static Singleton instance;
-        //私有构造方法
-        private Singleton(){}
-        //对外提供获取实例的静态方法
-        public static Singleton getInstance() {
-            //在对象被使用的时候才实例化
-            if (instance == null) {
-                instance = new Singleton();
-            }
-            return instance;
+```java
+//code 5
+public class Singleton {
+    //定义实例
+    private static Singleton instance;
+    //私有构造方法
+    private Singleton(){}
+    //对外提供获取实例的静态方法
+    public static Singleton getInstance() {
+        //在对象被使用的时候才实例化
+        if (instance == null) {
+            instance = new Singleton();
         }
+        return instance;
     }
+}
+```
     
 
 上面这种单例叫做懒汉式单例。懒汉，就是不会提前把实例创建出来，将类对自己的实例化延迟到第一次被引用的时候。`getInstance`方法的作用是希望该对象在第一次被使用的时候被`new`出来。
@@ -135,21 +145,23 @@ code 3和code 1其实是一样的，都是在类被加载的时候实例化一�
 
 针对线程不安全的懒汉式的单例，其实解决方式很简单，就是给创建对象的步骤加锁：
 
-    //code 6
-    public class SynchronizedSingleton {
-        //定义实例
-        private static SynchronizedSingleton instance;
-        //私有构造方法
-        private SynchronizedSingleton(){}
-        //对外提供获取实例的静态方法,对该方法加锁
-        public static synchronized SynchronizedSingleton getInstance() {
-            //在对象被使用的时候才实例化
-            if (instance == null) {
-                instance = new SynchronizedSingleton();
-            }
-            return instance;
+```java
+//code 6
+public class SynchronizedSingleton {
+    //定义实例
+    private static SynchronizedSingleton instance;
+    //私有构造方法
+    private SynchronizedSingleton(){}
+    //对外提供获取实例的静态方法,对该方法加锁
+    public static synchronized SynchronizedSingleton getInstance() {
+        //在对象被使用的时候才实例化
+        if (instance == null) {
+            instance = new SynchronizedSingleton();
         }
+        return instance;
     }
+}
+```
     
 
 这种写法能够在多线程中很好的工作，而且看起来它也具备很好的延迟加载，但是，遗憾的是，他效率很低，因为99%情况下不需要同步。（因为上面的`synchronized`的加锁范围是整个方法，该方法的所有操作都是同步进行的，但是对于非第一次创建对象的情况，也就是没有进入`if`语句中的情况，根本不需要同步操作，可以直接返回`instance`。）
@@ -158,25 +170,27 @@ code 3和code 1其实是一样的，都是在类被加载的时候实例化一�
 
 针对上面code 6存在的问题，相信对并发编程了解的同学都知道如何解决。其实上面的代码存在的问题主要是锁的范围太大了。只要缩小锁的范围就可以了。那么如何缩小锁的范围呢？相比于同步方法，同步代码块的加锁范围更小。code 6可以改造成：
 
-    //code 7
-    public class Singleton {
-    
-        private static Singleton singleton;
-    
-        private Singleton() {
-        }
-    
-        public static Singleton getSingleton() {
-            if (singleton == null) {
-                synchronized (Singleton.class) {
-                    if (singleton == null) {
-                        singleton = new Singleton();
-                    }
+```java
+//code 7
+public class Singleton {
+
+    private static Singleton singleton;
+
+    private Singleton() {
+    }
+
+    public static Singleton getSingleton() {
+        if (singleton == null) {
+            synchronized (Singleton.class) {
+                if (singleton == null) {
+                    singleton = new Singleton();
                 }
             }
-            return singleton;
         }
+        return singleton;
     }
+}
+```
     
 
 code 7是对于code 6的一种改进写法，通过使用同步代码块的方式减小了锁的范围。这样可以大大提高效率。（对于已经存在`singleton`的情况，无须同步，直接return）。
@@ -197,69 +211,75 @@ code 7是对于code 6的一种改进写法，通过使用同步代码块的方�
 
 使用`volatile`
 
-    //code 8
-    public class VolatileSingleton {
-        private static volatile VolatileSingleton singleton;
-    
-        private VolatileSingleton() {
-        }
-    
-        public static VolatileSingleton getSingleton() {
-            if (singleton == null) {
-                synchronized (VolatileSingleton.class) {
-                    if (singleton == null) {
-                        singleton = new VolatileSingleton();
-                    }
+```java
+//code 8
+public class VolatileSingleton {
+    private static volatile VolatileSingleton singleton;
+
+    private VolatileSingleton() {
+    }
+
+    public static VolatileSingleton getSingleton() {
+        if (singleton == null) {
+            synchronized (VolatileSingleton.class) {
+                if (singleton == null) {
+                    singleton = new VolatileSingleton();
                 }
             }
-            return singleton;
         }
+        return singleton;
     }
+}
+```
     
 
 **上面这种双重校验锁的方式用的比较广泛，他解决了前面提到的所有问题。**但是，即使是这种看上去完美无缺的方式也可能存在问题，那就是遇到序列化的时候。详细内容后文介绍。
 
 使用`final`
 
-    //code 9
-    class FinalWrapper<T> {
-        public final T value;
-    
-        public FinalWrapper(T value) {
-            this.value = value;
-        }
+```java
+//code 9
+class FinalWrapper<T> {
+    public final T value;
+
+    public FinalWrapper(T value) {
+        this.value = value;
     }
-    
-    public class FinalSingleton {
-        private FinalWrapper<FinalSingleton> helperWrapper = null;
-    
-        public FinalSingleton getHelper() {
-            FinalWrapper<FinalSingleton> wrapper = helperWrapper;
-    
-            if (wrapper == null) {
-                synchronized (this) {
-                    if (helperWrapper == null) {
-                        helperWrapper = new FinalWrapper<FinalSingleton>(new FinalSingleton());
-                    }
-                    wrapper = helperWrapper;
+}
+
+public class FinalSingleton {
+    private FinalWrapper<FinalSingleton> helperWrapper = null;
+
+    public FinalSingleton getHelper() {
+        FinalWrapper<FinalSingleton> wrapper = helperWrapper;
+
+        if (wrapper == null) {
+            synchronized (this) {
+                if (helperWrapper == null) {
+                    helperWrapper = new FinalWrapper<FinalSingleton>(new FinalSingleton());
                 }
+                wrapper = helperWrapper;
             }
-            return wrapper.value;
         }
+        return wrapper.value;
     }
+}
+```
     
 
 ### 枚举式
 
 在1.5之前，实现单例一般只有以上几种办法，在1.5之后，还有另外一种实现单例的方式，那就是使用枚举：
 
-    // code 10
-    public enum  Singleton {
-    
-        INSTANCE;
-        Singleton() {
-        }
+```java
+// code 10
+public enum  Singleton {
+
+    INSTANCE;
+    Singleton() {
     }
+}
+```
     
 
 这种方式是[Effective Java][10]作者`Josh Bloch` 提倡的方式，它不仅能避免多线程同步问题，而且还能防止反序列化重新创建新的对象（下面会介绍），可谓是很坚强的壁垒啊，在深度分析Java的枚举类型—-枚举的线程安全性及序列化问题中有详细介绍枚举的线程安全问题和序列化问题，不过，个人认为由于1.5中才加入`enum`特性，用这种方式写不免让人感觉生疏，在实际工作中，我也很少看见有人这么写过，但是不代表他不好。
@@ -268,31 +288,33 @@ code 7是对于code 6的一种改进写法，通过使用同步代码块的方�
 
 在[单例与序列化的那些事儿][11]一文中，[Hollis][12]就分析过单例和序列化之前的关系——序列化可以破坏单例。要想防止序列化对单例的破坏，只要在`Singleton`类中定义`readResolve`就可以解决该问题：
 
-    //code 11
-    package com.hollis;
-    import java.io.Serializable;
-    /**
-     * Created by hollis on 16/2/5.
-     * 使用双重校验锁方式实现单例
-     */
-    public class Singleton implements Serializable{
-        private volatile static Singleton singleton;
-        private Singleton (){}
-        public static Singleton getSingleton() {
-            if (singleton == null) {
-                synchronized (Singleton.class) {
-                    if (singleton == null) {
-                        singleton = new Singleton();
-                    }
+```java
+//code 11
+package com.hollis;
+import java.io.Serializable;
+/**
+ * Created by hollis on 16/2/5.
+ * 使用双重校验锁方式实现单例
+ */
+public class Singleton implements Serializable{
+    private volatile static Singleton singleton;
+    private Singleton (){}
+    public static Singleton getSingleton() {
+        if (singleton == null) {
+            synchronized (Singleton.class) {
+                if (singleton == null) {
+                    singleton = new Singleton();
                 }
             }
-            return singleton;
         }
-    
-        private Object readResolve() {
-            return singleton;
-        }
+        return singleton;
     }
+
+    private Object readResolve() {
+        return singleton;
+    }
+}
+```
     
 
 ## 总结

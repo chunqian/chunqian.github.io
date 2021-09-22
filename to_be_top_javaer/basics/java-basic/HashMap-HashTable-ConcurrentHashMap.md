@@ -16,7 +16,7 @@ HashMap中，null可以作为键，这样的键只有一个；可以有一个或
 
 
 默认初始容量和扩容机制：
-HashTable中的hash数组初始大小是11，增加的方式是 old*2+1。HashMap中hash数组的默认大小是16，而且一定是2的指数。原因参考全网把Map中的hash()分析的最透彻的文章，别无二家。-HollisChuang's Blog
+HashTable中的hash数组初始大小是11，增加的方式是 old`*`2+1。HashMap中hash数组的默认大小是16，而且一定是2的指数。原因参考全网把Map中的hash()分析的最透彻的文章，别无二家。-HollisChuang's Blog
 
 哈希值的使用不同 ：
 HashTable直接使用对象的hashCode。

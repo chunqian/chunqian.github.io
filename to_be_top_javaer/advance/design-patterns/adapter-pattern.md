@@ -43,156 +43,166 @@ GOF中将适配器模式分为类适配器模式和对象适配器模式。区�
 
 先定义接口：
 
-    /**
-     * MicroUsb充电器接口
-     */
-    public interface MicroUsbInterface {
-        public void chargeWithMicroUsb();
-    }
-    
-    /**
-     * Lightning充电器接口
-     */
-    public interface LightningInterface {
-        public void chargeWithLightning();
-    }
+```java
+/**
+ * MicroUsb充电器接口
+ */
+public interface MicroUsbInterface {
+    public void chargeWithMicroUsb();
+}
+
+/**
+ * Lightning充电器接口
+ */
+public interface LightningInterface {
+    public void chargeWithLightning();
+}
+```
     
 
 定义具体的实现类
 
-    /**
-     * 安卓设备的充电器
-     */
-    public class AndroidCharger implements MicroUsbInterface {
-        @Override
-        public void chargeWithMicroUsb() {
-            System.out.println("使用MicroUsb型号的充电器充电...");
-        }
+```java
+/**
+ * 安卓设备的充电器
+ */
+public class AndroidCharger implements MicroUsbInterface {
+    @Override
+    public void chargeWithMicroUsb() {
+        System.out.println("使用MicroUsb型号的充电器充电...");
     }
-    
-    /**
-     * 苹果设备的充电器
-     */
-    public class AppleCharger implements LightningInterface {
-        @Override
-        public void chargeWithLightning() {
-            System.out.println("使用Lightning型号的充电器充电...");
-        }
+}
+
+/**
+ * 苹果设备的充电器
+ */
+public class AppleCharger implements LightningInterface {
+    @Override
+    public void chargeWithLightning() {
+        System.out.println("使用Lightning型号的充电器充电...");
     }
+}
+```
     
 
 > 因为我们要使用适配器模式将MicroUsb转成Lightning，所以这里的AppleCharger是本来不需要定义的。因为我们使用适配器的目的就是代替新建一个他。这里定义出来是为了使例子更加完整。
 
 定义两个手机
 
-    public class Iphone6Plus {
-    
-        private LightningInterface lightningInterface;
-    
-        public Iphone6Plus() {
-        }
-    
-        public Iphone6Plus(LightningInterface lightningInterface) {
-            this.lightningInterface = lightningInterface;
-        }
-    
-        public void charge() {
-            System.out.println("开始给我的Iphone6Plus手机充电...");
-            lightningInterface.chargeWithLightning();
-            System.out.println("结束给我的Iphone6Plus手机充电...");
-        }
-    
-        public LightningInterface getLightningInterface() {
-            return lightningInterface;
-        }
-    
-        public void setLightningInterface(LightningInterface lightningInterface) {
-            this.lightningInterface = lightningInterface;
-        }
+```java
+public class Iphone6Plus {
+
+    private LightningInterface lightningInterface;
+
+    public Iphone6Plus() {
     }
-    
-    public class GalaxyS7 {
-    
-        private MicroUsbInterface microUsbInterface;
-    
-        public GalaxyS7() {
-        }
-    
-        public GalaxyS7(MicroUsbInterface microUsbInterface) {
-            this.microUsbInterface = microUsbInterface;
-        }
-    
-        public void charge(){
-            System.out.println("开始给我的GalaxyS7手机充电...");
-            microUsbInterface.chargeWithMicroUsb();
-            System.out.println("开始给我的GalaxyS7手机充电...");
-        }
-    
-        public MicroUsbInterface getMicroUsbInterface() {
-            return microUsbInterface;
-        }
-    
-        public void setMicroUsbInterface(MicroUsbInterface microUsbInterface) {
-            this.microUsbInterface = microUsbInterface;
-        }
+
+    public Iphone6Plus(LightningInterface lightningInterface) {
+        this.lightningInterface = lightningInterface;
     }
+
+    public void charge() {
+        System.out.println("开始给我的Iphone6Plus手机充电...");
+        lightningInterface.chargeWithLightning();
+        System.out.println("结束给我的Iphone6Plus手机充电...");
+    }
+
+    public LightningInterface getLightningInterface() {
+        return lightningInterface;
+    }
+
+    public void setLightningInterface(LightningInterface lightningInterface) {
+        this.lightningInterface = lightningInterface;
+    }
+}
+
+public class GalaxyS7 {
+
+    private MicroUsbInterface microUsbInterface;
+
+    public GalaxyS7() {
+    }
+
+    public GalaxyS7(MicroUsbInterface microUsbInterface) {
+        this.microUsbInterface = microUsbInterface;
+    }
+
+    public void charge(){
+        System.out.println("开始给我的GalaxyS7手机充电...");
+        microUsbInterface.chargeWithMicroUsb();
+        System.out.println("开始给我的GalaxyS7手机充电...");
+    }
+
+    public MicroUsbInterface getMicroUsbInterface() {
+        return microUsbInterface;
+    }
+
+    public void setMicroUsbInterface(MicroUsbInterface microUsbInterface) {
+        this.microUsbInterface = microUsbInterface;
+    }
+}
+```
     
 
 这里定义手机的作用是为了更方便的理解适配器模式，在该模式中他不扮演任何角色。
 
 定义适配器
 
-    /**
-     * 适配器,将MicroUsb接口转成Lightning接口
-     */
-    public class Adapter implements LightningInterface {
-        private MicroUsbInterface microUsbInterface;
-    
-        public Adapter() {
-        }
-    
-        public Adapter(MicroUsbInterface microUsbInterface) {
-            this.microUsbInterface = microUsbInterface;
-        }
-    
-        @Override
-        public void chargeWithLightning() {
-            microUsbInterface.chargeWithMicroUsb();
-        }
-    
-        public MicroUsbInterface getMicroUsbInterface() {
-            return microUsbInterface;
-        }
-    
-        public void setMicroUsbInterface(MicroUsbInterface microUsbInterface) {
-            this.microUsbInterface = microUsbInterface;
-        }
+```java
+/**
+ * 适配器,将MicroUsb接口转成Lightning接口
+ */
+public class Adapter implements LightningInterface {
+    private MicroUsbInterface microUsbInterface;
+
+    public Adapter() {
     }
+
+    public Adapter(MicroUsbInterface microUsbInterface) {
+        this.microUsbInterface = microUsbInterface;
+    }
+
+    @Override
+    public void chargeWithLightning() {
+        microUsbInterface.chargeWithMicroUsb();
+    }
+
+    public MicroUsbInterface getMicroUsbInterface() {
+        return microUsbInterface;
+    }
+
+    public void setMicroUsbInterface(MicroUsbInterface microUsbInterface) {
+        this.microUsbInterface = microUsbInterface;
+    }
+}
+```
     
 
 该适配器的功能是把一个MicroUsb转换成Lightning。实现方式是实现目标类的接口（`LightningInterface`），然后使用组合的方式，在该适配器中定义microUsb。然后在重写的`chargeWithLightning（）`方法中，采用microUsb的方法来实现具体细节。
 
 定义客户端
 
-    public class Main {
-    
-        public static void main(String[] args) {
-            Iphone6Plus iphone6Plus = new Iphone6Plus(new AppleCharger());
-            iphone6Plus.charge();
-    
-            System.out.println("==============================");
-    
-            GalaxyS7 galaxyS7 = new GalaxyS7(new AndroidCharger());
-            galaxyS7.charge();
-    
-            System.out.println("==============================");
-    
-            Adapter adapter  = new Adapter(new AndroidCharger());
-            Iphone6Plus newIphone = new Iphone6Plus();
-            newIphone.setLightningInterface(adapter);
-            newIphone.charge();
-        }
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        Iphone6Plus iphone6Plus = new Iphone6Plus(new AppleCharger());
+        iphone6Plus.charge();
+
+        System.out.println("==============================");
+
+        GalaxyS7 galaxyS7 = new GalaxyS7(new AndroidCharger());
+        galaxyS7.charge();
+
+        System.out.println("==============================");
+
+        Adapter adapter  = new Adapter(new AndroidCharger());
+        Iphone6Plus newIphone = new Iphone6Plus();
+        newIphone.setLightningInterface(adapter);
+        newIphone.charge();
     }
+}
+```
     
 
 输出结果：

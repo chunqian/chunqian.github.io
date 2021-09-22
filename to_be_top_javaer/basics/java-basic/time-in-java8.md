@@ -42,11 +42,13 @@ Java 8通过发布新的Date-Time API (JSR 310)来进一步加强对日期与时
 
 在Java8中，使用如下方式获取当前时间：
     
-    LocalDate today = LocalDate.now();
-    int year = today.getYear();
-    int month = today.getMonthValue();
-    int day = today.getDayOfMonth();
-    System.out.printf("Year : %d Month : %d day : %d t %n", year,month, day);
+```java
+LocalDate today = LocalDate.now();
+int year = today.getYear();
+int month = today.getMonthValue();
+int day = today.getDayOfMonth();
+System.out.printf("Year : %d Month : %d day : %d t %n", year,month, day);
+```
     
 
 ### 创建指定日期的时间
@@ -58,13 +60,16 @@ Java 8通过发布新的Date-Time API (JSR 310)来进一步加强对日期与时
 
 直接使⽤LocalDate的isLeapYear即可判断是否闰年
 
-    LocalDate nowDate = LocalDate.now();
-    //判断闰年
-    boolean leapYear = nowDate.isLeapYear();
+```java
+LocalDate nowDate = LocalDate.now();
+//判断闰年
+boolean leapYear = nowDate.isLeapYear();
+```
     
 ### 计算两个⽇期之间的天数和⽉数
 
 在Java 8中可以⽤java.time.Period类来做计算。
 
-    Period period = Period.between(LocalDate.of(2018, 1, 5),LocalDate.of(2018, 2, 5));
-    
+```java
+Period period = Period.between(LocalDate.of(2018, 1, 5),LocalDate.of(2018, 2, 5));
+```

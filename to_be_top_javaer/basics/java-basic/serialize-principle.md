@@ -26,122 +26,126 @@ Java平台允许我们在内存中创建可复用的Java对象，但一般情况
 
 code 1 创建一个User类，用于序列化及反序列化
 
-    package com.hollis;
-    import java.io.Serializable;
-    import java.util.Date;
-    
-    /**
-     * Created by hollis on 16/2/2.
-     */
-    public class User implements Serializable{
-        private String name;
-        private int age;
-        private Date birthday;
-        private transient String gender;
-        private static final long serialVersionUID = -6849794470754667710L;
-    
-        public String getName() {
-            return name;
-        }
-    
-        public void setName(String name) {
-            this.name = name;
-        }
-    
-        public int getAge() {
-            return age;
-        }
-    
-        public void setAge(int age) {
-            this.age = age;
-        }
-    
-        public Date getBirthday() {
-            return birthday;
-        }
-    
-        public void setBirthday(Date birthday) {
-            this.birthday = birthday;
-        }
-    
-        public String getGender() {
-            return gender;
-        }
-    
-        public void setGender(String gender) {
-            this.gender = gender;
-        }
-    
-        @Override
-        public String toString() {
-            return "User{" +
-                    "name='" + name + '\'' +
-                    ", age=" + age +
-                    ", gender=" + gender +
-                    ", birthday=" + birthday +
-                    '}';
-        }
+```java
+package com.hollis;
+import java.io.Serializable;
+import java.util.Date;
+
+/**
+ * Created by hollis on 16/2/2.
+ */
+public class User implements Serializable{
+    private String name;
+    private int age;
+    private Date birthday;
+    private transient String gender;
+    private static final long serialVersionUID = -6849794470754667710L;
+
+    public String getName() {
+        return name;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", gender=" + gender +
+                ", birthday=" + birthday +
+                '}';
+    }
+}
+```
     
 
 code 2 对User进行序列化及反序列化的Demo
 
-    package com.hollis;
-    import org.apache.commons.io.FileUtils;
-    import org.apache.commons.io.IOUtils;
-    import java.io.*;
-    import java.util.Date;
-    
-    /**
-     * Created by hollis on 16/2/2.
-     */
-    public class SerializableDemo {
-    
-        public static void main(String[] args) {
-            //Initializes The Object
-            User user = new User();
-            user.setName("hollis");
-            user.setGender("male");
-            user.setAge(23);
-            user.setBirthday(new Date());
-            System.out.println(user);
-    
-            //Write Obj to File
-            ObjectOutputStream oos = null;
-            try {
-                oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
-                oos.writeObject(user);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                IOUtils.closeQuietly(oos);
-            }
-    
-            //Read Obj from File
-            File file = new File("tempFile");
-            ObjectInputStream ois = null;
-            try {
-                ois = new ObjectInputStream(new FileInputStream(file));
-                User newUser = (User) ois.readObject();
-                System.out.println(newUser);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } finally {
-                IOUtils.closeQuietly(ois);
-                try {
-                    FileUtils.forceDelete(file);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-    
+```java
+package com.hollis;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import java.io.*;
+import java.util.Date;
+
+/**
+ * Created by hollis on 16/2/2.
+ */
+public class SerializableDemo {
+
+    public static void main(String[] args) {
+        //Initializes The Object
+        User user = new User();
+        user.setName("hollis");
+        user.setGender("male");
+        user.setAge(23);
+        user.setBirthday(new Date());
+        System.out.println(user);
+
+        //Write Obj to File
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
+            oos.writeObject(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(oos);
         }
+
+        //Read Obj from File
+        File file = new File("tempFile");
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(new FileInputStream(file));
+            User newUser = (User) ois.readObject();
+            System.out.println(newUser);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(ois);
+            try {
+                FileUtils.forceDelete(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
     }
-    //output 
-    //User{name='hollis', age=23, gender=male, birthday=Tue Feb 02 17:37:38 CST 2016}
-    //User{name='hollis', age=23, gender=null, birthday=Tue Feb 02 17:37:38 CST 2016}
+}
+//output 
+//User{name='hollis', age=23, gender=male, birthday=Tue Feb 02 17:37:38 CST 2016}
+//User{name='hollis', age=23, gender=null, birthday=Tue Feb 02 17:37:38 CST 2016}
+```
     
 
 ## 序列化及反序列化相关知识
@@ -170,41 +174,45 @@ code 2 对User进行序列化及反序列化的Demo
 
 code 3
 
-    public class ArrayList<E> extends AbstractList<E>
-            implements List<E>, RandomAccess, Cloneable, java.io.Serializable
-    {
-        private static final long serialVersionUID = 8683452581122892189L;
-        transient Object[] elementData; // non-private to simplify nested class access
-        private int size;
-    }
+```java
+public class ArrayList<E> extends AbstractList<E>
+        implements List<E>, RandomAccess, Cloneable, java.io.Serializable
+{
+    private static final long serialVersionUID = 8683452581122892189L;
+    transient Object[] elementData; // non-private to simplify nested class access
+    private int size;
+}
+```
     
 
 笔者省略了其他成员变量，从上面的代码中可以知道ArrayList实现了`java.io.Serializable`接口，那么我们就可以对它进行序列化及反序列化。因为elementData是`transient`的，所以我们认为这个成员变量不会被序列化而保留下来。我们写一个Demo，验证一下我们的想法：
 
 code 4
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-            List<String> stringList = new ArrayList<String>();
-            stringList.add("hello");
-            stringList.add("world");
-            stringList.add("hollis");
-            stringList.add("chuang");
-            System.out.println("init StringList" + stringList);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("stringlist"));
-            objectOutputStream.writeObject(stringList);
-    
-            IOUtils.close(objectOutputStream);
-            File file = new File("stringlist");
-            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
-            List<String> newStringList = (List<String>)objectInputStream.readObject();
-            IOUtils.close(objectInputStream);
-            if(file.exists()){
-                file.delete();
-            }
-            System.out.println("new StringList" + newStringList);
+```java
+public static void main(String[] args) throws IOException, ClassNotFoundException {
+        List<String> stringList = new ArrayList<String>();
+        stringList.add("hello");
+        stringList.add("world");
+        stringList.add("hollis");
+        stringList.add("chuang");
+        System.out.println("init StringList" + stringList);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("stringlist"));
+        objectOutputStream.writeObject(stringList);
+
+        IOUtils.close(objectOutputStream);
+        File file = new File("stringlist");
+        ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(file));
+        List<String> newStringList = (List<String>)objectInputStream.readObject();
+        IOUtils.close(objectInputStream);
+        if(file.exists()){
+            file.delete();
         }
-    //init StringList[hello, world, hollis, chuang]
-    //new StringList[hello, world, hollis, chuang]
+        System.out.println("new StringList" + newStringList);
+    }
+//init StringList[hello, world, hollis, chuang]
+//new StringList[hello, world, hollis, chuang]
+```
     
 
 了解ArrayList的人都知道，ArrayList底层是通过数组实现的。那么数组`elementData`其实就是用来保存列表中的元素的。通过该属性的声明方式我们知道，他是无法通过序列化持久化下来的。那么为什么code 4的结果却通过序列化和反序列化把List中的元素保留下来了呢？
@@ -225,49 +233,53 @@ code 4
 
 code 5
 
-    private void readObject(java.io.ObjectInputStream s)
-            throws java.io.IOException, ClassNotFoundException {
-            elementData = EMPTY_ELEMENTDATA;
-    
-            // Read in size, and any hidden stuff
-            s.defaultReadObject();
-    
-            // Read in capacity
-            s.readInt(); // ignored
-    
-            if (size > 0) {
-                // be like clone(), allocate array based upon size not capacity
-                ensureCapacityInternal(size);
-    
-                Object[] a = elementData;
-                // Read in all elements in the proper order.
-                for (int i=0; i<size; i++) {
-                    a[i] = s.readObject();
-                }
+```java
+private void readObject(java.io.ObjectInputStream s)
+        throws java.io.IOException, ClassNotFoundException {
+        elementData = EMPTY_ELEMENTDATA;
+
+        // Read in size, and any hidden stuff
+        s.defaultReadObject();
+
+        // Read in capacity
+        s.readInt(); // ignored
+
+        if (size > 0) {
+            // be like clone(), allocate array based upon size not capacity
+            ensureCapacityInternal(size);
+
+            Object[] a = elementData;
+            // Read in all elements in the proper order.
+            for (int i=0; i<size; i++) {
+                a[i] = s.readObject();
             }
         }
+    }
+```
     
 
 code 6
 
-    private void writeObject(java.io.ObjectOutputStream s)
-            throws java.io.IOException{
-            // Write out element count, and any hidden stuff
-            int expectedModCount = modCount;
-            s.defaultWriteObject();
-    
-            // Write out size as capacity for behavioural compatibility with clone()
-            s.writeInt(size);
-    
-            // Write out all elements in the proper order.
-            for (int i=0; i<size; i++) {
-                s.writeObject(elementData[i]);
-            }
-    
-            if (modCount != expectedModCount) {
-                throw new ConcurrentModificationException();
-            }
+```java
+private void writeObject(java.io.ObjectOutputStream s)
+        throws java.io.IOException{
+        // Write out element count, and any hidden stuff
+        int expectedModCount = modCount;
+        s.defaultWriteObject();
+
+        // Write out size as capacity for behavioural compatibility with clone()
+        s.writeInt(size);
+
+        // Write out all elements in the proper order.
+        for (int i=0; i<size; i++) {
+            s.writeObject(elementData[i]);
         }
+
+        if (modCount != expectedModCount) {
+            throw new ConcurrentModificationException();
+        }
+    }
+```
     
 
 那么为什么ArrayList要用这种方式来实现序列化呢？
@@ -304,27 +316,29 @@ ArrayList实际上是动态数组，每次在放满以后自动增长设定的�
 
 这里看一下invokeWriteObject：
 
-    void invokeWriteObject(Object obj, ObjectOutputStream out)
-            throws IOException, UnsupportedOperationException
-        {
-            if (writeObjectMethod != null) {
-                try {
-                    writeObjectMethod.invoke(obj, new Object[]{ out });
-                } catch (InvocationTargetException ex) {
-                    Throwable th = ex.getTargetException();
-                    if (th instanceof IOException) {
-                        throw (IOException) th;
-                    } else {
-                        throwMiscException(th);
-                    }
-                } catch (IllegalAccessException ex) {
-                    // should not occur, as access checks have been suppressed
-                    throw new InternalError(ex);
+```java
+void invokeWriteObject(Object obj, ObjectOutputStream out)
+        throws IOException, UnsupportedOperationException
+    {
+        if (writeObjectMethod != null) {
+            try {
+                writeObjectMethod.invoke(obj, new Object[]{ out });
+            } catch (InvocationTargetException ex) {
+                Throwable th = ex.getTargetException();
+                if (th instanceof IOException) {
+                    throw (IOException) th;
+                } else {
+                    throwMiscException(th);
                 }
-            } else {
-                throw new UnsupportedOperationException();
+            } catch (IllegalAccessException ex) {
+                // should not occur, as access checks have been suppressed
+                throw new InternalError(ex);
             }
+        } else {
+            throw new UnsupportedOperationException();
         }
+    }
+```
     
 
 其中`writeObjectMethod.invoke(obj, new Object[]{ out });`是关键，通过反射的方式调用writeObjectMethod方法。官方是这么解释这个writeObjectMethod的：
@@ -362,22 +376,24 @@ Serializable接口的定义：
 
 writeObject0方法中有这么一段代码：
 
-    if (obj instanceof String) {
-                    writeString((String) obj, unshared);
-                } else if (cl.isArray()) {
-                    writeArray(obj, desc, unshared);
-                } else if (obj instanceof Enum) {
-                    writeEnum((Enum<?>) obj, desc, unshared);
-                } else if (obj instanceof Serializable) {
-                    writeOrdinaryObject(obj, desc, unshared);
+```java
+if (obj instanceof String) {
+                writeString((String) obj, unshared);
+            } else if (cl.isArray()) {
+                writeArray(obj, desc, unshared);
+            } else if (obj instanceof Enum) {
+                writeEnum((Enum<?>) obj, desc, unshared);
+            } else if (obj instanceof Serializable) {
+                writeOrdinaryObject(obj, desc, unshared);
+            } else {
+                if (extendedDebugInfo) {
+                    throw new NotSerializableException(
+                        cl.getName() + "\n" + debugInfoStack.toString());
                 } else {
-                    if (extendedDebugInfo) {
-                        throw new NotSerializableException(
-                            cl.getName() + "\n" + debugInfoStack.toString());
-                    } else {
-                        throw new NotSerializableException(cl.getName());
-                    }
+                    throw new NotSerializableException(cl.getName());
                 }
+            }
+```
     
 
 在进行序列化操作时，会判断要被序列化的类是否是Enum、Array和Serializable类型，如果不是则直接抛出`NotSerializableException`。

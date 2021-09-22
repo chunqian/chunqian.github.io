@@ -6,9 +6,11 @@ Vector是java.util包中的一个类。 SynchronizedList是java.util.Collections
 
 首先，我们知道Vector和Arraylist都是List的子类，他们底层的实现都是一样的。所以这里比较如下两个`list1`和`list2`的区别：
 
-    List<String> list = new ArrayList<String>();
-    List list2 =  Collections.synchronizedList(list);
-    Vector<String> list1 = new Vector<String>();
+```java
+List<String> list = new ArrayList<String>();
+List list2 =  Collections.synchronizedList(list);
+Vector<String> list1 = new Vector<String>();
+```
     
 
 ## 一、比较几个重要的方法。
@@ -17,58 +19,64 @@ Vector是java.util包中的一个类。 SynchronizedList是java.util.Collections
 
 **Vector的实现：**
 
-    public void add(int index, E element) {
-        insertElementAt(element, index);
+```java
+public void add(int index, E element) {
+    insertElementAt(element, index);
+}
+
+public synchronized void insertElementAt(E obj, int index) {
+    modCount++;
+    if (index > elementCount) {
+        throw new ArrayIndexOutOfBoundsException(index
+                                                 + " > " + elementCount);
     }
-    
-    public synchronized void insertElementAt(E obj, int index) {
-        modCount++;
-        if (index > elementCount) {
-            throw new ArrayIndexOutOfBoundsException(index
-                                                     + " > " + elementCount);
-        }
-        ensureCapacityHelper(elementCount + 1);
-        System.arraycopy(elementData, index, elementData, index + 1, elementCount - index);
-        elementData[index] = obj;
-        elementCount++;
-    }
-    
-    private void ensureCapacityHelper(int minCapacity) {
-        // overflow-conscious code
-        if (minCapacity - elementData.length > 0)
-            grow(minCapacity);
-    }
+    ensureCapacityHelper(elementCount + 1);
+    System.arraycopy(elementData, index, elementData, index + 1, elementCount - index);
+    elementData[index] = obj;
+    elementCount++;
+}
+
+private void ensureCapacityHelper(int minCapacity) {
+    // overflow-conscious code
+    if (minCapacity - elementData.length > 0)
+        grow(minCapacity);
+}
+```
     
 
 **synchronizedList的实现：**
 
-    public void add(int index, E element) {
-       synchronized (mutex) {
-           list.add(index, element);
-       }
-    }
+```java
+public void add(int index, E element) {
+   synchronized (mutex) {
+       list.add(index, element);
+   }
+}
+```
     
 
 这里，使用同步代码块的方式调用ArrayList的add()方法。ArrayList的add方法内容如下：
 
-    public void add(int index, E element) {
-        rangeCheckForAdd(index);
-        ensureCapacityInternal(size + 1);  // Increments modCount!!
-        System.arraycopy(elementData, index, elementData, index + 1,
-                         size - index);
-        elementData[index] = element;
-        size++;
+```java
+public void add(int index, E element) {
+    rangeCheckForAdd(index);
+    ensureCapacityInternal(size + 1);  // Increments modCount!!
+    System.arraycopy(elementData, index, elementData, index + 1,
+                     size - index);
+    elementData[index] = element;
+    size++;
+}
+private void rangeCheckForAdd(int index) {
+    if (index > size || index < 0)
+        throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+}
+private void ensureCapacityInternal(int minCapacity) {
+    if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
+        minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
     }
-    private void rangeCheckForAdd(int index) {
-        if (index > size || index < 0)
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
-    }
-    private void ensureCapacityInternal(int minCapacity) {
-        if (elementData == DEFAULTCAPACITY_EMPTY_ELEMENTDATA) {
-            minCapacity = Math.max(DEFAULT_CAPACITY, minCapacity);
-        }
-        ensureExplicitCapacity(minCapacity);
-    }
+    ensureExplicitCapacity(minCapacity);
+}
+```
     
 
 从上面两段代码中发现有两处不同： **1\.Vector使用同步方法实现，synchronizedList使用同步代码块实现。 2.两者的扩充数组容量方式不一样（两者的add方法在扩容方面的差别也就是ArrayList和Vector的差别。）**
@@ -77,45 +85,51 @@ Vector是java.util包中的一个类。 SynchronizedList是java.util.Collections
 
 **synchronizedList的实现：**
 
-    public E remove(int index) {
-        synchronized (mutex) {return list.remove(index);}
-    }
+```java
+public E remove(int index) {
+    synchronized (mutex) {return list.remove(index);}
+}
+```
     
 
 ArrayList类的remove方法内容如下：
 
-    public E remove(int index) {
-        rangeCheck(index);
-    
-        modCount++;
-        E oldValue = elementData(index);
-    
-        int numMoved = size - index - 1;
-        if (numMoved > 0)
-            System.arraycopy(elementData, index+1, elementData, index,
-                             numMoved);
-        elementData[--size] = null; // clear to let GC do its work
-    
-        return oldValue;
-    }
+```java
+public E remove(int index) {
+    rangeCheck(index);
+
+    modCount++;
+    E oldValue = elementData(index);
+
+    int numMoved = size - index - 1;
+    if (numMoved > 0)
+        System.arraycopy(elementData, index+1, elementData, index,
+                         numMoved);
+    elementData[--size] = null; // clear to let GC do its work
+
+    return oldValue;
+}
+```
     
 
 **Vector的实现：**
 
-    public synchronized E remove(int index) {
-            modCount++;
-            if (index >= elementCount)
-                throw new ArrayIndexOutOfBoundsException(index);
-            E oldValue = elementData(index);
-    
-            int numMoved = elementCount - index - 1;
-            if (numMoved > 0)
-                System.arraycopy(elementData, index+1, elementData, index,
-                                 numMoved);
-            elementData[--elementCount] = null; // Let gc do its work
-    
-            return oldValue;
-        }
+```java
+public synchronized E remove(int index) {
+        modCount++;
+        if (index >= elementCount)
+            throw new ArrayIndexOutOfBoundsException(index);
+        E oldValue = elementData(index);
+
+        int numMoved = elementCount - index - 1;
+        if (numMoved > 0)
+            System.arraycopy(elementData, index+1, elementData, index,
+                             numMoved);
+        elementData[--elementCount] = null; // Let gc do its work
+
+        return oldValue;
+    }
+```
     
 
 **从remove方法中我们发现除了一个使用同步方法，一个使用同步代码块之外几乎无任何区别。**

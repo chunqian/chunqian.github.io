@@ -17,10 +17,12 @@ initCause和Throwable构造函数的Throwable参数是导致当前异常的异�
 
 以下示例显示如何使用异常链。
 
-    try {
-    
-    } catch (IOException e) {
-        throw new SampleException("Other IOException", e);
-    }
+```java
+try {
+
+} catch (IOException e) {
+    throw new SampleException("Other IOException", e);
+}
+```
     
 在此示例中，当捕获到IOException时，将创建一个新的SampleException异常，并附加原始的异常原因，并将异常链抛出到下一个更高级别的异常处理程序。

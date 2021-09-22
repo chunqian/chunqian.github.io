@@ -31,21 +31,23 @@ Java 中最常用的语法糖主要有泛型、变长参数、条件编译、自
 
 那么接下来看下`switch`对`String`得支持，有以下代码：
 
-    public class switchDemoString {
-        public static void main(String[] args) {
-            String str = "world";
-            switch (str) {
-            case "hello":
-                System.out.println("hello");
-                break;
-            case "world":
-                System.out.println("world");
-                break;
-            default:
-                break;
-            }
+```java
+public class switchDemoString {
+    public static void main(String[] args) {
+        String str = "world";
+        switch (str) {
+        case "hello":
+            System.out.println("hello");
+            break;
+        case "world":
+            System.out.println("world");
+            break;
+        default:
+            break;
         }
     }
+}
+```
 
 
 [反编译][1]后内容如下：
@@ -92,47 +94,55 @@ Java 中最常用的语法糖主要有泛型、变长参数、条件编译、自
 
 以下代码：
 
-    Map<String, String> map = new HashMap<String, String>();
-    map.put("name", "hollis");
-    map.put("wechat", "Hollis");
-    map.put("blog", "www.hollischuang.com");
+```java
+Map<String, String> map = new HashMap<String, String>();
+map.put("name", "hollis");
+map.put("wechat", "Hollis");
+map.put("blog", "www.hollischuang.com");
+```
 
 
 解语法糖之后会变成：
 
-    Map map = new HashMap();
-    map.put("name", "hollis");
-    map.put("wechat", "Hollis");
-    map.put("blog", "www.hollischuang.com");
+```java
+Map map = new HashMap();
+map.put("name", "hollis");
+map.put("wechat", "Hollis");
+map.put("blog", "www.hollischuang.com");
+```
 
 
 以下代码：
 
-    public static <A extends Comparable<A>> A max(Collection<A> xs) {
-        Iterator<A> xi = xs.iterator();
-        A w = xi.next();
-        while (xi.hasNext()) {
-            A x = xi.next();
-            if (w.compareTo(x) < 0)
-                w = x;
-        }
-        return w;
+```java
+public static <A extends Comparable<A>> A max(Collection<A> xs) {
+    Iterator<A> xi = xs.iterator();
+    A w = xi.next();
+    while (xi.hasNext()) {
+        A x = xi.next();
+        if (w.compareTo(x) < 0)
+            w = x;
     }
+    return w;
+}
+```
 
 
 类型擦除后会变成：
 
-     public static Comparable max(Collection xs){
-        Iterator xi = xs.iterator();
-        Comparable w = (Comparable)xi.next();
-        while(xi.hasNext())
-        {
-            Comparable x = (Comparable)xi.next();
-            if(w.compareTo(x) < 0)
-                w = x;
-        }
-        return w;
+```java
+public static Comparable max(Collection xs){
+    Iterator xi = xs.iterator();
+    Comparable w = (Comparable)xi.next();
+    while(xi.hasNext())
+    {
+        Comparable x = (Comparable)xi.next();
+        if(w.compareTo(x) < 0)
+            w = x;
     }
+    return w;
+}
+```
 
 
 **虚拟机中没有泛型，只有普通类和普通方法，所有泛型类的类型参数在编译时都会被擦除，泛型类并没有自己独有的`Class`类对象。比如并不存在`List<String>.class`或是`List<Integer>.class`，而只有`List.class`。**
@@ -143,37 +153,45 @@ Java 中最常用的语法糖主要有泛型、变长参数、条件编译、自
 
 先来看个自动装箱的代码：
 
-     public static void main(String[] args) {
-        int i = 10;
-        Integer n = i;
-    }
+```java
+public static void main(String[] args) {
+    int i = 10;
+    Integer n = i;
+}
+```
 
 
 反编译后代码如下:
 
-    public static void main(String args[])
-    {
-        int i = 10;
-        Integer n = Integer.valueOf(i);
-    }
+```java
+public static void main(String args[])
+{
+    int i = 10;
+    Integer n = Integer.valueOf(i);
+}
+```
 
 
 再来看个自动拆箱的代码：
 
-    public static void main(String[] args) {
+```java
+public static void main(String[] args) {
 
-        Integer i = 10;
-        int n = i;
-    }
+    Integer i = 10;
+    int n = i;
+}
+```
 
 
 反编译后代码如下：
 
-    public static void main(String args[])
-    {
-        Integer i = Integer.valueOf(10);
-        int n = i.intValue();
-    }
+```java
+public static void main(String args[])
+{
+    Integer i = Integer.valueOf(10);
+    int n = i.intValue();
+}
+```
 
 
 从反编译得到内容可以看出，在装箱的时候自动调用的是`Integer`的`valueOf(int)`方法。而在拆箱的时候自动调用的是`Integer`的`intValue`方法。
@@ -186,35 +204,39 @@ Java 中最常用的语法糖主要有泛型、变长参数、条件编译、自
 
 看下以下可变参数代码，其中print方法接收可变参数：
 
-    public static void main(String[] args)
-        {
-            print("Holis", "公众号:Hollis", "博客：www.hollischuang.com", "QQ：907607222");
-        }
-
-    public static void print(String... strs)
+```java
+public static void main(String[] args)
     {
-        for (int i = 0; i < strs.length; i++)
-        {
-            System.out.println(strs[i]);
-        }
+        print("Holis", "公众号:Hollis", "博客：www.hollischuang.com", "QQ：907607222");
     }
+
+public static void print(String... strs)
+{
+    for (int i = 0; i < strs.length; i++)
+    {
+        System.out.println(strs[i]);
+    }
+}
+```
 
 
 反编译后代码：
 
-     public static void main(String args[])
-    {
-        print(new String[] {
-            "Holis", "\u516C\u4F17\u53F7:Hollis", "\u535A\u5BA2\uFF1Awww.hollischuang.com", "QQ\uFF1A907607222"
-        });
-    }
+```java
+public static void main(String args[])
+{
+    print(new String[] {
+        "Holis", "\u516C\u4F17\u53F7:Hollis", "\u535A\u5BA2\uFF1Awww.hollischuang.com", "QQ\uFF1A907607222"
+    });
+}
 
-    public static transient void print(String strs[])
-    {
-        for(int i = 0; i < strs.length; i++)
-            System.out.println(strs[i]);
+public static transient void print(String strs[])
+{
+    for(int i = 0; i < strs.length; i++)
+        System.out.println(strs[i]);
 
-    }
+}
+```
 
 
 从反编译后代码可以看出，可变参数在被使用的时候，他首先会创建一个数组，数组的长度就是调用该方法是传递的实参的个数，然后再把参数值全部放到这个数组当中，然后再把这个数组作为参数传递到被调用的方法中。
@@ -227,45 +249,49 @@ Java SE5提供了一种新的类型-Java的枚举类型，关键字`enum`可以�
 
 要想看源码，首先得有一个类吧，那么枚举类型到底是什么类呢？是`enum`吗？答案很明显不是，`enum`就和`class`一样，只是一个关键字，他并不是一个类，那么枚举是由什么类维护的呢，我们简单的写一个枚举：
 
-    public enum t {
-        SPRING,SUMMER;
-    }
+```java
+public enum t {
+    SPRING,SUMMER;
+}
+```
 
 
 然后我们使用反编译，看看这段代码到底是怎么实现的，反编译后代码内容如下：
 
-    public final class T extends Enum
+```java
+public final class T extends Enum
+{
+    private T(String s, int i)
     {
-        private T(String s, int i)
-        {
-            super(s, i);
-        }
-        public static T[] values()
-        {
-            T at[];
-            int i;
-            T at1[];
-            System.arraycopy(at = ENUM$VALUES, 0, at1 = new T[i = at.length], 0, i);
-            return at1;
-        }
-
-        public static T valueOf(String s)
-        {
-            return (T)Enum.valueOf(demo/T, s);
-        }
-
-        public static final T SPRING;
-        public static final T SUMMER;
-        private static final T ENUM$VALUES[];
-        static
-        {
-            SPRING = new T("SPRING", 0);
-            SUMMER = new T("SUMMER", 1);
-            ENUM$VALUES = (new T[] {
-                SPRING, SUMMER
-            });
-        }
+        super(s, i);
     }
+    public static T[] values()
+    {
+        T at[];
+        int i;
+        T at1[];
+        System.arraycopy(at = ENUM$VALUES, 0, at1 = new T[i = at.length], 0, i);
+        return at1;
+    }
+
+    public static T valueOf(String s)
+    {
+        return (T)Enum.valueOf(demo/T, s);
+    }
+
+    public static final T SPRING;
+    public static final T SUMMER;
+    private static final T ENUM$VALUES[];
+    static
+    {
+        SPRING = new T("SPRING", 0);
+        SUMMER = new T("SUMMER", 1);
+        ENUM$VALUES = (new T[] {
+            SPRING, SUMMER
+        });
+    }
+}
+```
 
 
 通过反编译后代码我们可以看到，`public final class T extends Enum`，说明，该类是继承了`Enum`类的，同时`final`关键字告诉我们，这个类也是不能被继承的。**当我们使用`enum`来定义一个枚举类型的时候，编译器会自动帮我们创建一个`final`类型的类继承`Enum`类，所以枚举类型不能被继承。**
@@ -276,74 +302,78 @@ Java SE5提供了一种新的类型-Java的枚举类型，关键字`enum`可以�
 
 **内部类之所以也是语法糖，是因为它仅仅是一个编译时的概念，`outer.java`里面定义了一个内部类`inner`，一旦编译成功，就会生成两个完全不同的`.class`文件了，分别是`outer.class`和`outer$inner.class`。所以内部类的名字完全可以和它的外部类名字相同。**
 
-    public class OutterClass {
-        private String userName;
+```java
+public class OutterClass {
+    private String userName;
 
-        public String getUserName() {
-            return userName;
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public static void main(String[] args) {
+
+    }
+
+    class InnerClass{
+        private String name;
+
+        public String getName() {
+            return name;
         }
 
-        public void setUserName(String userName) {
-            this.userName = userName;
-        }
-
-        public static void main(String[] args) {
-
-        }
-
-        class InnerClass{
-            private String name;
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
+        public void setName(String name) {
+            this.name = name;
         }
     }
+}
+```
 
 
 以上代码编译后会生成两个class文件：`OutterClass$InnerClass.class` 、`OutterClass.class` 。当我们尝试对`OutterClass.class`文件进行反编译的时候，命令行会打印以下内容：`Parsing OutterClass.class...Parsing inner class OutterClass$InnerClass.class... Generating OutterClass.jad` 。他会把两个文件全部进行反编译，然后一起生成一个`OutterClass.jad`文件。文件内容如下：
 
-    public class OutterClass
+```java
+public class OutterClass
+{
+    class InnerClass
     {
-        class InnerClass
+        public String getName()
         {
-            public String getName()
-            {
-                return name;
-            }
-            public void setName(String name)
-            {
-                this.name = name;
-            }
-            private String name;
-            final OutterClass this$0;
+            return name;
+        }
+        public void setName(String name)
+        {
+            this.name = name;
+        }
+        private String name;
+        final OutterClass this$0;
 
-            InnerClass()
-            {
-                this.this$0 = OutterClass.this;
-                super();
-            }
-        }
-
-        public OutterClass()
+        InnerClass()
         {
+            this.this$0 = OutterClass.this;
+            super();
         }
-        public String getUserName()
-        {
-            return userName;
-        }
-        public void setUserName(String userName){
-            this.userName = userName;
-        }
-        public static void main(String args1[])
-        {
-        }
-        private String userName;
     }
+
+    public OutterClass()
+    {
+    }
+    public String getUserName()
+    {
+        return userName;
+    }
+    public void setUserName(String userName){
+        this.userName = userName;
+    }
+    public static void main(String args1[])
+    {
+    }
+    private String userName;
+}
+```
 
 
 ### 糖块七 、条件编译
@@ -352,38 +382,42 @@ Java SE5提供了一种新的类型-Java的枚举类型，关键字`enum`可以�
 
 如在C或CPP中，可以通过预处理语句来实现条件编译。其实在Java中也可实现条件编译。我们先来看一段代码：
 
-    public class ConditionalCompilation {
-        public static void main(String[] args) {
-            final boolean DEBUG = true;
-            if(DEBUG) {
-                System.out.println("Hello, DEBUG!");
-            }
+```java
+public class ConditionalCompilation {
+    public static void main(String[] args) {
+        final boolean DEBUG = true;
+        if(DEBUG) {
+            System.out.println("Hello, DEBUG!");
+        }
 
-            final boolean ONLINE = false;
+        final boolean ONLINE = false;
 
-            if(ONLINE){
-                System.out.println("Hello, ONLINE!");
-            }
+        if(ONLINE){
+            System.out.println("Hello, ONLINE!");
         }
     }
+}
+```
 
 
 反编译后代码如下：
 
-    public class ConditionalCompilation
+```java
+public class ConditionalCompilation
+{
+
+    public ConditionalCompilation()
     {
-
-        public ConditionalCompilation()
-        {
-        }
-
-        public static void main(String args[])
-        {
-            boolean DEBUG = true;
-            System.out.println("Hello, DEBUG!");
-            boolean ONLINE = false;
-        }
     }
+
+    public static void main(String args[])
+    {
+        boolean DEBUG = true;
+        System.out.println("Hello, DEBUG!");
+        boolean ONLINE = false;
+    }
+}
+```
 
 
 首先，我们发现，在反编译后的代码中没有`System.out.println("Hello, ONLINE!");`，这其实就是条件编译。当`if(ONLINE)`为false的时候，编译器就没有对其内的代码进行编译。
@@ -396,45 +430,49 @@ Java SE5提供了一种新的类型-Java的枚举类型，关键字`enum`可以�
 
 看一段包含断言的代码：
 
-    public class AssertTest {
-        public static void main(String args[]) {
-            int a = 1;
-            int b = 1;
-            assert a == b;
-            System.out.println("公众号：Hollis");
-            assert a != b : "Hollis";
-            System.out.println("博客：www.hollischuang.com");
-        }
+```java
+public class AssertTest {
+    public static void main(String args[]) {
+        int a = 1;
+        int b = 1;
+        assert a == b;
+        System.out.println("公众号：Hollis");
+        assert a != b : "Hollis";
+        System.out.println("博客：www.hollischuang.com");
     }
+}
+```
 
 
 反编译后代码如下：
 
-    public class AssertTest {
-       public AssertTest()
-        {
-        }
-        public static void main(String args[])
+```java
+public class AssertTest {
+   public AssertTest()
     {
-        int a = 1;
-        int b = 1;
-        if(!$assertionsDisabled && a != b)
-            throw new AssertionError();
-        System.out.println("\u516C\u4F17\u53F7\uFF1AHollis");
-        if(!$assertionsDisabled && a == b)
-        {
-            throw new AssertionError("Hollis");
-        } else
-        {
-            System.out.println("\u535A\u5BA2\uFF1Awww.hollischuang.com");
-            return;
-        }
     }
-
-    static final boolean $assertionsDisabled = !com/hollis/suguar/AssertTest.desiredAssertionStatus();
-
-
+    public static void main(String args[])
+{
+    int a = 1;
+    int b = 1;
+    if(!$assertionsDisabled && a != b)
+        throw new AssertionError();
+    System.out.println("\u516C\u4F17\u53F7\uFF1AHollis");
+    if(!$assertionsDisabled && a == b)
+    {
+        throw new AssertionError("Hollis");
+    } else
+    {
+        System.out.println("\u535A\u5BA2\uFF1Awww.hollischuang.com");
+        return;
     }
+}
+
+static final boolean $assertionsDisabled = !com/hollis/suguar/AssertTest.desiredAssertionStatus();
+
+
+}
+```
 
 
 很明显，反编译之后的代码要比我们自己的代码复杂的多。所以，使用了assert这个语法糖我们节省了很多代码。**其实断言的底层实现就是if语言，如果断言结果为true，则什么都不做，程序继续执行，如果断言结果为false，则程序抛出AssertError来打断程序的执行。**`-enableassertions`会设置$assertionsDisabled字段的值。
@@ -445,24 +483,28 @@ Java SE5提供了一种新的类型-Java的枚举类型，关键字`enum`可以�
 
 比如：
 
-    public class Test {
-        public static void main(String... args) {
-            int i = 10_000;
-            System.out.println(i);
-        }
+```java
+public class Test {
+    public static void main(String... args) {
+        int i = 10_000;
+        System.out.println(i);
     }
+}
+```
 
 
 反编译后：
 
-    public class Test
-    {
-      public static void main(String[] args)
-      {
-        int i = 10000;
-        System.out.println(i);
-      }
-    }
+```java
+public class Test
+{
+  public static void main(String[] args)
+  {
+    int i = 10000;
+    System.out.println(i);
+  }
+}
+```
 
 
 反编译后就是把`_`删除了。也就是说 **编译器并不认识在数字字面量中的`_`，需要在编译阶段把他去掉。**
@@ -471,39 +513,43 @@ Java SE5提供了一种新的类型-Java的枚举类型，关键字`enum`可以�
 
 增强for循环（`for-each`）相信大家都不陌生，日常开发经常会用到的，他会比for循环要少写很多代码，那么这个语法糖背后是如何实现的呢？
 
-    public static void main(String... args) {
-        String[] strs = {"Hollis", "公众号：Hollis", "博客：www.hollischuang.com"};
-        for (String s : strs) {
-            System.out.println(s);
-        }
-        List<String> strList = ImmutableList.of("Hollis", "公众号：Hollis", "博客：www.hollischuang.com");
-        for (String s : strList) {
-            System.out.println(s);
-        }
+```java
+public static void main(String... args) {
+    String[] strs = {"Hollis", "公众号：Hollis", "博客：www.hollischuang.com"};
+    for (String s : strs) {
+        System.out.println(s);
     }
+    List<String> strList = ImmutableList.of("Hollis", "公众号：Hollis", "博客：www.hollischuang.com");
+    for (String s : strList) {
+        System.out.println(s);
+    }
+}
+```
 
 
 反编译后代码如下：
 
-    public static transient void main(String args[])
+```java
+public static transient void main(String args[])
+{
+    String strs[] = {
+        "Hollis", "\u516C\u4F17\u53F7\uFF1AHollis", "\u535A\u5BA2\uFF1Awww.hollischuang.com"
+    };
+    String args1[] = strs;
+    int i = args1.length;
+    for(int j = 0; j < i; j++)
     {
-        String strs[] = {
-            "Hollis", "\u516C\u4F17\u53F7\uFF1AHollis", "\u535A\u5BA2\uFF1Awww.hollischuang.com"
-        };
-        String args1[] = strs;
-        int i = args1.length;
-        for(int j = 0; j < i; j++)
-        {
-            String s = args1[j];
-            System.out.println(s);
-        }
-
-        List strList = ImmutableList.of("Hollis", "\u516C\u4F17\u53F7\uFF1AHollis", "\u535A\u5BA2\uFF1Awww.hollischuang.com");
-        String s;
-        for(Iterator iterator = strList.iterator(); iterator.hasNext(); System.out.println(s))
-            s = (String)iterator.next();
-
+        String s = args1[j];
+        System.out.println(s);
     }
+
+    List strList = ImmutableList.of("Hollis", "\u516C\u4F17\u53F7\uFF1AHollis", "\u535A\u5BA2\uFF1Awww.hollischuang.com");
+    String s;
+    for(Iterator iterator = strList.iterator(); iterator.hasNext(); System.out.println(s))
+        s = (String)iterator.next();
+
+}
+```
 
 
 代码很简单，**for-each的实现原理其实就是使用了普通的for循环和迭代器。**
@@ -514,93 +560,99 @@ Java里，对于文件操作IO流、数据库连接等开销非常昂贵的资�
 
 关闭资源的常用方式就是在`finally`块里是释放，即调用`close`方法。比如，我们经常会写这样的代码：
 
-    public static void main(String[] args) {
-        BufferedReader br = null;
+```java
+public static void main(String[] args) {
+    BufferedReader br = null;
+    try {
+        String line;
+        br = new BufferedReader(new FileReader("d:\\hollischuang.xml"));
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
+        }
+    } catch (IOException e) {
+        // handle exception
+    } finally {
         try {
-            String line;
-            br = new BufferedReader(new FileReader("d:\\hollischuang.xml"));
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
+            if (br != null) {
+                br.close();
             }
-        } catch (IOException e) {
+        } catch (IOException ex) {
             // handle exception
-        } finally {
-            try {
-                if (br != null) {
-                    br.close();
-                }
-            } catch (IOException ex) {
-                // handle exception
-            }
         }
     }
+}
+```
 
 
 从Java 7开始，jdk提供了一种更好的方式关闭资源，使用`try-with-resources`语句，改写一下上面的代码，效果如下：
 
-    public static void main(String... args) {
-        try (BufferedReader br = new BufferedReader(new FileReader("d:\\ hollischuang.xml"))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                System.out.println(line);
-            }
-        } catch (IOException e) {
-            // handle exception
+```java
+public static void main(String... args) {
+    try (BufferedReader br = new BufferedReader(new FileReader("d:\\ hollischuang.xml"))) {
+        String line;
+        while ((line = br.readLine()) != null) {
+            System.out.println(line);
         }
+    } catch (IOException e) {
+        // handle exception
     }
+}
+```
 
 
 看，这简直是一大福音啊，虽然我之前一般使用`IOUtils`去关闭流，并不会使用在`finally`中写很多代码的方式，但是这种新的语法糖看上去好像优雅很多呢。看下他的背后：
 
-    public static transient void main(String args[])
+```java
+public static transient void main(String args[])
+    {
+        BufferedReader br;
+        Throwable throwable;
+        br = new BufferedReader(new FileReader("d:\\ hollischuang.xml"));
+        throwable = null;
+        String line;
+        try
         {
-            BufferedReader br;
-            Throwable throwable;
-            br = new BufferedReader(new FileReader("d:\\ hollischuang.xml"));
-            throwable = null;
-            String line;
-            try
-            {
-                while((line = br.readLine()) != null)
-                    System.out.println(line);
-            }
-            catch(Throwable throwable2)
-            {
-                throwable = throwable2;
-                throw throwable2;
-            }
+            while((line = br.readLine()) != null)
+                System.out.println(line);
+        }
+        catch(Throwable throwable2)
+        {
+            throwable = throwable2;
+            throw throwable2;
+        }
+        if(br != null)
+            if(throwable != null)
+                try
+                {
+                    br.close();
+                }
+                catch(Throwable throwable1)
+                {
+                    throwable.addSuppressed(throwable1);
+                }
+            else
+                br.close();
+            break MISSING_BLOCK_LABEL_113;
+            Exception exception;
+            exception;
             if(br != null)
                 if(throwable != null)
                     try
                     {
                         br.close();
                     }
-                    catch(Throwable throwable1)
-                    {
-                        throwable.addSuppressed(throwable1);
+                    catch(Throwable throwable3)
+                      {
+                        throwable.addSuppressed(throwable3);
                     }
                 else
                     br.close();
-                break MISSING_BLOCK_LABEL_113;
-                Exception exception;
-                exception;
-                if(br != null)
-                    if(throwable != null)
-                        try
-                        {
-                            br.close();
-                        }
-                        catch(Throwable throwable3)
-                          {
-                            throwable.addSuppressed(throwable3);
-                        }
-                    else
-                        br.close();
-            throw exception;
-            IOException ioexception;
-            ioexception;
-        }
+        throw exception;
+        IOException ioexception;
+        ioexception;
     }
+}
+```
 
 
 **其实背后的原理也很简单，那些我们没有做的关闭资源的操作，编译器都帮我们做了。所以，再次印证了，语法糖的作用就是方便程序员的使用，但最终还是要转成编译器认识的语言。**
@@ -611,55 +663,63 @@ Java里，对于文件操作IO流、数据库连接等开销非常昂贵的资�
 
 先来看一个简单的lambda表达式。遍历一个list：
 
-    public static void main(String... args) {
-        List<String> strList = ImmutableList.of("Hollis", "公众号：Hollis", "博客：www.hollischuang.com");
+```java
+public static void main(String... args) {
+    List<String> strList = ImmutableList.of("Hollis", "公众号：Hollis", "博客：www.hollischuang.com");
 
-        strList.forEach( s -> { System.out.println(s); } );
-    }
+    strList.forEach( s -> { System.out.println(s); } );
+}
+```
 
 
 为啥说他并不是内部类的语法糖呢，前面讲内部类我们说过，内部类在编译之后会有两个class文件，但是，包含lambda表达式的类编译后只有一个文件。
 
 反编译后代码如下:
 
-    public static /* varargs */ void main(String ... args) {
-        ImmutableList strList = ImmutableList.of((Object)"Hollis", (Object)"\u516c\u4f17\u53f7\uff1aHollis", (Object)"\u535a\u5ba2\uff1awww.hollischuang.com");
-        strList.forEach((Consumer<String>)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)V, lambda$main$0(java.lang.String ), (Ljava/lang/String;)V)());
-    }
+```java
+public static /* varargs */ void main(String ... args) {
+    ImmutableList strList = ImmutableList.of((Object)"Hollis", (Object)"\u516c\u4f17\u53f7\uff1aHollis", (Object)"\u535a\u5ba2\uff1awww.hollischuang.com");
+    strList.forEach((Consumer<String>)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)V, lambda$main$0(java.lang.String ), (Ljava/lang/String;)V)());
+}
 
-    private static /* synthetic */ void lambda$main$0(String s) {
-        System.out.println(s);
-    }
+private static /* synthetic */ void lambda$main$0(String s) {
+    System.out.println(s);
+}
+```
 
 
 可以看到，在`forEach`方法中，其实是调用了`java.lang.invoke.LambdaMetafactory#metafactory`方法，该方法的第四个参数implMethod指定了方法实现。可以看到这里其实是调用了一个`lambda$main$0`方法进行了输出。
 
 再来看一个稍微复杂一点的，先对List进行过滤，然后再输出：
 
-    public static void main(String... args) {
-        List<String> strList = ImmutableList.of("Hollis", "公众号：Hollis", "博客：www.hollischuang.com");
+```java
+public static void main(String... args) {
+    List<String> strList = ImmutableList.of("Hollis", "公众号：Hollis", "博客：www.hollischuang.com");
 
-        List HollisList = strList.stream().filter(string -> string.contains("Hollis")).collect(Collectors.toList());
+    List HollisList = strList.stream().filter(string -> string.contains("Hollis")).collect(Collectors.toList());
 
-        HollisList.forEach( s -> { System.out.println(s); } );
-    }
+    HollisList.forEach( s -> { System.out.println(s); } );
+}
+```
 
 
 反编译后代码如下：
 
-    public static /* varargs */ void main(String ... args) {
-        ImmutableList strList = ImmutableList.of((Object)"Hollis", (Object)"\u516c\u4f17\u53f7\uff1aHollis", (Object)"\u535a\u5ba2\uff1awww.hollischuang.com");
-        List<Object> HollisList = strList.stream().filter((Predicate<String>)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)Z, lambda$main$0(java.lang.String ), (Ljava/lang/String;)Z)()).collect(Collectors.toList());
-        HollisList.forEach((Consumer<Object>)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)V, lambda$main$1(java.lang.Object ), (Ljava/lang/Object;)V)());
-    }
+```java
+public static /* varargs */ void main(String ... args) {
+    ImmutableList strList = ImmutableList.of((Object)"Hollis", (Object)"\u516c\u4f17\u53f7\uff1aHollis", (Object)"\u535a\u5ba2\uff1awww.hollischuang.com");
+    List<Object> HollisList = strList.stream().filter((Predicate<String>)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)Z, lambda$main$0(java.lang.String ), (Ljava/lang/String;)Z)()).collect(Collectors.toList());
+    HollisList.forEach((Consumer<Object>)LambdaMetafactory.metafactory(null, null, null, (Ljava/lang/Object;)V, lambda$main$1(java.lang.Object ), (Ljava/lang/Object;)V)());
+}
 
-    private static /* synthetic */ void lambda$main$1(Object s) {
-        System.out.println(s);
-    }
+private static /* synthetic */ void lambda$main$1(Object s) {
+    System.out.println(s);
+}
 
-    private static /* synthetic */ boolean lambda$main$0(String string) {
-        return string.contains("Hollis");
-    }
+private static /* synthetic */ boolean lambda$main$0(String string) {
+    return string.contains("Hollis");
+}
+```
 
 
 两个lambda表达式分别调用了`lambda$main$1`和`lambda$main$0`两个方法。
@@ -670,16 +730,20 @@ Java里，对于文件操作IO流、数据库连接等开销非常昂贵的资�
 
 #### 泛型
 
-**一、当泛型遇到重载** public class GenericTypes {
+**一、当泛型遇到重载** 
 
-        public static void method(List<String> list) {
-            System.out.println("invoke method(List<String> list)");
-        }
+```java
+public class GenericTypes {
 
-        public static void method(List<Integer> list) {
-            System.out.println("invoke method(List<Integer> list)");
-        }
+    public static void method(List<String> list) {
+        System.out.println("invoke method(List<String> list)");
     }
+
+    public static void method(List<Integer> list) {
+        System.out.println("invoke method(List<Integer> list)");
+    }
+}
+```
 
 
 上面这段代码，有两个重载的函数，因为他们的参数类型不同，一个是`List<String>`另一个是`List<Integer>` ，但是，这段代码是编译通不过的。因为我们前面讲过，参数`List<Integer>`和`List<String>`编译之后都被擦除了，变成了一样的原生类型List，擦除动作导致这两个方法的特征签名变得一模一样。
@@ -688,19 +752,21 @@ Java里，对于文件操作IO流、数据库连接等开销非常昂贵的资�
 
 **三、当泛型内包含静态变量**
 
-    public class StaticTest{
-        public static void main(String[] args){
-            GT<Integer> gti = new GT<Integer>();
-            gti.var=1;
-            GT<String> gts = new GT<String>();
-            gts.var=2;
-            System.out.println(gti.var);
-        }
+```java
+public class StaticTest{
+    public static void main(String[] args){
+        GT<Integer> gti = new GT<Integer>();
+        gti.var=1;
+        GT<String> gts = new GT<String>();
+        gts.var=2;
+        System.out.println(gti.var);
     }
-    class GT<T>{
-        public static int var=0;
-        public void nothing(T x){}
-    }
+}
+class GT<T>{
+    public static int var=0;
+    public void nothing(T x){}
+}
+```
 
 
 以上代码输出结果为：2！由于经过类型擦除，所有的泛型类实例都关联到同一份字节码上，泛型类的所有静态变量是共享的。
@@ -709,6 +775,7 @@ Java里，对于文件操作IO流、数据库连接等开销非常昂贵的资�
 
 **对象相等比较**
 
+```java
 public class BoxingTest {
 
     public static void main(String[] args) {
@@ -719,6 +786,7 @@ public class BoxingTest {
         System.out.println("a == b is " + (a == b));
         System.out.println(("c == d is " + (c == d)));
     }
+```
 
 
 输出结果：
@@ -737,10 +805,12 @@ public class BoxingTest {
 
 **ConcurrentModificationException**
 
-    for (Student stu : students) {
-        if (stu.getId() == 2)
-            students.remove(stu);
-    }
+```java
+for (Student stu : students) {
+    if (stu.getId() == 2)
+        students.remove(stu);
+}
+```
 
 
 会抛出`ConcurrentModificationException`异常。

@@ -10,17 +10,19 @@
 
 ## 重载的例子
 
-    class Dog{
-        public void bark(){
-            System.out.println("woof ");
-        }
-    
-        //overloading method
-        public void bark(int num){
-            for(int i=0; i<num; i++)
-                System.out.println("woof ");
-        }
+```java
+class Dog{
+    public void bark(){
+        System.out.println("woof ");
     }
+
+    //overloading method
+    public void bark(int num){
+        for(int i=0; i<num; i++)
+            System.out.println("woof ");
+    }
+}
+```
     
 
 上面的代码中，定义了两个bark方法，一个是没有参数的bark方法，另外一个是包含一个int类型参数的bark方法。我们就可以说这两个方法是重载方法，因为他们的方法名相同，参数列表不同。
@@ -39,27 +41,29 @@
 
 下面是一个重写的例子，看完代码之后不妨猜测一下输出结果：
 
-    class Dog{
-        public void bark(){
-            System.out.println("woof ");
-        }
+```java
+class Dog{
+    public void bark(){
+        System.out.println("woof ");
     }
-    class Hound extends Dog{
-        public void sniff(){
-            System.out.println("sniff ");
-        }
-    
-        public void bark(){
-            System.out.println("bowl");
-        }
+}
+class Hound extends Dog{
+    public void sniff(){
+        System.out.println("sniff ");
     }
-    
-    public class OverridingTest{
-        public static void main(String [] args){
-            Dog dog = new Hound();
-            dog.bark();
-        }
+
+    public void bark(){
+        System.out.println("bowl");
     }
+}
+
+public class OverridingTest{
+    public static void main(String [] args){
+        Dog dog = new Hound();
+        dog.bark();
+    }
+}
+```
     
 
 输出结果：

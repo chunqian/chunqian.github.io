@@ -39,120 +39,128 @@
 
 先定义一个接口，这个接口就是抽象策略类，该接口定义了计算价格方法，具体实现方式由具体的策略类来定义。
 
+```java
+/**
+ * Created by hollis on 16/9/19. 会员接口
+ */
+public interface Member {
+
     /**
-     * Created by hollis on 16/9/19. 会员接口
+     * 计算应付价格
+     * @param bookPrice 书籍原价(针对金额,建议使用BigDecimal,double会损失精度)
+     * @return 应付金额
      */
-    public interface Member {
-    
-        /**
-         * 计算应付价格
-         * @param bookPrice 书籍原价(针对金额,建议使用BigDecimal,double会损失精度)
-         * @return 应付金额
-         */
-        public double calPrice(double bookPrice);
-    }
+    public double calPrice(double bookPrice);
+}
+```
     
 
 针对不同的会员，定义三种具体的策略类，每个类中都分别实现计算价格方法。
 
-    /**
-     * Created by hollis on 16/9/19. 初级会员
-     */
-    public class PrimaryMember implements Member {
-    
-        @Override
-        public double calPrice(double bookPrice) {
-            System.out.println("对于初级会员的没有折扣");
-            return bookPrice;
-        }
+```java
+/**
+ * Created by hollis on 16/9/19. 初级会员
+ */
+public class PrimaryMember implements Member {
+
+    @Override
+    public double calPrice(double bookPrice) {
+        System.out.println("对于初级会员的没有折扣");
+        return bookPrice;
     }
-    
-    
-    /**
-     * Created by hollis on 16/9/19. 中级会员,买书打九折
-     */
-    public class IntermediateMember implements Member {
-    
-        @Override
-        public double calPrice(double bookPrice) {
-            System.out.println("对于中级会员的折扣为10%");
-            return bookPrice * 0.9;
-        }
+}
+
+
+/**
+ * Created by hollis on 16/9/19. 中级会员,买书打九折
+ */
+public class IntermediateMember implements Member {
+
+    @Override
+    public double calPrice(double bookPrice) {
+        System.out.println("对于中级会员的折扣为10%");
+        return bookPrice * 0.9;
     }
-    
-    
-    /**
-     * Created by hollis on 16/9/19. 高级会员,买书打八折
-     */
-    public class AdvancedMember implements Member {
-    
-        @Override
-        public double calPrice(double bookPrice) {
-            System.out.println("对于中级会员的折扣为20%");
-            return bookPrice * 0.8;
-        }
+}
+
+
+/**
+ * Created by hollis on 16/9/19. 高级会员,买书打八折
+ */
+public class AdvancedMember implements Member {
+
+    @Override
+    public double calPrice(double bookPrice) {
+        System.out.println("对于中级会员的折扣为20%");
+        return bookPrice * 0.8;
     }
+}
+```
     
 
 上面几个类的定义体现了`封装变化`的设计原则，不同会员的具体折扣方式改变不会影响到其他的会员。
 
 定义好了抽象策略类和具体策略类之后，我们再来定义环境类，所谓环境类，就是集成算法的类。这个例子中就是收银台系统。采用组合的方式把会员集成进来。
 
+```java
+/**
+ * Created by hollis on 16/9/19. 书籍价格类
+ */
+public class Cashier {
+
     /**
-     * Created by hollis on 16/9/19. 书籍价格类
+     * 会员,策略对象
      */
-    public class Cashier {
-    
-        /**
-         * 会员,策略对象
-         */
-        private Member member;
-    
-        public Cashier(Member member){
-            this.member = member;
-        }
-    
-        /**
-         * 计算应付价格
-         * @param booksPrice
-         * @return
-         */
-        public double quote(double booksPrice) {
-            return this.member.calPrice(booksPrice);
-        }
+    private Member member;
+
+    public Cashier(Member member){
+        this.member = member;
     }
+
+    /**
+     * 计算应付价格
+     * @param booksPrice
+     * @return
+     */
+    public double quote(double booksPrice) {
+        return this.member.calPrice(booksPrice);
+    }
+}
+```
     
 
 这个Cashier类就是一个环境类，该类的定义体现了`多用组合，少用继承`、`针对接口编程，不针对实现编程`两个设计原则。由于这里采用了组合+接口的方式，后面我们在推出超级会员的时候无须修改Cashier类。只要再定义一个`SuperMember implements Member` 就可以了。
 
 下面定义一个客户端来测试一下：
 
-    /**
-     * Created by hollis on 16/9/19.
-     */
-    public class BookStore {
-    
-        public static void main(String[] args) {
-    
-            //选择并创建需要使用的策略对象
-            Member strategy = new AdvancedMember();
-            //创建环境
-            Cashier cashier = new Cashier(strategy);
-            //计算价格
-            double quote = cashier.quote(300);
-            System.out.println("高级会员图书的最终价格为：" + quote);
-    
-            strategy = new IntermediateMember();
-            cashier = new Cashier(strategy);
-            quote = cashier.quote(300);
-            System.out.println("中级会员图书的最终价格为：" + quote);
-        }
+```java
+/**
+ * Created by hollis on 16/9/19.
+ */
+public class BookStore {
+
+    public static void main(String[] args) {
+
+        //选择并创建需要使用的策略对象
+        Member strategy = new AdvancedMember();
+        //创建环境
+        Cashier cashier = new Cashier(strategy);
+        //计算价格
+        double quote = cashier.quote(300);
+        System.out.println("高级会员图书的最终价格为：" + quote);
+
+        strategy = new IntermediateMember();
+        cashier = new Cashier(strategy);
+        quote = cashier.quote(300);
+        System.out.println("中级会员图书的最终价格为：" + quote);
     }
-    
-    //对于中级会员的折扣为20%
-    //高级会员图书的最终价格为：240.0
-    //对于中级会员的折扣为10%
-    //中级会员图书的最终价格为：270.0
+}
+
+//对于中级会员的折扣为20%
+//高级会员图书的最终价格为：240.0
+//对于中级会员的折扣为10%
+//中级会员图书的最终价格为：270.0
+```
     
 
 从上面的示例可以看出，策略模式仅仅封装算法，提供新的算法插入到已有系统中，策略模式并不决定在何时使用何种算法。在什么情况下使用什么算法是由客户端决定的。

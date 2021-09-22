@@ -44,32 +44,34 @@ Java中多态其实是一种运行期的状态。为了实现运行期的多态�
 
 简单来一段代码解释下：
 
-    public class Parent{
-        
-        public void call(){
-            sout("im Parent");
-        }
+```java
+public class Parent{
+    
+    public void call(){
+        sout("im Parent");
     }
+}
 
-    public class Son extends Parent{// 1.有类继承或者接口实现
-        public void call(){// 2.子类要重写父类的方法
-            sout("im Son");
-        }
+public class Son extends Parent{// 1.有类继承或者接口实现
+    public void call(){// 2.子类要重写父类的方法
+        sout("im Son");
     }
+}
 
-    public class Daughter extends Parent{// 1.有类继承或者接口实现
-        public void call(){// 2.子类要重写父类的方法
-            sout("im Daughter");
-        }
+public class Daughter extends Parent{// 1.有类继承或者接口实现
+    public void call(){// 2.子类要重写父类的方法
+        sout("im Daughter");
     }
+}
 
-    public class Test{
-        
-        public static void main(String[] args){
-            Parent p = new Son(); //3.父类的引用指向子类的对象
-            Parent p1 = new Daughter(); //3.父类的引用指向子类的对象
-        }
+public class Test{
+    
+    public static void main(String[] args){
+        Parent p = new Son(); //3.父类的引用指向子类的对象
+        Parent p1 = new Daughter(); //3.父类的引用指向子类的对象
     }
+}
+```
 
 这样，就实现了多态，同样是Parent类的实例，p.call 调用的是Son类的实现、p1.call调用的是Daughter的实现。
 

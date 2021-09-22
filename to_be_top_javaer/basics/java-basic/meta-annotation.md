@@ -1,10 +1,12 @@
 说简单点，就是  定义其他注解的注解 。
 比如Override这个注解，就不是一个元注解。而是通过元注解定义出来的。
 
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Override {
-    }
+```java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.SOURCE)
+public @interface Override {
+}
+```
 
 这里面的
 @Target

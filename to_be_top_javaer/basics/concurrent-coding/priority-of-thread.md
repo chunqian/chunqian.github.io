@@ -49,14 +49,12 @@ public class Main {
 
 输出结果为：
 
-```
-Main Thread  Priority:5
-Thread(t1) Priority:5
-Thread(t1) Priority:9
-Main Thread  Priority:5
-Thread(t2) Priority:5
-Thread(t2) Priority:1
-```
+    Main Thread  Priority:5
+    Thread(t1) Priority:5
+    Thread(t1) Priority:9
+    Main Thread  Priority:5
+    Thread(t2) Priority:5
+    Thread(t2) Priority:1
     
 
 在上面的代码中，Java虚拟机启动时，就会通过main方法启动一个线程，JVM就会一直运行下去，直到以下任意一个条件发生：

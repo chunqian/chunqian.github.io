@@ -14,37 +14,43 @@ BigDecimal，相信对于很多人来说都不陌生，很多人都知道他的�
 
 我在之前的CodeReview中，看到过以下这样的低级错误：
 
-    if(bigDecimal == bigDecimal1){
-        // 两个数相等
-    }
+```java
+if(bigDecimal == bigDecimal1){
+    // 两个数相等
+}
+```
     
 
 这种错误，相信聪明的读者一眼就可以看出问题，**因为BigDecimal是对象，所以不能用`==`来判断两个数字的值是否相等。**
 
 以上这种问题，在有一定的经验之后，还是可以避免的，但是聪明的读者，看一下以下这行代码，你觉得他有问题吗：
 
-    if(bigDecimal.equals(bigDecimal1)){
-        // 两个数相等
-    }
+```java
+if(bigDecimal.equals(bigDecimal1)){
+    // 两个数相等
+}
+```
     
 
 可以明确的告诉大家，以上这种写法，可能得到的结果和你预想的不一样！
 
 先来做个实验，运行以下代码：
 
-    BigDecimal bigDecimal = new BigDecimal(1);
-    BigDecimal bigDecimal1 = new BigDecimal(1);
-    System.out.println(bigDecimal.equals(bigDecimal1));
-    
-    
-    BigDecimal bigDecimal2 = new BigDecimal(1);
-    BigDecimal bigDecimal3 = new BigDecimal(1.0);
-    System.out.println(bigDecimal2.equals(bigDecimal3));
-    
-    
-    BigDecimal bigDecimal4 = new BigDecimal("1");
-    BigDecimal bigDecimal5 = new BigDecimal("1.0");
-    System.out.println(bigDecimal4.equals(bigDecimal5));
+```java
+BigDecimal bigDecimal = new BigDecimal(1);
+BigDecimal bigDecimal1 = new BigDecimal(1);
+System.out.println(bigDecimal.equals(bigDecimal1));
+
+
+BigDecimal bigDecimal2 = new BigDecimal(1);
+BigDecimal bigDecimal3 = new BigDecimal(1.0);
+System.out.println(bigDecimal2.equals(bigDecimal3));
+
+
+BigDecimal bigDecimal4 = new BigDecimal("1");
+BigDecimal bigDecimal5 = new BigDecimal("1.0");
+System.out.println(bigDecimal4.equals(bigDecimal5));
+```
     
 
 以上代码，输出结果为：
@@ -88,10 +94,12 @@ BigDecimal，相信对于很多人来说都不陌生，很多人都知道他的�
 
 首先，BigDecimal一共有以下4个构造方法：
 
-    BigDecimal(int)
-    BigDecimal(double) 
-    BigDecimal(long) 
-    BigDecimal(String)
+```java
+BigDecimal(int)
+BigDecimal(double) 
+BigDecimal(long) 
+BigDecimal(String)
+```
     
 
 以上四个方法，创建出来的的BigDecimal的标度是不同的。
@@ -100,17 +108,19 @@ BigDecimal，相信对于很多人来说都不陌生，很多人都知道他的�
 
 首先，最简单的就是**BigDecimal(long) 和BigDecimal(int)，因为是整数，所以标度就是0** ：
 
-    public BigDecimal(int val) {
-        this.intCompact = val;
-        this.scale = 0;
-        this.intVal = null;
-    }
-    
-    public BigDecimal(long val) {
-        this.intCompact = val;
-        this.intVal = (val == INFLATED) ? INFLATED_BIGINT : null;
-        this.scale = 0;
-    }
+```java
+public BigDecimal(int val) {
+    this.intCompact = val;
+    this.scale = 0;
+    this.intVal = null;
+}
+
+public BigDecimal(long val) {
+    this.intCompact = val;
+    this.intVal = (val == INFLATED) ? INFLATED_BIGINT : null;
+    this.scale = 0;
+}
+```
     
 
 #### BigDecimal(double)
@@ -143,9 +153,11 @@ BigDecimal，相信对于很多人来说都不陌生，很多人都知道他的�
 
 **BigDecimal中提供了compareTo方法，这个方法就可以只比较两个数字的值，如果两个数相等，则返回0。**
 
-        BigDecimal bigDecimal4 = new BigDecimal("1");
-        BigDecimal bigDecimal5 = new BigDecimal("1.0000");
-        System.out.println(bigDecimal4.compareTo(bigDecimal5));
+```java
+BigDecimal bigDecimal4 = new BigDecimal("1");
+BigDecimal bigDecimal5 = new BigDecimal("1.0000");
+System.out.println(bigDecimal4.compareTo(bigDecimal5));
+```
     
 
 以上代码，输出结果：

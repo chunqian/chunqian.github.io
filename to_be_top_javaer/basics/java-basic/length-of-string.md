@@ -43,21 +43,25 @@ String类中有很多重载的构造函数，其中有几个是支持用户传�
 
 根据《Java虚拟机规范》中第4.4章节常量池的定义，CONSTANT_String_info 用于表示 java.lang.String 类型的常量对象，格式如下：
 
-    CONSTANT_String_info {
-        u1 tag;
-        u2 string_index;
-    }
+```java
+CONSTANT_String_info {
+    u1 tag;
+    u2 string_index;
+}
+```
     
 
 其中，string_index 项的值必须是对常量池的有效索引， 常量池在该索引处的项必须是 CONSTANT_Utf8_info 结构，表示一组 Unicode 码点序列，这组 Unicode 码点序列最终会被初始化为一个 String 对象。
 
 CONSTANT_Utf8_info 结构用于表示字符串常量的值：
 
-    CONSTANT_Utf8_info {
-        u1 tag;
-        u2 length;
-        u1 bytes[length];
-    }
+```java
+CONSTANT_Utf8_info {
+    u1 tag;
+    u2 length;
+    u1 bytes[length];
+}
+```
     
 
 其中，length则指明了 bytes[]数组的长度，其类型为u2，
@@ -77,12 +81,14 @@ CONSTANT_Utf8_info 结构用于表示字符串常量的值：
 
 其实，这个原因在javac的代码中是可以找到的，在Gen类中有如下代码：
 
-    private void checkStringConstant(DiagnosticPosition var1, Object var2) {
-        if (this.nerrs == 0 && var2 != null && var2 instanceof String && ((String)var2).length() >= 65535) {
-            this.log.error(var1, "limit.string", new Object[0]);
-            ++this.nerrs;
-        }
+```java
+private void checkStringConstant(DiagnosticPosition var1, Object var2) {
+    if (this.nerrs == 0 && var2 != null && var2 instanceof String && ((String)var2).length() >= 65535) {
+        this.log.error(var1, "limit.string", new Object[0]);
+        ++this.nerrs;
     }
+}
+```
     
 
 代码中可以看出，当参数类型为String，并且长度大于等于65535的时候，就会导致编译失败。
@@ -116,10 +122,12 @@ int 是一个 32 位变量类型，取正数部分来算的话，他们最长可
 
 很多人会有疑惑，编译的时候最大长度都要求小于65535了，运行期怎么会出现大于65535的情况呢。这其实很常见，如以下代码：
 
-    String s = "";
-    for (int i = 0; i <100000 ; i++) {
-        s+="i";
-    }
+```java
+String s = "";
+for (int i = 0; i <100000 ; i++) {
+    s+="i";
+}
+```
     
 
 得到的字符串长度就有10万，另外我之前在实际应用中遇到过这个问题。

@@ -1,24 +1,26 @@
 构造函数，是一种特殊的方法。主要用来在创建对象时初始化对象，即为对象成员变量赋初始值，总与new运算符一起使用在创建对象的语句中。 
 
-    /**
-    * 矩形
-    */
-    class Rectangle {
-    
-         /**
-          * 构造函数
-          */
-         public Rectangle(int length, int width) {
-             this.length = length;
-             this.width = width;
-         }
-         
-         public static void main (String []args){
-            //使用构造函数创建对象
-            Rectangle rectangle = new Rectangle(10,5);
-            
-         }
-    }
+```java
+/**
+* 矩形
+*/
+class Rectangle {
+
+     /**
+      * 构造函数
+      */
+     public Rectangle(int length, int width) {
+         this.length = length;
+         this.width = width;
+     }
+     
+     public static void main (String []args){
+        //使用构造函数创建对象
+        Rectangle rectangle = new Rectangle(10,5);
+        
+     }
+}
+```
 
 特别的一个类可以有多个构造函数，可根据其参数个数的不同或参数类型的不同来区分它们即构造函数的重载。
          
@@ -34,23 +36,25 @@
 
 但是，如果我们手动在某个类中定义了一个有参数的构造函数，那么这个默认的无参构造函数就不会自动添加了。需要手动创建！
 
-    /**
-    * 矩形
-    */
-    class Rectangle {
-    
-         /**
-          * 构造函数
-          */
-         public Rectangle(int length, int width) {
-             this.length = length;
-             this.width = width;
-         }
+```java
+/**
+* 矩形
+*/
+class Rectangle {
+
+     /**
+      * 构造函数
+      */
+     public Rectangle(int length, int width) {
+         this.length = length;
+         this.width = width;
+     }
+     
+     /**
+      * 无参构造函数
+      */
+     public Rectangle() {
          
-         /**
-          * 无参构造函数
-          */
-         public Rectangle() {
-             
-         }
-    }
+     }
+}
+```

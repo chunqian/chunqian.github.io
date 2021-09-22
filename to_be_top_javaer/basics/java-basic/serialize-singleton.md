@@ -12,53 +12,57 @@
 
 code 1
 
-    package com.hollis;
-    import java.io.Serializable;
-    /**
-     * Created by hollis on 16/2/5.
-     * 使用双重校验锁方式实现单例
-     */
-    public class Singleton implements Serializable{
-        private volatile static Singleton singleton;
-        private Singleton (){}
-        public static Singleton getSingleton() {
-            if (singleton == null) {
-                synchronized (Singleton.class) {
-                    if (singleton == null) {
-                        singleton = new Singleton();
-                    }
+```java
+package com.hollis;
+import java.io.Serializable;
+/**
+ * Created by hollis on 16/2/5.
+ * 使用双重校验锁方式实现单例
+ */
+public class Singleton implements Serializable{
+    private volatile static Singleton singleton;
+    private Singleton (){}
+    public static Singleton getSingleton() {
+        if (singleton == null) {
+            synchronized (Singleton.class) {
+                if (singleton == null) {
+                    singleton = new Singleton();
                 }
             }
-            return singleton;
         }
+        return singleton;
     }
+}
+```
     
 
 接下来是一个测试类：
 
 code 2
 
-    package com.hollis;
-    import java.io.*;
-    /**
-     * Created by hollis on 16/2/5.
-     */
-    public class SerializableDemo1 {
-        //为了便于理解，忽略关闭流操作及删除文件操作。真正编码时千万不要忘记
-        //Exception直接抛出
-        public static void main(String[] args) throws IOException, ClassNotFoundException {
-            //Write Obj to file
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
-            oos.writeObject(Singleton.getSingleton());
-            //Read Obj from file
-            File file = new File("tempFile");
-            ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(file));
-            Singleton newInstance = (Singleton) ois.readObject();
-            //判断是否是同一个对象
-            System.out.println(newInstance == Singleton.getSingleton());
-        }
+```java
+package com.hollis;
+import java.io.*;
+/**
+ * Created by hollis on 16/2/5.
+ */
+public class SerializableDemo1 {
+    //为了便于理解，忽略关闭流操作及删除文件操作。真正编码时千万不要忘记
+    //Exception直接抛出
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        //Write Obj to file
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
+        oos.writeObject(Singleton.getSingleton());
+        //Read Obj from file
+        File file = new File("tempFile");
+        ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(file));
+        Singleton newInstance = (Singleton) ois.readObject();
+        //判断是否是同一个对象
+        System.out.println(newInstance == Singleton.getSingleton());
     }
-    //false
+}
+//false
+```
     
 
 输出结构为false，说明：
@@ -77,49 +81,53 @@ code 2
 
 这里看一下重点代码，`readOrdinaryObject`方法的代码片段： code 3
 
-    private Object readOrdinaryObject(boolean unshared)
-            throws IOException
-        {
-            //此处省略部分代码
-    
-            Object obj;
-            try {
-                obj = desc.isInstantiable() ? desc.newInstance() : null;
-            } catch (Exception ex) {
-                throw (IOException) new InvalidClassException(
-                    desc.forClass().getName(),
-                    "unable to create instance").initCause(ex);
-            }
-    
-            //此处省略部分代码
-    
-            if (obj != null &&
-                handles.lookupException(passHandle) == null &&
-                desc.hasReadResolveMethod())
-            {
-                Object rep = desc.invokeReadResolve(obj);
-                if (unshared && rep.getClass().isArray()) {
-                    rep = cloneArray(rep);
-                }
-                if (rep != obj) {
-                    handles.setObject(passHandle, obj = rep);
-                }
-            }
-    
-            return obj;
+```java
+private Object readOrdinaryObject(boolean unshared)
+        throws IOException
+    {
+        //此处省略部分代码
+
+        Object obj;
+        try {
+            obj = desc.isInstantiable() ? desc.newInstance() : null;
+        } catch (Exception ex) {
+            throw (IOException) new InvalidClassException(
+                desc.forClass().getName(),
+                "unable to create instance").initCause(ex);
         }
+
+        //此处省略部分代码
+
+        if (obj != null &&
+            handles.lookupException(passHandle) == null &&
+            desc.hasReadResolveMethod())
+        {
+            Object rep = desc.invokeReadResolve(obj);
+            if (unshared && rep.getClass().isArray()) {
+                rep = cloneArray(rep);
+            }
+            if (rep != obj) {
+                handles.setObject(passHandle, obj = rep);
+            }
+        }
+
+        return obj;
+    }
+```
     
 
 code 3 中主要贴出两部分代码。先分析第一部分：
 
 code 3.1
 
-    Object obj;
-    try {
-        obj = desc.isInstantiable() ? desc.newInstance() : null;
-    } catch (Exception ex) {
-        throw (IOException) new InvalidClassException(desc.forClass().getName(),"unable to create instance").initCause(ex);
-    }
+```java
+Object obj;
+try {
+    obj = desc.isInstantiable() ? desc.newInstance() : null;
+} catch (Exception ex) {
+    throw (IOException) new InvalidClassException(desc.forClass().getName(),"unable to create instance").initCause(ex);
+}
+```
     
 
 这里创建的这个obj对象，就是本方法要返回的对象，也可以暂时理解为是ObjectInputStream的`readObject`返回的对象。
@@ -144,73 +152,79 @@ code 3.1
 
 code 4
 
-    package com.hollis;
-    import java.io.Serializable;
-    /**
-     * Created by hollis on 16/2/5.
-     * 使用双重校验锁方式实现单例
-     */
-    public class Singleton implements Serializable{
-        private volatile static Singleton singleton;
-        private Singleton (){}
-        public static Singleton getSingleton() {
-            if (singleton == null) {
-                synchronized (Singleton.class) {
-                    if (singleton == null) {
-                        singleton = new Singleton();
-                    }
+```java
+package com.hollis;
+import java.io.Serializable;
+/**
+ * Created by hollis on 16/2/5.
+ * 使用双重校验锁方式实现单例
+ */
+public class Singleton implements Serializable{
+    private volatile static Singleton singleton;
+    private Singleton (){}
+    public static Singleton getSingleton() {
+        if (singleton == null) {
+            synchronized (Singleton.class) {
+                if (singleton == null) {
+                    singleton = new Singleton();
                 }
             }
-            return singleton;
         }
-    
-        private Object readResolve() {
-            return singleton;
-        }
+        return singleton;
     }
+
+    private Object readResolve() {
+        return singleton;
+    }
+}
+```
     
 
 还是运行以下测试类：
 
-    package com.hollis;
-    import java.io.*;
-    /**
-     * Created by hollis on 16/2/5.
-     */
-    public class SerializableDemo1 {
-        //为了便于理解，忽略关闭流操作及删除文件操作。真正编码时千万不要忘记
-        //Exception直接抛出
-        public static void main(String[] args) throws IOException, ClassNotFoundException {
-            //Write Obj to file
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
-            oos.writeObject(Singleton.getSingleton());
-            //Read Obj from file
-            File file = new File("tempFile");
-            ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(file));
-            Singleton newInstance = (Singleton) ois.readObject();
-            //判断是否是同一个对象
-            System.out.println(newInstance == Singleton.getSingleton());
-        }
+```java
+package com.hollis;
+import java.io.*;
+/**
+ * Created by hollis on 16/2/5.
+ */
+public class SerializableDemo1 {
+    //为了便于理解，忽略关闭流操作及删除文件操作。真正编码时千万不要忘记
+    //Exception直接抛出
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
+        //Write Obj to file
+        ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
+        oos.writeObject(Singleton.getSingleton());
+        //Read Obj from file
+        File file = new File("tempFile");
+        ObjectInputStream ois =  new ObjectInputStream(new FileInputStream(file));
+        Singleton newInstance = (Singleton) ois.readObject();
+        //判断是否是同一个对象
+        System.out.println(newInstance == Singleton.getSingleton());
     }
-    //true
+}
+//true
+```
     
 
 本次输出结果为true。具体原理，我们回过头继续分析code 3中的第二段代码:
 
 code 3.2
 
-    if (obj != null &&
-                handles.lookupException(passHandle) == null &&
-                desc.hasReadResolveMethod())
-            {
-                Object rep = desc.invokeReadResolve(obj);
-                if (unshared && rep.getClass().isArray()) {
-                    rep = cloneArray(rep);
-                }
-                if (rep != obj) {
-                    handles.setObject(passHandle, obj = rep);
-                }
+```java
+if (obj != null &&
+            handles.lookupException(passHandle) == null &&
+            desc.hasReadResolveMethod())
+        {
+            Object rep = desc.invokeReadResolve(obj);
+            if (unshared && rep.getClass().isArray()) {
+                rep = cloneArray(rep);
             }
+            if (rep != obj) {
+                handles.setObject(passHandle, obj = rep);
+            }
+        }
+```
     
 
 `hasReadResolveMethod`:如果实现了serializable 或者 externalizable接口的类中包含`readResolve`则返回true

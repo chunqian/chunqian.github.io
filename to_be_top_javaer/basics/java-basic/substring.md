@@ -8,9 +8,11 @@ String有很多方法，有些方法比较常用，有些方法不太常用。�
 
 `substring(int beginIndex, int endIndex)`方法截取字符串并返回其[beginIndex,endIndex-1]范围内的内容。
 
-    String x = "abcdef";
-    x = x.substring(1,3);
-    System.out.println(x);
+```java
+String x = "abcdef";
+x = x.substring(1,3);
+System.out.println(x);
+```
     
 
 输出内容：
@@ -36,24 +38,28 @@ String是通过字符数组实现的。在jdk 6 中，String类包含三个成�
 
 下面是证明上说观点的Java源码中的关键代码：
 
-    //JDK 6
-    String(int offset, int count, char value[]) {
-        this.value = value;
-        this.offset = offset;
-        this.count = count;
-    }
-    
-    public String substring(int beginIndex, int endIndex) {
-        //check boundary
-        return  new String(offset + beginIndex, endIndex - beginIndex, value);
-    }
+```java
+//JDK 6
+String(int offset, int count, char value[]) {
+    this.value = value;
+    this.offset = offset;
+    this.count = count;
+}
+
+public String substring(int beginIndex, int endIndex) {
+    //check boundary
+    return  new String(offset + beginIndex, endIndex - beginIndex, value);
+}
+```
     
 
 ## JDK 6中的substring导致的问题
 
 如果你有一个很长很长的字符串，但是当你使用substring进行切割的时候你只需要很短的一段。这可能导致性能问题，因为你需要的只是一小段字符序列，但是你却引用了整个字符串（因为这个非常长的字符数组一直在被引用，所以无法被回收，就可能导致内存泄露）。在JDK 6中，一般用以下方式来解决该问题，原理其实就是生成一个新的字符串并引用他。
 
-    x = x.substring(x, y) + ""
+```java
+x = x.substring(x, y) + ""
+```
     
 
 关于JDK 6中subString的使用不当会导致内存系列已经被官方记录在Java Bug Database中：
@@ -70,17 +76,19 @@ String是通过字符数组实现的。在jdk 6 中，String类包含三个成�
 
 Java源码中关于这部分的主要代码如下：
 
-    //JDK 7
-    public String(char value[], int offset, int count) {
-        //check boundary
-        this.value = Arrays.copyOfRange(value, offset, offset + count);
-    }
-    
-    public String substring(int beginIndex, int endIndex) {
-        //check boundary
-        int subLen = endIndex - beginIndex;
-        return new String(value, beginIndex, subLen);
-    }
+```java
+//JDK 7
+public String(char value[], int offset, int count) {
+    //check boundary
+    this.value = Arrays.copyOfRange(value, offset, offset + count);
+}
+
+public String substring(int beginIndex, int endIndex) {
+    //check boundary
+    int subLen = endIndex - beginIndex;
+    return new String(value, beginIndex, subLen);
+}
+```
     
 
 以上是JDK 7中的subString方法，其使用`new String`创建了一个新字符串，避免对老字符串的引用。从而解决了内存泄露问题。

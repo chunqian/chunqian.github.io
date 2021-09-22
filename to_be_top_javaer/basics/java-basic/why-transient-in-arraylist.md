@@ -4,56 +4,60 @@
 
 ### ArrayList
 
-    /** 
-         * Save the state of the <tt>ArrayList</tt> instance to a stream (that 
-         * is, serialize it). 
-         * 
-         * @serialData The length of the array backing the <tt>ArrayList</tt> 
-         *             instance is emitted (int), followed by all of its elements 
-         *             (each an <tt>Object</tt>) in the proper order. 
-         */  
-        private void writeObject(java.io.ObjectOutputStream s)  
-            throws java.io.IOException{  
-            // Write out element count, and any hidden stuff  
-            int expectedModCount = modCount;  
-            s.defaultWriteObject();  
-    
-            // Write out array length  
-            s.writeInt(elementData.length);  
-    
-            // Write out all elements in the proper order.  
-            for (int i=0; i<size; i++)  
-                s.writeObject(elementData[i]);  
-    
-            if (modCount != expectedModCount) {  
-                throw new ConcurrentModificationException();  
-            }  
-    
+```java
+/** 
+     * Save the state of the <tt>ArrayList</tt> instance to a stream (that 
+     * is, serialize it). 
+     * 
+     * @serialData The length of the array backing the <tt>ArrayList</tt> 
+     *             instance is emitted (int), followed by all of its elements 
+     *             (each an <tt>Object</tt>) in the proper order. 
+     */  
+    private void writeObject(java.io.ObjectOutputStream s)  
+        throws java.io.IOException{  
+        // Write out element count, and any hidden stuff  
+        int expectedModCount = modCount;  
+        s.defaultWriteObject();  
+
+        // Write out array length  
+        s.writeInt(elementData.length);  
+
+        // Write out all elements in the proper order.  
+        for (int i=0; i<size; i++)  
+            s.writeObject(elementData[i]);  
+
+        if (modCount != expectedModCount) {  
+            throw new ConcurrentModificationException();  
         }  
+
+    }
+```  
     
 
 ArrayList实现了writeObject方法，可以看到只保存了非null的数组位置上的数据。即list的size个数的elementData。需要额外注意的一点是，ArrayList的实现，提供了fast-fail机制，可以提供弱一致性。
 
 ### Vector
 
-    /**
-         * Save the state of the {@code Vector} instance to a stream (that
-         * is, serialize it).
-         * This method performs synchronization to ensure the consistency
-         * of the serialized data.
-         */
-        private void writeObject(java.io.ObjectOutputStream s)
-                throws java.io.IOException {
-            final java.io.ObjectOutputStream.PutField fields = s.putFields();
-            final Object[] data;
-            synchronized (this) {
-                fields.put("capacityIncrement", capacityIncrement);
-                fields.put("elementCount", elementCount);
-                data = elementData.clone();
-            }
-            fields.put("elementData", data);
-            s.writeFields();
+```java
+/**
+     * Save the state of the {@code Vector} instance to a stream (that
+     * is, serialize it).
+     * This method performs synchronization to ensure the consistency
+     * of the serialized data.
+     */
+    private void writeObject(java.io.ObjectOutputStream s)
+            throws java.io.IOException {
+        final java.io.ObjectOutputStream.PutField fields = s.putFields();
+        final Object[] data;
+        synchronized (this) {
+            fields.put("capacityIncrement", capacityIncrement);
+            fields.put("elementCount", elementCount);
+            data = elementData.clone();
         }
+        fields.put("elementData", data);
+        s.writeFields();
+    }
+```
     
 
 Vector也实现了writeObject方法，但方法并没有像ArrayList一样进行优化存储，实现语句是

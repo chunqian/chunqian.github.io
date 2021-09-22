@@ -28,24 +28,28 @@
 
 **code 1:**
 
-    public static void main(String[] args) {  
-        Map<String, String> map = new HashMap<String, String>();  
-        map.put("name", "hollis");  
-        map.put("age", "22");  
-        System.out.println(map.get("name"));  
-        System.out.println(map.get("age"));  
-    }  
+```java
+public static void main(String[] args) {  
+    Map<String, String> map = new HashMap<String, String>();  
+    map.put("name", "hollis");  
+    map.put("age", "22");  
+    System.out.println(map.get("name"));  
+    System.out.println(map.get("age"));  
+}
+```
 
 
 **反编译后的code 1:**
 
-    public static void main(String[] args) {  
-        Map map = new HashMap();  
-        map.put("name", "hollis");  
-        map.put("age", "22"); 
-        System.out.println((String) map.get("name"));  
-        System.out.println((String) map.get("age"));  
-    }  
+```java
+public static void main(String[] args) {  
+    Map map = new HashMap();  
+    map.put("name", "hollis");  
+    map.put("age", "22"); 
+    System.out.println((String) map.get("name"));  
+    System.out.println((String) map.get("age"));  
+}
+```
 
 
 我们发现泛型都不见了，程序又变回了Java泛型出现之前的写法，泛型类型都变回了原生类型，
@@ -54,93 +58,101 @@
 
 **code 2:**
 
-    interface Comparable<A> {
-        public int compareTo(A that);
+```java
+interface Comparable<A> {
+    public int compareTo(A that);
+}
+
+public final class NumericValue implements Comparable<NumericValue> {
+    private byte value;
+
+    public NumericValue(byte value) {
+        this.value = value;
     }
-    
-    public final class NumericValue implements Comparable<NumericValue> {
-        private byte value;
-    
-        public NumericValue(byte value) {
-            this.value = value;
-        }
-    
-        public byte getValue() {
-            return value;
-        }
-    
-        public int compareTo(NumericValue that) {
-            return this.value - that.value;
-        }
+
+    public byte getValue() {
+        return value;
     }
+
+    public int compareTo(NumericValue that) {
+        return this.value - that.value;
+    }
+}
+```
 
 
 **反编译后的code 2:**
 
-     interface Comparable {
-      public int compareTo( Object that);
-    } 
-    
-    public final class NumericValue
-        implements Comparable
+```java
+interface Comparable {
+  public int compareTo( Object that);
+} 
+
+public final class NumericValue
+    implements Comparable
+{
+    public NumericValue(byte value)
     {
-        public NumericValue(byte value)
-        {
-            this.value = value;
-        }
-        public byte getValue()
-        {
-            return value;
-        }
-        public int compareTo(NumericValue that)
-        {
-            return value - that.value;
-        }
-        public volatile int compareTo(Object obj)
-        {
-            return compareTo((NumericValue)obj);
-        }
-        private byte value;
+        this.value = value;
     }
+    public byte getValue()
+    {
+        return value;
+    }
+    public int compareTo(NumericValue that)
+    {
+        return value - that.value;
+    }
+    public volatile int compareTo(Object obj)
+    {
+        return compareTo((NumericValue)obj);
+    }
+    private byte value;
+}
+```
 
 * * *
 
 **code 3:**
 
-    public class Collections {
-        public static <A extends Comparable<A>> A max(Collection<A> xs) {
-            Iterator<A> xi = xs.iterator();
-            A w = xi.next();
-            while (xi.hasNext()) {
-                A x = xi.next();
-                if (w.compareTo(x) < 0)
-                    w = x;
-            }
-            return w;
+```java
+public class Collections {
+    public static <A extends Comparable<A>> A max(Collection<A> xs) {
+        Iterator<A> xi = xs.iterator();
+        A w = xi.next();
+        while (xi.hasNext()) {
+            A x = xi.next();
+            if (w.compareTo(x) < 0)
+                w = x;
         }
+        return w;
     }
+}
+```
 
 
 **反编译后的code 3:**
 
-    public class Collections
+```java
+public class Collections
+{
+    public Collections()
     {
-        public Collections()
-        {
-        }
-        public static Comparable max(Collection xs)
-        {
-            Iterator xi = xs.iterator();
-            Comparable w = (Comparable)xi.next();
-            while(xi.hasNext())
-            {
-                Comparable x = (Comparable)xi.next();
-                if(w.compareTo(x) < 0)
-                    w = x;
-            }
-            return w;
-        }
     }
+    public static Comparable max(Collection xs)
+    {
+        Iterator xi = xs.iterator();
+        Comparable w = (Comparable)xi.next();
+        while(xi.hasNext())
+        {
+            Comparable x = (Comparable)xi.next();
+            if(w.compareTo(x) < 0)
+                w = x;
+        }
+        return w;
+    }
+}
+```
 
 
 第2个泛型类`Comparable <A>`擦除后 A被替换为最左边界`Object`。`Comparable<NumericValue>`的类型参数`NumericValue`被擦除掉，但是这直 接导致`NumericValue`没有实现接口`Comparable的compareTo(Object that)`方法，于是编译器充当好人，添加了一个**桥接方法**。 第3个示例中限定了类型参数的边界`<A extends Comparable<A>>A`，A必须为`Comparable<A>`的子类，按照类型擦除的过程，先讲所有的类型参数 ti换为最左边界`Comparable<A>`，然后去掉参数类型`A`，得到最终的擦除后结果。
@@ -151,16 +163,18 @@
 
 **一、当泛型遇到重载：**
 
-    public class GenericTypes {  
-    
-        public static void method(List<String> list) {  
-            System.out.println("invoke method(List<String> list)");  
-        }  
-    
-        public static void method(List<Integer> list) {  
-            System.out.println("invoke method(List<Integer> list)");  
-        }  
+```java
+public class GenericTypes {  
+
+    public static void method(List<String> list) {  
+        System.out.println("invoke method(List<String> list)");  
     }  
+
+    public static void method(List<Integer> list) {  
+        System.out.println("invoke method(List<Integer> list)");  
+    }  
+}
+``` 
 
 
 上面这段代码，有两个重载的函数，因为他们的参数类型不同，一个是`List<String>`另一个是`List<Integer>` ，但是，这段代码是编译通不过的。因为我们前面讲过，参数`List<Integer>`和`List<String>`编译之后都被擦除了，变成了一样的原生类型List<e>，擦除动作导致这两个方法的特征签名变得一模一样。</e>
@@ -171,19 +185,21 @@
 
 三、当泛型内包含静态变量
 
-    public class StaticTest{
-        public static void main(String[] args){
-            GT<Integer> gti = new GT<Integer>();
-            gti.var=1;
-            GT<String> gts = new GT<String>();
-            gts.var=2;
-            System.out.println(gti.var);
-        }
+```java
+public class StaticTest{
+    public static void main(String[] args){
+        GT<Integer> gti = new GT<Integer>();
+        gti.var=1;
+        GT<String> gts = new GT<String>();
+        gts.var=2;
+        System.out.println(gti.var);
     }
-    class GT<T>{
-        public static int var=0;
-        public void nothing(T x){}
-    }
+}
+class GT<T>{
+    public static int var=0;
+    public void nothing(T x){}
+}
+```
 
 
 答案是——2！由于经过类型擦除，所有的泛型类实例都关联到同一份字节码上，泛型类的所有静态变量是共享的。

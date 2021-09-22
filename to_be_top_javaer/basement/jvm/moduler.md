@@ -12,22 +12,24 @@
 
 **在JDK9中，整个JDK都基于模块化进行构建，以前的rt.jar, tool.jar被拆分成数十个模块，编译的时候只编译实际用到的模块，同时各个类加载器各司其职，只加载自己负责的模块。**
 
-    Class<?> c = findLoadedClass(cn);
-    if (c == null) {
-        // 找到当前类属于哪个模块
-        LoadedModule loadedModule = findLoadedModule(cn);
-        if (loadedModule != null) {
-            //获取当前模块的类加载器
-            BuiltinClassLoader loader = loadedModule.loader();
-            //进行类加载
-            c = findClassInModuleOrNull(loadedModule, cn);
-         } else {
-              // 找不到模块信息才会进行双亲委派
-                if (parent != null) {
-                  c = parent.loadClassOrNull(cn);
-                }
-          }
-    }
+```java
+Class<?> c = findLoadedClass(cn);
+if (c == null) {
+    // 找到当前类属于哪个模块
+    LoadedModule loadedModule = findLoadedModule(cn);
+    if (loadedModule != null) {
+        //获取当前模块的类加载器
+        BuiltinClassLoader loader = loadedModule.loader();
+        //进行类加载
+        c = findClassInModuleOrNull(loadedModule, cn);
+     } else {
+          // 找不到模块信息才会进行双亲委派
+            if (parent != null) {
+              c = parent.loadClassOrNull(cn);
+            }
+      }
+}
+```
     
 
 ### 总结

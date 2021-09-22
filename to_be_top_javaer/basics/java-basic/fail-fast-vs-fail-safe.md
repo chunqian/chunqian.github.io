@@ -10,12 +10,14 @@
 
 举一个最简单的fail-fast的例子：
 
-    public int divide(int divisor,int dividend){
-        if(divisor == 0){
-            throw new RuntimeException("divisor can't be null");
-        }
-        return dividend/divisor;
+```java
+public int divide(int divisor,int dividend){
+    if(divisor == 0){
+        throw new RuntimeException("divisor can't be null");
     }
+    return dividend/divisor;
+}
+```
     
 
 上面的代码是一个对两个整数做除法的方法，在divide方法中，我们对除数做了个简单的检查，如果其值为0，那么就直接抛出一个异常，并明确提示异常原因。这其实就是fail-fast理念的实际应用。
@@ -42,20 +44,22 @@ CMException，当方法检测到对象的并发修改，但不允许这种修改
 
 如以下代码：
 
-    List<String> userNames = new ArrayList<String>() {{
-        add("Hollis");
-        add("hollis");
-        add("HollisChuang");
-        add("H");
-    }};
-    
-    for (String userName : userNames) {
-        if (userName.equals("Hollis")) {
-            userNames.remove(userName);
-        }
+```java
+List<String> userNames = new ArrayList<String>() {{
+    add("Hollis");
+    add("hollis");
+    add("HollisChuang");
+    add("H");
+}};
+
+for (String userName : userNames) {
+    if (userName.equals("Hollis")) {
+        userNames.remove(userName);
     }
-    
-    System.out.println(userNames);
+}
+
+System.out.println(userNames);
+```
     
 
 以上代码，使用增强for循环遍历元素，并尝试删除其中的Hollis字符串元素。运行以上代码，会抛出以下异常：
@@ -72,26 +76,28 @@ CMException，当方法检测到对象的并发修改，但不允许这种修改
 
 我们使用[jad][1]工具，对编译后的class进行反编译，得到以下代码：
 
-    public static void main(String[] args) {
-        // 使用ImmutableList初始化一个List
-        List<String> userNames = new ArrayList<String>() {{
-            add("Hollis");
-            add("hollis");
-            add("HollisChuang");
-            add("H");
-        }};
-    
-        Iterator iterator = userNames.iterator();
-        do
-        {
-            if(!iterator.hasNext())
-                break;
-            String userName = (String)iterator.next();
-            if(userName.equals("Hollis"))
-                userNames.remove(userName);
-        } while(true);
-        System.out.println(userNames);
-    }
+```java
+public static void main(String[] args) {
+    // 使用ImmutableList初始化一个List
+    List<String> userNames = new ArrayList<String>() {{
+        add("Hollis");
+        add("hollis");
+        add("HollisChuang");
+        add("H");
+    }};
+
+    Iterator iterator = userNames.iterator();
+    do
+    {
+        if(!iterator.hasNext())
+            break;
+        String userName = (String)iterator.next();
+        if(userName.equals("Hollis"))
+            userNames.remove(userName);
+    } while(true);
+    System.out.println(userNames);
+}
+```
     
 
 可以发现，foreach其实是依赖了while循环和Iterator实现的。
@@ -105,10 +111,12 @@ CMException，当方法检测到对象的并发修改，但不允许这种修改
 
 该方法是在iterator.next()方法中调用的。我们看下该方法的实现：
 
-    final void checkForComodification() {
-        if (modCount != expectedModCount)
-            throw new ConcurrentModificationException();
-    }
+```java
+final void checkForComodification() {
+    if (modCount != expectedModCount)
+        throw new ConcurrentModificationException();
+}
+```
     
 
 如上，在该方法中对modCount和expectedModCount进行了比较，如果二者不相等，则抛出CMException。
@@ -117,19 +125,23 @@ CMException，当方法检测到对象的并发修改，但不允许这种修改
 
 modCount是ArrayList中的一个成员变量。它表示该集合实际被修改的次数。
 
-    List<String> userNames = new ArrayList<String>() {{
-        add("Hollis");
-        add("hollis");
-        add("HollisChuang");
-        add("H");
-    }};
+```java
+List<String> userNames = new ArrayList<String>() {{
+    add("Hollis");
+    add("hollis");
+    add("HollisChuang");
+    add("H");
+}};
+```
     
 
 当使用以上代码初始化集合之后该变量就有了。初始值为0。
 
 expectedModCount 是 ArrayList中的一个内部类——Itr中的成员变量。
 
-    Iterator iterator = userNames.iterator();
+```java
+Iterator iterator = userNames.iterator();
+```
     
 
 以上代码，即可得到一个 Itr类，该类实现了Iterator接口。
@@ -140,14 +152,16 @@ expectedModCount表示这个迭代器预期该集合被修改的次数。其值�
 
 通过翻阅代码，我们也可以发现，remove方法核心逻辑如下：
 
-    private void fastRemove(int index) {
-        modCount++;
-        int numMoved = size - index - 1;
-        if (numMoved > 0)
-            System.arraycopy(elementData, index+1, elementData, index,
-                             numMoved);
-        elementData[--size] = null; // clear to let GC do its work
-    }
+```java
+private void fastRemove(int index) {
+    modCount++;
+    int numMoved = size - index - 1;
+    if (numMoved > 0)
+        System.arraycopy(elementData, index+1, elementData, index,
+                         numMoved);
+    elementData[--size] = null; // clear to let GC do its work
+}
+```
     
 
 可以看到，它只修改了modCount，并没有对expectedModCount做任何操作。
@@ -172,24 +186,26 @@ java.util.concurrent包下的容器都是fail-safe的，可以在多线程下并
 
 我们拿CopyOnWriteArrayList这个fail-safe的集合类来简单分析一下。
 
-    public static void main(String[] args) {
-        List<String> userNames = new CopyOnWriteArrayList<String>() {{
-            add("Hollis");
-            add("hollis");
-            add("HollisChuang");
-            add("H");
-        }};
-    
-        userNames.iterator();
-    
-        for (String userName : userNames) {
-            if (userName.equals("Hollis")) {
-                userNames.remove(userName);
-            }
+```java
+public static void main(String[] args) {
+    List<String> userNames = new CopyOnWriteArrayList<String>() {{
+        add("Hollis");
+        add("hollis");
+        add("HollisChuang");
+        add("H");
+    }};
+
+    userNames.iterator();
+
+    for (String userName : userNames) {
+        if (userName.equals("Hollis")) {
+            userNames.remove(userName);
         }
-    
-        System.out.println(userNames);
     }
+
+    System.out.println(userNames);
+}
+```
     
 
 以上代码，使用CopyOnWriteArrayList代替了ArrayList，就不会发生异常。
@@ -200,28 +216,30 @@ fail-safe集合的所有对集合的修改都是先拷贝一份副本，然后�
 
 但是，虽然基于拷贝内容的优点是避免了ConcurrentModificationException，但同样地，迭代器并不能访问到修改后的内容。如以下代码：
 
-    public static void main(String[] args) {
-        List<String> userNames = new CopyOnWriteArrayList<String>() {{
-            add("Hollis");
-            add("hollis");
-            add("HollisChuang");
-            add("H");
-        }};
-    
-        Iterator it = userNames.iterator();
-    
-        for (String userName : userNames) {
-            if (userName.equals("Hollis")) {
-                userNames.remove(userName);
-            }
-        }
-    
-        System.out.println(userNames);
-    
-        while(it.hasNext()){
-            System.out.println(it.next());
+```java
+public static void main(String[] args) {
+    List<String> userNames = new CopyOnWriteArrayList<String>() {{
+        add("Hollis");
+        add("hollis");
+        add("HollisChuang");
+        add("H");
+    }};
+
+    Iterator it = userNames.iterator();
+
+    for (String userName : userNames) {
+        if (userName.equals("Hollis")) {
+            userNames.remove(userName);
         }
     }
+
+    System.out.println(userNames);
+
+    while(it.hasNext()){
+        System.out.println(it.next());
+    }
+}
+```
     
 
 我们得到CopyOnWriteArrayList的Iterator之后，通过for循环直接删除原数组中的值，最后在结尾处输出Iterator，结果发现内容如下：
@@ -247,9 +265,11 @@ CopyOnWriteArrayList中add/remove等写方法是需要加锁的，目的是为�
 
 但是，CopyOnWriteArrayList中的读方法是没有加锁的。
 
-    public E get(int index) {
-        return get(getArray(), index);
-    }
+```java
+public E get(int index) {
+    return get(getArray(), index);
+}
+```
     
 
 这样做的好处是我们可以对CopyOnWrite容器进行并发的读，当然，这里读到的数据可能不是最新的。因为写时复制的思想是通过延时更新的策略来实现数据的最终一致性的，并非强一致性。

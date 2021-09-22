@@ -42,7 +42,9 @@
 
 这个值的计算方法就是：
 
-    return (int) ((float) expectedSize / 0.75F + 1.0F);
+```java
+return (int) ((float) expectedSize / 0.75F + 1.0F);
+```
     
 
 比如我们计划向HashMap中放入7个元素的时候，我们通过expectedSize / 0.75F + 1.0F计算，7/0.75 + 1 = 10 ,10经过JDK处理之后，会被设置成16，这就大大的减少了扩容的几率。
@@ -53,23 +55,27 @@
 
 这个算法在guava中有实现，开发的时候，可以直接通过Maps类创建一个HashMap：
 
-    Map<String, String> map = Maps.newHashMapWithExpectedSize(7);
+```java
+Map<String, String> map = Maps.newHashMapWithExpectedSize(7);
+```
     
 
 其代码实现如下：
 
-    public static <K, V> HashMap<K, V> newHashMapWithExpectedSize(int expectedSize) {
-        return new HashMap(capacity(expectedSize));
+```java
+public static <K, V> HashMap<K, V> newHashMapWithExpectedSize(int expectedSize) {
+    return new HashMap(capacity(expectedSize));
+}
+
+static int capacity(int expectedSize) {
+    if (expectedSize < 3) {
+        CollectPreconditions.checkNonnegative(expectedSize, "expectedSize");
+        return expectedSize + 1;
+    } else {
+        return expectedSize < 1073741824 ? (int)((float)expectedSize / 0.75F + 1.0F) : 2147483647;
     }
-    
-    static int capacity(int expectedSize) {
-        if (expectedSize < 3) {
-            CollectPreconditions.checkNonnegative(expectedSize, "expectedSize");
-            return expectedSize + 1;
-        } else {
-            return expectedSize < 1073741824 ? (int)((float)expectedSize / 0.75F + 1.0F) : 2147483647;
-        }
-    }
+}
+```
     
 
 但是，**以上的操作是一种用内存换性能的做法，真正使用的时候，要考虑到内存的影响。**但是，大多数情况下，我们还是认为内存是一种比较富裕的资源。

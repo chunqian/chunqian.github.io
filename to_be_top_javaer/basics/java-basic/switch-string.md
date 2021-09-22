@@ -4,22 +4,24 @@ Java 7中，switch的参数可以是String类型了，这对我们来说是一�
 
 下面是一段很简单的Java代码，定义一个int型变量a，然后使用switch语句进行判断。执行这段代码输出内容为5，那么我们将下面这段代码反编译，看看他到底是怎么实现的。
 
-    public class switchDemoInt {
-        public static void main(String[] args) {
-            int a = 5;
-            switch (a) {
-            case 1:
-                System.out.println(1);
-                break;
-            case 5:
-                System.out.println(5);
-                break;
-            default:
-                break;
-            }
+```java
+public class switchDemoInt {
+    public static void main(String[] args) {
+        int a = 5;
+        switch (a) {
+        case 1:
+            System.out.println(1);
+            break;
+        case 5:
+            System.out.println(5);
+            break;
+        default:
+            break;
         }
     }
-    //output 5
+}
+//output 5
+```
 
 
 反编译后的代码如下：
@@ -52,44 +54,48 @@ Java 7中，switch的参数可以是String类型了，这对我们来说是一�
 
 直接上代码：
 
-    public class switchDemoInt {
-        public static void main(String[] args) {
-            char a = 'b';
-            switch (a) {
-            case 'a':
-                System.out.println('a');
-                break;
-            case 'b':
-                System.out.println('b');
-                break;
-            default:
-                break;
-            }
+```java
+public class switchDemoInt {
+    public static void main(String[] args) {
+        char a = 'b';
+        switch (a) {
+        case 'a':
+            System.out.println('a');
+            break;
+        case 'b':
+            System.out.println('b');
+            break;
+        default:
+            break;
         }
     }
+}
+```
 
 
 编译后的代码如下： 
 
-    public class switchDemoChar
+```java
+public class switchDemoChar
+{
+    public switchDemoChar()
     {
-        public switchDemoChar()
-        {
-        }
-        public static void main(String args[])
-        {
-            char a = 'b';
-            switch(a)
-            {
-            case 97: // 'a'
-                System.out.println('a');
-                break;
-            case 98: // 'b'
-                System.out.println('b');
-                break;
-            }
-      }
     }
+    public static void main(String args[])
+    {
+        char a = 'b';
+        switch(a)
+        {
+        case 97: // 'a'
+            System.out.println('a');
+            break;
+        case 98: // 'b'
+            System.out.println('b');
+            break;
+        }
+  }
+}
+```
 
 
 通过以上的代码作比较我们发现：对char类型进行比较的时候，实际上比较的是ascii码，编译器会把char型变量转换成对应的int型变量
@@ -98,21 +104,23 @@ Java 7中，switch的参数可以是String类型了，这对我们来说是一�
 
 还是先上代码：
 
-    public class switchDemoString {
-        public static void main(String[] args) {
-            String str = "world";
-            switch (str) {
-            case "hello":
-                System.out.println("hello");
-                break;
-            case "world":
-                System.out.println("world");
-                break;
-            default:
-                break;
-            }
+```java
+public class switchDemoString {
+    public static void main(String[] args) {
+        String str = "world";
+        switch (str) {
+        case "hello":
+            System.out.println("hello");
+            break;
+        case "world":
+            System.out.println("world");
+            break;
+        default:
+            break;
         }
     }
+}
+```
 
 
 对代码进行反编译：

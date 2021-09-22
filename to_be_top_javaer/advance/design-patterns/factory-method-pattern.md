@@ -34,56 +34,60 @@
 
 这里还用计算器的例子。在保持`Operation`，`OperationAdd`，`OperationDiv`，`OperationSub`，`OperationMul`等几个方法不变的情况下，修改简单工厂模式中的工厂类（`OperationFactory`）。替代原有的那个"万能"的大工厂类，这里使用工厂方法来代替：
 
-    //工厂接口
-    public interface IFactory {
-        Operation CreateOption();
+```java
+//工厂接口
+public interface IFactory {
+    Operation CreateOption();
+}
+
+//加法类工厂
+public class AddFactory implements IFactory {
+
+    public Operation CreateOption() {
+        return new OperationAdd();
     }
-    
-    //加法类工厂
-    public class AddFactory implements IFactory {
-    
-        public Operation CreateOption() {
-            return new OperationAdd();
-        }
+}
+
+//除法类工厂
+public class DivFactory implements IFactory {
+
+    public Operation CreateOption() {
+        return new OperationDiv();
     }
-    
-    //除法类工厂
-    public class DivFactory implements IFactory {
-    
-        public Operation CreateOption() {
-            return new OperationDiv();
-        }
+}
+
+//除法类工厂
+public class MulFactory implements IFactory {
+
+    public Operation CreateOption() {
+        return new OperationMul();
     }
-    
-    //除法类工厂
-    public class MulFactory implements IFactory {
-    
-        public Operation CreateOption() {
-            return new OperationMul();
-        }
+}
+
+//减法类工厂
+public class SubFactory implements IFactory {
+
+    public Operation CreateOption() {
+        return new OperationSub();
     }
-    
-    //减法类工厂
-    public class SubFactory implements IFactory {
-    
-        public Operation CreateOption() {
-            return new OperationSub();
-        }
-    }
+}
+```
     
 
 这样，在客户端中想要执行加法运算时，需要以下方式：
 
-    public class Main {
-    
-        public static void main(String[] args) {
-            IFactory factory = new AddFactory();
-            Operation operationAdd =  factory.CreateOption();
-            operationAdd.setValue1(10);
-            operationAdd.setValue2(5);
-            System.out.println(operationAdd.getResult());
-        }
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        IFactory factory = new AddFactory();
+        Operation operationAdd =  factory.CreateOption();
+        operationAdd.setValue1(10);
+        operationAdd.setValue2(5);
+        System.out.println(operationAdd.getResult());
     }
+}
+```
     
 
 到这里，一个工厂方法模式就已经写好了。

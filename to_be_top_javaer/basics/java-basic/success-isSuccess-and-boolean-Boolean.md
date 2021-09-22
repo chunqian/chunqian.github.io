@@ -28,45 +28,47 @@
 
 那么，为什么会有这样的规定呢？我们看一下POJO中布尔类型变量不同的命名有什么区别吧。
 
-    class Model1  {
-        private Boolean isSuccess;
-        public void setSuccess(Boolean success) {
-            isSuccess = success;
-        }
-        public Boolean getSuccess() {
-            return isSuccess;
-        }
-     }
-    
-    class Model2 {
-        private Boolean success;
-        public Boolean getSuccess() {
-            return success;
-        }
-        public void setSuccess(Boolean success) {
-            this.success = success;
-        }
+```java
+class Model1  {
+    private Boolean isSuccess;
+    public void setSuccess(Boolean success) {
+        isSuccess = success;
     }
-    
-    class Model3 {
-        private boolean isSuccess;
-        public boolean isSuccess() {
-            return isSuccess;
-        }
-        public void setSuccess(boolean success) {
-            isSuccess = success;
-        }
+    public Boolean getSuccess() {
+        return isSuccess;
     }
-    
-    class Model4 {
-        private boolean success;
-        public boolean isSuccess() {
-            return success;
-        }
-        public void setSuccess(boolean success) {
-            this.success = success;
-        }
+ }
+
+class Model2 {
+    private Boolean success;
+    public Boolean getSuccess() {
+        return success;
     }
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
+}
+
+class Model3 {
+    private boolean isSuccess;
+    public boolean isSuccess() {
+        return isSuccess;
+    }
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
+}
+
+class Model4 {
+    private boolean success;
+    public boolean isSuccess() {
+        return success;
+    }
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+}
+```
     
 
 以上代码的setter/getter是使用Intellij IDEA自动生成的，仔细观察以上代码，你会发现以下规律：
@@ -82,14 +84,18 @@
 
 关于Java Bean中的getter/setter方法的定义其实是有明确的规定的，根据[JavaBeans(TM) Specification][2]规定，如果是普通的参数propertyName，要以以下方式定义其setter/getter：
 
-    public <PropertyType> get<PropertyName>();
-    public void set<PropertyName>(<PropertyType> a);
+```java
+public <PropertyType> get<PropertyName>();
+public void set<PropertyName>(<PropertyType> a);
+```
     
 
 但是，布尔类型的变量propertyName则是单独定义的：
 
-    public boolean is<PropertyName>();
-    public void set<PropertyName>(boolean m);
+```java
+public boolean is<PropertyName>();
+public void set<PropertyName>(boolean m);
+```
     
 
 ![-w687][3]￼
@@ -104,41 +110,43 @@
 
 关于序列化和反序列化请参考[Java对象的序列化与反序列化][4]。我们这里拿比较常用的JSON序列化来举例，看看看常用的fastJson、jackson和Gson之间有何区别：
 
-    public class BooleanMainTest {
-    
-        public static void main(String[] args) throws IOException {
-            //定一个Model3类型
-            Model3 model3 = new Model3();
-            model3.setSuccess(true);
-    
-            //使用fastjson(1.2.16)序列化model3成字符串并输出
-            System.out.println("Serializable Result With fastjson :" + JSON.toJSONString(model3));
-    
-            //使用Gson(2.8.5)序列化model3成字符串并输出
-            Gson gson =new Gson();
-            System.out.println("Serializable Result With Gson :" +gson.toJson(model3));
-    
-            //使用jackson(2.9.7)序列化model3成字符串并输出
-            ObjectMapper om = new ObjectMapper();
-            System.out.println("Serializable Result With jackson :" +om.writeValueAsString(model3));
-        }
-    
+```java
+public class BooleanMainTest {
+
+    public static void main(String[] args) throws IOException {
+        //定一个Model3类型
+        Model3 model3 = new Model3();
+        model3.setSuccess(true);
+
+        //使用fastjson(1.2.16)序列化model3成字符串并输出
+        System.out.println("Serializable Result With fastjson :" + JSON.toJSONString(model3));
+
+        //使用Gson(2.8.5)序列化model3成字符串并输出
+        Gson gson =new Gson();
+        System.out.println("Serializable Result With Gson :" +gson.toJson(model3));
+
+        //使用jackson(2.9.7)序列化model3成字符串并输出
+        ObjectMapper om = new ObjectMapper();
+        System.out.println("Serializable Result With jackson :" +om.writeValueAsString(model3));
     }
-    
-    class Model3 implements Serializable {
-    
-        private static final long serialVersionUID = 1836697963736227954L;
-        private boolean isSuccess;
-        public boolean isSuccess() {
-            return isSuccess;
-        }
-        public void setSuccess(boolean success) {
-            isSuccess = success;
-        }
-        public String getHollis(){
-            return "hollischuang";
-        }
+
+}
+
+class Model3 implements Serializable {
+
+    private static final long serialVersionUID = 1836697963736227954L;
+    private boolean isSuccess;
+    public boolean isSuccess() {
+        return isSuccess;
     }
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
+    public String getHollis(){
+        return "hollischuang";
+    }
+}
+```
     
 
 以上代码的Model3中，只有一个成员变量即isSuccess，三个方法，分别是IDE帮我们自动生成的isSuccess和setSuccess，另外一个是作者自己增加的一个符合getter命名规范的方法。
@@ -167,32 +175,34 @@
 
 现在，不同的序列化框架得到的json内容并不相同，如果对于同一个对象，我使用fastjson进行序列化，再使用Gson反序列化会发生什么？
 
-    public class BooleanMainTest {
-        public static void main(String[] args) throws IOException {
-            Model3 model3 = new Model3();
-            model3.setSuccess(true);
-            Gson gson =new Gson();
-            System.out.println(gson.fromJson(JSON.toJSONString(model3),Model3.class));
-        }
+```java
+public class BooleanMainTest {
+    public static void main(String[] args) throws IOException {
+        Model3 model3 = new Model3();
+        model3.setSuccess(true);
+        Gson gson =new Gson();
+        System.out.println(gson.fromJson(JSON.toJSONString(model3),Model3.class));
     }
-    
-    
-    class Model3 implements Serializable {
-        private static final long serialVersionUID = 1836697963736227954L;
-        private boolean isSuccess;
-        public boolean isSuccess() {
-            return isSuccess;
-        }
-        public void setSuccess(boolean success) {
-            isSuccess = success;
-        }
-        @Override
-        public String toString() {
-            return new StringJoiner(", ", Model3.class.getSimpleName() + "[", "]")
-                .add("isSuccess=" + isSuccess)
-                .toString();
-        }
+}
+
+
+class Model3 implements Serializable {
+    private static final long serialVersionUID = 1836697963736227954L;
+    private boolean isSuccess;
+    public boolean isSuccess() {
+        return isSuccess;
     }
+    public void setSuccess(boolean success) {
+        isSuccess = success;
+    }
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Model3.class.getSimpleName() + "[", "]")
+            .add("isSuccess=" + isSuccess)
+            .toString();
+    }
+}
+```
     
 
 以上代码，输出结果：
@@ -230,37 +240,39 @@
 
 我们来看一段简单的代码
 
-     /**
-     * @author Hollis
+```java
+ /**
+ * @author Hollis
+ */
+public class BooleanMainTest {
+    public static void main(String[] args) {
+        Model model1 = new Model();
+        System.out.println("default model : " + model1);
+    }
+}
+
+class Model {
+    /**
+     * 定一个Boolean类型的success成员变量
      */
-    public class BooleanMainTest {
-        public static void main(String[] args) {
-            Model model1 = new Model();
-            System.out.println("default model : " + model1);
-        }
+    private Boolean success;
+    /**
+     * 定一个boolean类型的failure成员变量
+     */
+    private boolean failure;
+
+    /**
+     * 覆盖toString方法，使用Java 8 的StringJoiner
+     */
+    @Override
+    public String toString() {
+        return new StringJoiner(", ", Model.class.getSimpleName() + "[", "]")
+            .add("success=" + success)
+            .add("failure=" + failure)
+            .toString();
     }
-    
-    class Model {
-        /**
-         * 定一个Boolean类型的success成员变量
-         */
-        private Boolean success;
-        /**
-         * 定一个boolean类型的failure成员变量
-         */
-        private boolean failure;
-    
-        /**
-         * 覆盖toString方法，使用Java 8 的StringJoiner
-         */
-        @Override
-        public String toString() {
-            return new StringJoiner(", ", Model.class.getSimpleName() + "[", "]")
-                .add("success=" + success)
-                .add("failure=" + failure)
-                .toString();
-        }
-    }
+}
+```
     
 
 以上代码输出结果为：

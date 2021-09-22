@@ -27,17 +27,19 @@ HashMap类中有以下主要成员变量：
 
 HashMap中的size和capacity之间的区别其实解释起来也挺简单的。我们知道，HashMap就像一个“桶”，那么capacity就是这个桶“当前”最多可以装多少元素，而size表示这个桶已经装了多少元素。来看下以下代码：
 
-        Map<String, String> map = new HashMap<String, String>();
-        map.put("hollis", "hollischuang");
-    
-        Class<?> mapType = map.getClass();
-        Method capacity = mapType.getDeclaredMethod("capacity");
-        capacity.setAccessible(true);
-        System.out.println("capacity : " + capacity.invoke(map));
-    
-        Field size = mapType.getDeclaredField("size");
-        size.setAccessible(true);
-        System.out.println("size : " + size.get(map));
+```java
+Map<String, String> map = new HashMap<String, String>();
+map.put("hollis", "hollischuang");
+
+Class<?> mapType = map.getClass();
+Method capacity = mapType.getDeclaredMethod("capacity");
+capacity.setAccessible(true);
+System.out.println("capacity : " + capacity.invoke(map));
+
+Field size = mapType.getDeclaredField("size");
+size.setAccessible(true);
+System.out.println("size : " + size.get(map));
+```
     
 
 我们定义了一个新的HashMap，并想其中put了一个元素，然后通过反射的方式打印capacity和size。输出结果为：**capacity : 16、size : 1**
@@ -48,28 +50,30 @@ HashMap中的size和capacity之间的区别其实解释起来也挺简单的。�
 
 我们知道，HashMap的重载的构造函数中，有一个是支持传入initialCapacity的，那么我们尝试着设置一下，看结果如何。
 
-        Map<String, String> map = new HashMap<String, String>(1);
-    
-        Class<?> mapType = map.getClass();
-        Method capacity = mapType.getDeclaredMethod("capacity");
-        capacity.setAccessible(true);
-        System.out.println("capacity : " + capacity.invoke(map));
-    
-        Map<String, String> map = new HashMap<String, String>(7);
-    
-        Class<?> mapType = map.getClass();
-        Method capacity = mapType.getDeclaredMethod("capacity");
-        capacity.setAccessible(true);
-        System.out.println("capacity : " + capacity.invoke(map));
-    
-    
-        Map<String, String> map = new HashMap<String, String>(9);
-    
-        Class<?> mapType = map.getClass();
-        Method capacity = mapType.getDeclaredMethod("capacity");
-        capacity.setAccessible(true);
-        System.out.println("capacity : " + capacity.invoke(map));
-    
+```java
+Map<String, String> map = new HashMap<String, String>(1);
+
+Class<?> mapType = map.getClass();
+Method capacity = mapType.getDeclaredMethod("capacity");
+capacity.setAccessible(true);
+System.out.println("capacity : " + capacity.invoke(map));
+
+Map<String, String> map = new HashMap<String, String>(7);
+
+Class<?> mapType = map.getClass();
+Method capacity = mapType.getDeclaredMethod("capacity");
+capacity.setAccessible(true);
+System.out.println("capacity : " + capacity.invoke(map));
+
+
+Map<String, String> map = new HashMap<String, String>(9);
+
+Class<?> mapType = map.getClass();
+Method capacity = mapType.getDeclaredMethod("capacity");
+capacity.setAccessible(true);
+System.out.println("capacity : " + capacity.invoke(map));
+```
+
 
 分别执行以上3段代码，分别输出：**capacity : 1、capacity : 8、capacity : 16**。
 
@@ -93,53 +97,55 @@ loadFactor是装载因子，表示HashMap满的程度，默认值为0.75f，设�
 
 验证代码如下：
 
-        Map<String, String> map = new HashMap<>();
-        map.put("hollis1", "hollischuang");
-        map.put("hollis2", "hollischuang");
-        map.put("hollis3", "hollischuang");
-        map.put("hollis4", "hollischuang");
-        map.put("hollis5", "hollischuang");
-        map.put("hollis6", "hollischuang");
-        map.put("hollis7", "hollischuang");
-        map.put("hollis8", "hollischuang");
-        map.put("hollis9", "hollischuang");
-        map.put("hollis10", "hollischuang");
-        map.put("hollis11", "hollischuang");
-        map.put("hollis12", "hollischuang");
-        Class<?> mapType = map.getClass();
-    
-        Method capacity = mapType.getDeclaredMethod("capacity");
-        capacity.setAccessible(true);
-        System.out.println("capacity : " + capacity.invoke(map));
-    
-        Field size = mapType.getDeclaredField("size");
-        size.setAccessible(true);
-        System.out.println("size : " + size.get(map));
-    
-        Field threshold = mapType.getDeclaredField("threshold");
-        threshold.setAccessible(true);
-        System.out.println("threshold : " + threshold.get(map));
-    
-        Field loadFactor = mapType.getDeclaredField("loadFactor");
-        loadFactor.setAccessible(true);
-        System.out.println("loadFactor : " + loadFactor.get(map));
-    
-        map.put("hollis13", "hollischuang");
-        Method capacity = mapType.getDeclaredMethod("capacity");
-        capacity.setAccessible(true);
-        System.out.println("capacity : " + capacity.invoke(map));
-    
-        Field size = mapType.getDeclaredField("size");
-        size.setAccessible(true);
-        System.out.println("size : " + size.get(map));
-    
-        Field threshold = mapType.getDeclaredField("threshold");
-        threshold.setAccessible(true);
-        System.out.println("threshold : " + threshold.get(map));
-    
-        Field loadFactor = mapType.getDeclaredField("loadFactor");
-        loadFactor.setAccessible(true);
-        System.out.println("loadFactor : " + loadFactor.get(map));
+```java
+Map<String, String> map = new HashMap<>();
+map.put("hollis1", "hollischuang");
+map.put("hollis2", "hollischuang");
+map.put("hollis3", "hollischuang");
+map.put("hollis4", "hollischuang");
+map.put("hollis5", "hollischuang");
+map.put("hollis6", "hollischuang");
+map.put("hollis7", "hollischuang");
+map.put("hollis8", "hollischuang");
+map.put("hollis9", "hollischuang");
+map.put("hollis10", "hollischuang");
+map.put("hollis11", "hollischuang");
+map.put("hollis12", "hollischuang");
+Class<?> mapType = map.getClass();
+
+Method capacity = mapType.getDeclaredMethod("capacity");
+capacity.setAccessible(true);
+System.out.println("capacity : " + capacity.invoke(map));
+
+Field size = mapType.getDeclaredField("size");
+size.setAccessible(true);
+System.out.println("size : " + size.get(map));
+
+Field threshold = mapType.getDeclaredField("threshold");
+threshold.setAccessible(true);
+System.out.println("threshold : " + threshold.get(map));
+
+Field loadFactor = mapType.getDeclaredField("loadFactor");
+loadFactor.setAccessible(true);
+System.out.println("loadFactor : " + loadFactor.get(map));
+
+map.put("hollis13", "hollischuang");
+Method capacity = mapType.getDeclaredMethod("capacity");
+capacity.setAccessible(true);
+System.out.println("capacity : " + capacity.invoke(map));
+
+Field size = mapType.getDeclaredField("size");
+size.setAccessible(true);
+System.out.println("size : " + size.get(map));
+
+Field threshold = mapType.getDeclaredField("threshold");
+threshold.setAccessible(true);
+System.out.println("threshold : " + threshold.get(map));
+
+Field loadFactor = mapType.getDeclaredField("loadFactor");
+loadFactor.setAccessible(true);
+System.out.println("loadFactor : " + loadFactor.get(map));
+```
     
 
 输出结果：

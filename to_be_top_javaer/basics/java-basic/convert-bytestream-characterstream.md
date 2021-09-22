@@ -8,7 +8,6 @@ InputStreamReader 是字节流通向字符流的桥梁
 ### 字符流转成字节流
 
 ```java
-
 public static void main(String[] args) throws IOException {
     File f = new File("test.txt");
     
@@ -19,25 +18,22 @@ public static void main(String[] args) throws IOException {
     osw.close();
 
 }
-
 ```
 
 ### 字节流转成字符流
 
 ```java
-  public static void main(String[] args) throws IOException {
-        
-        File f = new File("test.txt");
-        
-        InputStreamReader inr = new InputStreamReader(new FileInputStream(f),"UTF-8");
-        
-        char[] buf = new char[1024];
-        
-        int len = inr.read(buf);
-        System.out.println(new String(buf,0,len));
-        
-        inr.close();
+public static void main(String[] args) throws IOException {
+      
+    File f = new File("test.txt");
 
-    }
+    InputStreamReader inr = new InputStreamReader(new FileInputStream(f),"UTF-8");
 
+    char[] buf = new char[1024];
+
+    int len = inr.read(buf);
+    System.out.println(new String(buf,0,len));
+
+    inr.close();
+}
 ```

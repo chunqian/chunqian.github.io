@@ -2,10 +2,11 @@
  
 String作为一个Java类，可以通过以下两种方式创建一个字符串：
  
- 
-    String str = "Hollis";
-    
-    String str = new String("Hollis")；
+```java
+String str = "Hollis";
+
+String str = new String("Hollis");
+```
     
  
 而第一种是我们比较常用的做法，这种形式叫做"字面量"。

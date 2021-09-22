@@ -44,77 +44,85 @@
 
 下面是抽象产品，奔驰车和特斯拉车：
 
-    public interface BenzCar {
-    
-        //加汽油
-        public void gasUp();
-    
-    }
-    
-    public interface TeslaCar {
-    
-        //充电
-        public void charge();
-    }
+```java
+public interface BenzCar {
+
+    //加汽油
+    public void gasUp();
+
+}
+
+public interface TeslaCar {
+
+    //充电
+    public void charge();
+}
+```
     
 
 下面是具体产品，奔驰跑车、奔驰商务车、特斯拉跑车、特斯拉商务车：
 
-    public class BenzSportCar implements BenzCar {
-        public void gasUp() {
-            System.out.println("给我的奔驰跑车加最好的汽油");
-        }
+```java
+public class BenzSportCar implements BenzCar {
+    public void gasUp() {
+        System.out.println("给我的奔驰跑车加最好的汽油");
     }
-    
-    public class BenzBusinessCar implements BenzCar{
-        public void gasUp() {
-            System.out.println("给我的奔驰商务车加一般的汽油");
-        }
+}
+
+public class BenzBusinessCar implements BenzCar{
+    public void gasUp() {
+        System.out.println("给我的奔驰商务车加一般的汽油");
     }
-    
-    public class TeslaSportCar implements TeslaCar {
-        public void charge() {
-            System.out.println("给我特斯拉跑车冲满电");
-        }
+}
+
+public class TeslaSportCar implements TeslaCar {
+    public void charge() {
+        System.out.println("给我特斯拉跑车冲满电");
     }
-    
-    public class TeslaBusinessCar implements TeslaCar {
-        public void charge() {
-            System.out.println("不用给我特斯拉商务车冲满电");
-        }
+}
+
+public class TeslaBusinessCar implements TeslaCar {
+    public void charge() {
+        System.out.println("不用给我特斯拉商务车冲满电");
     }
+}
+```
     
 
 下面是抽象工厂：
 
-    public interface CarFactory {
-    
-        public BenzCar getBenzCar();
-        public TeslaCar getTeslaCar();
-    }
+```java
+public interface CarFactory {
+
+    public BenzCar getBenzCar();
+    public TeslaCar getTeslaCar();
+}
+```
     
 
 下面是具体工厂：
 
-    public class SportCarFactory implements CarFactory {
-        public BenzCar getBenzCar() {
-            return new BenzSportCar();
-        }
-    
-        public TeslaCar getTeslaCar() {
-            return new TeslaSportCar();
-        }
+```java
+public class SportCarFactory implements CarFactory {
+    public BenzCar getBenzCar() {
+        return new BenzSportCar();
     }
-    
-    public class BusinessCarFactory implements CarFactory {
-        public BenzCar getBenzCar() {
-            return new BenzBusinessCar();
-        }
-    
-        public TeslaCar getTeslaCar() {
-            return new TeslaBusinessCar();
-        }
+
+    public TeslaCar getTeslaCar() {
+        return new TeslaSportCar();
     }
+}
+
+public class BusinessCarFactory implements CarFactory {
+    public BenzCar getBenzCar() {
+        return new BenzBusinessCar();
+    }
+
+    public TeslaCar getTeslaCar() {
+        return new TeslaBusinessCar();
+    }
+}
+```
     
 
 ## “开闭原则”的倾斜性

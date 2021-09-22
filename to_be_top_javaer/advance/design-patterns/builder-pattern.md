@@ -39,157 +39,167 @@
 
 产品角色：Role
 
-    public class Role {
-    
-        private String head; //头部
-        private String face; //脸部（脸部依赖于头部）
-        private String body; //身体
-        private Double hp;   //生命值
-        private Double sp;   //能量值
-        private Double mp;   //魔法值
-    
-        //setter and getter 
-         // toString 
-    }
+```java
+public class Role {
+
+    private String head; //头部
+    private String face; //脸部（脸部依赖于头部）
+    private String body; //身体
+    private Double hp;   //生命值
+    private Double sp;   //能量值
+    private Double mp;   //魔法值
+
+    //setter and getter 
+     // toString 
+}
+```
     
 
 抽象建造者：Builder
 
-    public abstract class Builder {
-    
-        protected Role role = new Role();
-    
-        public abstract void buildHead();
-    
-        public abstract void buildFace();
-    
-        public abstract void buildBody();
-    
-        public abstract void buildHp();
-    
-        public abstract void buildSp();
-    
-        public abstract void buildMp();
-    
-        public Role getResult() {
-            return role;
-        }
+```java
+public abstract class Builder {
+
+    protected Role role = new Role();
+
+    public abstract void buildHead();
+
+    public abstract void buildFace();
+
+    public abstract void buildBody();
+
+    public abstract void buildHp();
+
+    public abstract void buildSp();
+
+    public abstract void buildMp();
+
+    public Role getResult() {
+        return role;
     }
+}
+```
     
 
 具体建造者：
 
-    public class CommonRoleBuilder extends Builder {
-    
-        private Role role = new Role();
-    
-        @Override
-        public void buildHead() {
-            role.setBody("common head");
-        }
-    
-        @Override
-        public void buildFace() {
-            role.setFace("common face");
-        }
-    
-        @Override
-        public void buildBody() {
-            role.setBody("common body");
-        }
-    
-        @Override
-        public void buildHp() {
-            role.setHp(100d);
-        }
-    
-        @Override
-        public void buildSp() {
-            role.setSp(100d);
-        }
-    
-        @Override
-        public void buildMp() {
-            role.setMp(100d);
-        }
-    
-        @Override
-        public Role getResult() {
-            return role;
-        }
+```java
+public class CommonRoleBuilder extends Builder {
+
+    private Role role = new Role();
+
+    @Override
+    public void buildHead() {
+        role.setBody("common head");
     }
-    
-    public class SuperRoleBuilder extends Builder {
-    
-        private Role role = new Role();
-    
-        @Override
-        public void buildHead() {
-            role.setBody("suoer head");
-        }
-    
-        @Override
-        public void buildFace() {
-            role.setFace("super face");
-        }
-    
-        @Override
-        public void buildBody() {
-            role.setBody("super body");
-        }
-    
-        @Override
-        public void buildHp() {
-            role.setHp(120d);
-        }
-    
-        @Override
-        public void buildSp() {
-            role.setSp(120d);
-        }
-    
-        @Override
-        public void buildMp() {
-            role.setMp(120d);
-        }
-    
-        @Override
-        public Role getResult() {
-            return role;
-        }
+
+    @Override
+    public void buildFace() {
+        role.setFace("common face");
     }
+
+    @Override
+    public void buildBody() {
+        role.setBody("common body");
+    }
+
+    @Override
+    public void buildHp() {
+        role.setHp(100d);
+    }
+
+    @Override
+    public void buildSp() {
+        role.setSp(100d);
+    }
+
+    @Override
+    public void buildMp() {
+        role.setMp(100d);
+    }
+
+    @Override
+    public Role getResult() {
+        return role;
+    }
+}
+
+public class SuperRoleBuilder extends Builder {
+
+    private Role role = new Role();
+
+    @Override
+    public void buildHead() {
+        role.setBody("suoer head");
+    }
+
+    @Override
+    public void buildFace() {
+        role.setFace("super face");
+    }
+
+    @Override
+    public void buildBody() {
+        role.setBody("super body");
+    }
+
+    @Override
+    public void buildHp() {
+        role.setHp(120d);
+    }
+
+    @Override
+    public void buildSp() {
+        role.setSp(120d);
+    }
+
+    @Override
+    public void buildMp() {
+        role.setMp(120d);
+    }
+
+    @Override
+    public Role getResult() {
+        return role;
+    }
+}
+```
     
 
 指挥者：
 
-    public class Director {
-    
-        public void construct(Builder builder){
-            builder.buildBody();
-            builder.buildHead();
-            builder.buildFace();
-            builder.buildHp();
-            builder.buildMp();
-            builder.buildSp();
-        }
+```java
+public class Director {
+
+    public void construct(Builder builder){
+        builder.buildBody();
+        builder.buildHead();
+        builder.buildFace();
+        builder.buildHp();
+        builder.buildMp();
+        builder.buildSp();
     }
+}
+```
     
 
 测试类：
 
-    public class Main {
-    
-        public static void main(String[] args) {
-    
-            Director director = new Director();
-            Builder commonBuilder = new CommonRoleBuilder();
-    
-            director.construct(commonBuilder);
-            Role commonRole = commonBuilder.getResult();
-            System.out.println(commonRole);
-    
-        }
+```java
+public class Main {
+
+    public static void main(String[] args) {
+
+        Director director = new Director();
+        Builder commonBuilder = new CommonRoleBuilder();
+
+        director.construct(commonBuilder);
+        Role commonRole = commonBuilder.getResult();
+        System.out.println(commonRole);
+
     }
+}
+```
     
 
 到这里，一个建造者模式已经完成了，是不是很简单？

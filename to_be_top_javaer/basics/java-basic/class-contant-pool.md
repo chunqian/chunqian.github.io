@@ -22,11 +22,13 @@ Java语言中负责编译出字节码的编译器是一个命令是`javac`。
 
 如，我们有以下简单的`HelloWorld.java`代码：
 
-    public class HelloWorld {
-        public static void main(String[] args) {
-            String s = "Hollis";
-        }
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        String s = "Hollis";
     }
+}
+```
     
 
 通过javac命令生成class文件：
@@ -85,8 +87,10 @@ Class常量池可以理解为是Class文件中的资源仓库。 Class文件中�
 
 字面量只可以右值出现，所谓右值是指等号右边的值，如：int a=123这里的a为左值，123为右值。在这个例子中123就是字面量。
 
-    int a = 123;
-    String s = "hollis";
+```java
+int a = 123;
+String s = "hollis";
+```
     
 
 上面的代码事例中，123和hollis都是字面量。

@@ -24,11 +24,9 @@ class RunnableThread implements Runnable {
 
 输出结果：
 
-```
-main
-实现Runnable接口创建线程
-Thread-1
-```
+    main
+    实现Runnable接口创建线程
+    Thread-1
     
 
 通过实现接口，同样覆盖`run()`就可以创建一个新的线程了。

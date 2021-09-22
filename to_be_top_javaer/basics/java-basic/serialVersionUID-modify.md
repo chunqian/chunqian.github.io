@@ -14,22 +14,24 @@
 
 原因是在执行序列化的过程中，会执行到以下代码：
 
-    if (obj instanceof String) {
-        writeString((String) obj, unshared);
-    } else if (cl.isArray()) {
-        writeArray(obj, desc, unshared);
-    } else if (obj instanceof Enum) {
-        writeEnum((Enum<?>) obj, desc, unshared);
-    } else if (obj instanceof Serializable) {
-        writeOrdinaryObject(obj, desc, unshared);
+```java
+if (obj instanceof String) {
+    writeString((String) obj, unshared);
+} else if (cl.isArray()) {
+    writeArray(obj, desc, unshared);
+} else if (obj instanceof Enum) {
+    writeEnum((Enum<?>) obj, desc, unshared);
+} else if (obj instanceof Serializable) {
+    writeOrdinaryObject(obj, desc, unshared);
+} else {
+    if (extendedDebugInfo) {
+        throw new NotSerializableException(
+            cl.getName() + "\n" + debugInfoStack.toString());
     } else {
-        if (extendedDebugInfo) {
-            throw new NotSerializableException(
-                cl.getName() + "\n" + debugInfoStack.toString());
-        } else {
-            throw new NotSerializableException(cl.getName());
-        }
+        throw new NotSerializableException(cl.getName());
     }
+}
+```
 
 
 在进行序列化操作时，会判断要被序列化的类是否是`Enum`、`Array`和`Serializable`类型，如果都不是则直接抛出`NotSerializableException`。
@@ -70,75 +72,81 @@ Java中还提供了`Externalizable`接口，也可以实现它来提供序列化
 
 我们举个例子吧，看看如果`serialVersionUID`被修改了会发生什么？
 
-    public class SerializableDemo1 {
-        public static void main(String[] args) {
-            //Initializes The Object
-            User1 user = new User1();
-            user.setName("hollis");
-            //Write Obj to File
-            ObjectOutputStream oos = null;
-            try {
-                oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
-                oos.writeObject(user);
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                IOUtils.closeQuietly(oos);
-            }
+```java
+public class SerializableDemo1 {
+    public static void main(String[] args) {
+        //Initializes The Object
+        User1 user = new User1();
+        user.setName("hollis");
+        //Write Obj to File
+        ObjectOutputStream oos = null;
+        try {
+            oos = new ObjectOutputStream(new FileOutputStream("tempFile"));
+            oos.writeObject(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(oos);
         }
     }
+}
 
-    class User1 implements Serializable {
-        private static final long serialVersionUID = 1L;
-        private String name;
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-     }
+class User1 implements Serializable {
+    private static final long serialVersionUID = 1L;
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+ }
+```
 
 
 我们先执行以上代码，把一个User1对象写入到文件中。然后我们修改一下User1类，把`serialVersionUID`的值改为`2L`。
 
-    class User1 implements Serializable {
-        private static final long serialVersionUID = 2L;
-        private String name;
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
+```java
+class User1 implements Serializable {
+    private static final long serialVersionUID = 2L;
+    private String name;
+    public String getName() {
+        return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+```
 
 
 然后执行以下代码，把文件中的对象反序列化出来：
 
-    public class SerializableDemo2 {
-        public static void main(String[] args) {
-            //Read Obj from File
-            File file = new File("tempFile");
-            ObjectInputStream ois = null;
+```java
+public class SerializableDemo2 {
+    public static void main(String[] args) {
+        //Read Obj from File
+        File file = new File("tempFile");
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(new FileInputStream(file));
+            User1 newUser = (User1) ois.readObject();
+            System.out.println(newUser);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            IOUtils.closeQuietly(ois);
             try {
-                ois = new ObjectInputStream(new FileInputStream(file));
-                User1 newUser = (User1) ois.readObject();
-                System.out.println(newUser);
+                FileUtils.forceDelete(file);
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } finally {
-                IOUtils.closeQuietly(ois);
-                try {
-                    FileUtils.forceDelete(file);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         }
     }
+}
+```
 
 
 执行结果如下：
@@ -164,35 +172,39 @@ Java中还提供了`Externalizable`接口，也可以实现它来提供序列化
 
 尝试修改上面的demo代码，先使用以下类定义一个对象，该类中不定义`serialVersionUID`，将其写入文件。
 
-    class User1 implements Serializable {
-        private String name;
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-     }
+```java
+class User1 implements Serializable {
+    private String name;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+ }
+```
 
 
 然后我们修改User1类，向其中增加一个属性。在尝试将其从文件中读取出来，并进行反序列化。
 
-    class User1 implements Serializable {
-        private String name;
-        private int age;
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        public int getAge() {
-            return age;
-        }
-        public void setAge(int age) {
-            this.age = age;
-        }
-     }
+```java
+class User1 implements Serializable {
+    private String name;
+    private int age;
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
+        this.age = age;
+    }
+ }
+```
 
 
 执行结果： `java.io.InvalidClassException: com.hollis.User1; local class incompatible: stream classdesc serialVersionUID = -2986778152837257883, local class serialVersionUID = 7961728318907695402`
@@ -226,19 +238,21 @@ Java中还提供了`Externalizable`接口，也可以实现它来提供序列化
 
 深入看一下`getSerialVersionUID`方法：
 
-    public long getSerialVersionUID() {
-        // REMIND: synchronize instead of relying on volatile?
-        if (suid == null) {
-            suid = AccessController.doPrivileged(
-                new PrivilegedAction<Long>() {
-                    public Long run() {
-                        return computeDefaultSUID(cl);
-                    }
+```java
+public long getSerialVersionUID() {
+    // REMIND: synchronize instead of relying on volatile?
+    if (suid == null) {
+        suid = AccessController.doPrivileged(
+            new PrivilegedAction<Long>() {
+                public Long run() {
+                    return computeDefaultSUID(cl);
                 }
-            );
-        }
-        return suid.longValue();
+            }
+        );
     }
+    return suid.longValue();
+}
+```
 
 
 在没有定义`serialVersionUID`的时候，会调用`computeDefaultSUID` 方法，生成一个默认的`serialVersionUID`。

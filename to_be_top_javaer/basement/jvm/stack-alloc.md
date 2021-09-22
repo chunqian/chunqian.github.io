@@ -30,24 +30,28 @@
 
 例如：
 
-    public static StringBuffer craeteStringBuffer(String s1, String s2) {
-        StringBuffer sb = new StringBuffer();
-        sb.append(s1);
-        sb.append(s2);
-        return sb;
-    }
+```java
+public static StringBuffer craeteStringBuffer(String s1, String s2) {
+    StringBuffer sb = new StringBuffer();
+    sb.append(s1);
+    sb.append(s2);
+    return sb;
+}
+```
     
 
 StringBuffer sb是一个方法内部变量，上述代码中直接将sb返回，这样这个StringBuffer有可能被其他方法所改变，这样它的作用域就不只是在方法内部，虽然它是一个局部变量，称其逃逸到了方法外部。甚至还有可能被外部线程访问到，譬如赋值给类变量或可以在其他线程中访问的实例变量，称为线程逃逸。
 
 上述代码如果想要StringBuffer sb不逃出方法，可以这样写：
 
-    public static String createStringBuffer(String s1, String s2) {
-        StringBuffer sb = new StringBuffer();
-        sb.append(s1);
-        sb.append(s2);
-        return sb.toString();
-    }
+```java
+public static String createStringBuffer(String s1, String s2) {
+    StringBuffer sb = new StringBuffer();
+    sb.append(s1);
+    sb.append(s2);
+    return sb.toString();
+}
+```
     
 
 不直接返回 StringBuffer，那么StringBuffer将不会逃逸出方法。
@@ -74,29 +78,31 @@ StringBuffer sb是一个方法内部变量，上述代码中直接将sb返回，
 
 我们来看以下代码：
 
-    public static void main(String[] args) {
-        long a1 = System.currentTimeMillis();
-        for (int i = 0; i < 1000000; i++) {
-            alloc();
-        }
-        // 查看执行时间
-        long a2 = System.currentTimeMillis();
-        System.out.println("cost " + (a2 - a1) + " ms");
-        // 为了方便查看堆内存中对象个数，线程sleep
-        try {
-            Thread.sleep(100000);
-        } catch (InterruptedException e1) {
-            e1.printStackTrace();
-        }
+```java
+public static void main(String[] args) {
+    long a1 = System.currentTimeMillis();
+    for (int i = 0; i < 1000000; i++) {
+        alloc();
     }
-    
-    private static void alloc() {
-        User user = new User();
+    // 查看执行时间
+    long a2 = System.currentTimeMillis();
+    System.out.println("cost " + (a2 - a1) + " ms");
+    // 为了方便查看堆内存中对象个数，线程sleep
+    try {
+        Thread.sleep(100000);
+    } catch (InterruptedException e1) {
+        e1.printStackTrace();
     }
-    
-    static class User {
-    
-    }
+}
+
+private static void alloc() {
+    User user = new User();
+}
+
+static class User {
+
+}
+```
     
 
 其实代码内容很简单，就是使用for循环，在代码中创建100万个User对象。

@@ -14,19 +14,23 @@ SimpleDateFormat是Java提供的一个格式化和解析日期的工具类。它
 
 在Java中，可以使用SimpleDateFormat的format方法，将一个Date类型转化成String类型，并且可以指定输出格式。
 
-    // Date转String
-    Date data = new Date();
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    String dataStr = sdf.format(data);
-    System.out.println(dataStr);
+```java
+// Date转String
+Date data = new Date();
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+String dataStr = sdf.format(data);
+System.out.println(dataStr);
+```
     
 
 以上代码，转换的结果是：2018-11-25 13:00:00，日期和时间格式由"日期和时间模式"字符串指定。如果你想要转换成其他格式，只要指定不同的时间模式就行了。
 
 在Java中，可以使用SimpleDateFormat的parse方法，将一个String类型转化成Date类型。
 
-    // String转Data
-    System.out.println(sdf.parse(dataStr));
+```java
+// String转Data
+System.out.println(sdf.parse(dataStr));
+```
     
 
 #### 日期和时间模式表达方法
@@ -53,9 +57,11 @@ SimpleDateFormat是Java提供的一个格式化和解析日期的工具类。它
 
 那么，如何在Java代码中获取不同时区的时间呢？SimpleDateFormat可以实现这个功能。
 
-    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    sdf.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
-    System.out.println(sdf.format(Calendar.getInstance().getTime()));
+```java
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+sdf.setTimeZone(TimeZone.getTimeZone("America/Los_Angeles"));
+System.out.println(sdf.format(Calendar.getInstance().getTime()));
+```
     
 
 以上代码，转换的结果是： 2018-11-24 21:00:00 。既中国的时间是11月25日的13点，而美国洛杉矶时间比中国北京时间慢了16个小时（这还和冬夏令时有关系，就不详细展开了）。
@@ -68,15 +74,17 @@ SimpleDateFormat是Java提供的一个格式化和解析日期的工具类。它
 
 由于SimpleDateFormat比较常用，而且在一般情况下，一个应用中的时间显示模式都是一样的，所以很多人愿意使用如下方式定义SimpleDateFormat：
 
-    public class Main {
-    
-        private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    
-        public static void main(String[] args) {
-            simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
-            System.out.println(simpleDateFormat.format(Calendar.getInstance().getTime()));
-        }
+```java
+public class Main {
+
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    public static void main(String[] args) {
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("America/New_York"));
+        System.out.println(simpleDateFormat.format(Calendar.getInstance().getTime()));
     }
+}
+```
     
 
 **这种定义方式，存在很大的安全隐患。**
@@ -85,53 +93,55 @@ SimpleDateFormat是Java提供的一个格式化和解析日期的工具类。它
 
 我们来看一段代码，以下代码使用线程池来执行时间输出。
 
-       /** * @author Hollis */ 
-       public class Main {
-    
-        /**
-         * 定义一个全局的SimpleDateFormat
-         */
-        private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    
-        /**
-         * 使用ThreadFactoryBuilder定义一个线程池
-         */
-        private static ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
-            .setNameFormat("demo-pool-%d").build();
-    
-        private static ExecutorService pool = new ThreadPoolExecutor(5, 200,
-            0L, TimeUnit.MILLISECONDS,
-            new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
-    
-        /**
-         * 定义一个CountDownLatch，保证所有子线程执行完之后主线程再执行
-         */
-        private static CountDownLatch countDownLatch = new CountDownLatch(100);
-    
-        public static void main(String[] args) {
-            //定义一个线程安全的HashSet
-            Set<String> dates = Collections.synchronizedSet(new HashSet<String>());
-            for (int i = 0; i < 100; i++) {
-                //获取当前时间
-                Calendar calendar = Calendar.getInstance();
-                int finalI = i;
-                pool.execute(() -> {
-                        //时间增加
-                        calendar.add(Calendar.DATE, finalI);
-                        //通过simpleDateFormat把时间转换成字符串
-                        String dateString = simpleDateFormat.format(calendar.getTime());
-                        //把字符串放入Set中
-                        dates.add(dateString);
-                        //countDown
-                        countDownLatch.countDown();
-                });
-            }
-            //阻塞，直到countDown数量为0
-            countDownLatch.await();
-            //输出去重后的时间个数
-            System.out.println(dates.size());
+```java
+/** * @author Hollis */ 
+public class Main {
+
+    /**
+     * 定义一个全局的SimpleDateFormat
+     */
+    private static SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+    /**
+     * 使用ThreadFactoryBuilder定义一个线程池
+     */
+    private static ThreadFactory namedThreadFactory = new ThreadFactoryBuilder()
+        .setNameFormat("demo-pool-%d").build();
+
+    private static ExecutorService pool = new ThreadPoolExecutor(5, 200,
+        0L, TimeUnit.MILLISECONDS,
+        new LinkedBlockingQueue<Runnable>(1024), namedThreadFactory, new ThreadPoolExecutor.AbortPolicy());
+
+    /**
+     * 定义一个CountDownLatch，保证所有子线程执行完之后主线程再执行
+     */
+    private static CountDownLatch countDownLatch = new CountDownLatch(100);
+
+    public static void main(String[] args) {
+        //定义一个线程安全的HashSet
+        Set<String> dates = Collections.synchronizedSet(new HashSet<String>());
+        for (int i = 0; i < 100; i++) {
+            //获取当前时间
+            Calendar calendar = Calendar.getInstance();
+            int finalI = i;
+            pool.execute(() -> {
+                    //时间增加
+                    calendar.add(Calendar.DATE, finalI);
+                    //通过simpleDateFormat把时间转换成字符串
+                    String dateString = simpleDateFormat.format(calendar.getTime());
+                    //把字符串放入Set中
+                    dates.add(dateString);
+                    //countDown
+                    countDownLatch.countDown();
+            });
         }
+        //阻塞，直到countDown数量为0
+        countDownLatch.await();
+        //输出去重后的时间个数
+        System.out.println(dates.size());
     }
+}
+```
     
 
 以上代码，其实比较简单，很容易理解。就是循环一百次，每次循环的时候都在当前时间基础上增加一个天数（这个天数随着循环次数而变化），然后把所有日期放入一个**线程安全的**、**带有去重功能**的Set中，然后输出Set中元素个数。
@@ -178,23 +188,25 @@ SimpleDateFormat中的format方法在执行过程中，会使用一个成员变�
 
 **使用局部变量**
 
-    for (int i = 0; i < 100; i++) {
-        //获取当前时间
-        Calendar calendar = Calendar.getInstance();
-        int finalI = i;
-        pool.execute(() -> {
-            // SimpleDateFormat声明成局部变量
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            //时间增加
-            calendar.add(Calendar.DATE, finalI);
-            //通过simpleDateFormat把时间转换成字符串
-            String dateString = simpleDateFormat.format(calendar.getTime());
-            //把字符串放入Set中
-            dates.add(dateString);
-            //countDown
-            countDownLatch.countDown();
-        });
-    }
+```java
+for (int i = 0; i < 100; i++) {
+    //获取当前时间
+    Calendar calendar = Calendar.getInstance();
+    int finalI = i;
+    pool.execute(() -> {
+        // SimpleDateFormat声明成局部变量
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        //时间增加
+        calendar.add(Calendar.DATE, finalI);
+        //通过simpleDateFormat把时间转换成字符串
+        String dateString = simpleDateFormat.format(calendar.getTime());
+        //把字符串放入Set中
+        dates.add(dateString);
+        //countDown
+        countDownLatch.countDown();
+    });
+}
+```
     
 
 SimpleDateFormat变成了局部变量，就不会被多个线程同时访问到了，就避免了线程安全问题。
@@ -203,24 +215,26 @@ SimpleDateFormat变成了局部变量，就不会被多个线程同时访问到�
 
 除了改成局部变量以外，还有一种方法大家可能比较熟悉的，就是对于共享变量进行加锁。
 
-    for (int i = 0; i < 100; i++) {
-        //获取当前时间
-        Calendar calendar = Calendar.getInstance();
-        int finalI = i;
-        pool.execute(() -> {
-            //加锁
-            synchronized (simpleDateFormat) {
-                //时间增加
-                calendar.add(Calendar.DATE, finalI);
-                //通过simpleDateFormat把时间转换成字符串
-                String dateString = simpleDateFormat.format(calendar.getTime());
-                //把字符串放入Set中
-                dates.add(dateString);
-                //countDown
-                countDownLatch.countDown();
-            }
-        });
-    }
+```java
+for (int i = 0; i < 100; i++) {
+    //获取当前时间
+    Calendar calendar = Calendar.getInstance();
+    int finalI = i;
+    pool.execute(() -> {
+        //加锁
+        synchronized (simpleDateFormat) {
+            //时间增加
+            calendar.add(Calendar.DATE, finalI);
+            //通过simpleDateFormat把时间转换成字符串
+            String dateString = simpleDateFormat.format(calendar.getTime());
+            //把字符串放入Set中
+            dates.add(dateString);
+            //countDown
+            countDownLatch.countDown();
+        }
+    });
+}
+```
     
 
 通过加锁，使多个线程排队顺序执行。避免了并发导致的线程安全问题。
@@ -231,18 +245,20 @@ SimpleDateFormat变成了局部变量，就不会被多个线程同时访问到�
 
 第三种方式，就是使用 ThreadLocal。 ThreadLocal 可以确保每个线程都可以得到单独的一个 SimpleDateFormat 的对象，那么自然也就不存在竞争问题了。
 
-    /**
-     * 使用ThreadLocal定义一个全局的SimpleDateFormat
-     */
-    private static ThreadLocal<SimpleDateFormat> simpleDateFormatThreadLocal = new ThreadLocal<SimpleDateFormat>() {
-        @Override
-        protected SimpleDateFormat initialValue() {
-            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        }
-    };
-    
-    //用法
-    String dateString = simpleDateFormatThreadLocal.get().format(calendar.getTime());
+```java
+/**
+ * 使用ThreadLocal定义一个全局的SimpleDateFormat
+ */
+private static ThreadLocal<SimpleDateFormat> simpleDateFormatThreadLocal = new ThreadLocal<SimpleDateFormat>() {
+    @Override
+    protected SimpleDateFormat initialValue() {
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    }
+};
+
+//用法
+String dateString = simpleDateFormatThreadLocal.get().format(calendar.getTime());
+```
     
 
 用 ThreadLocal 来实现其实是有点类似于缓存的思路，每个线程都有一个独享的对象，避免了频繁创建对象，也避免了多线程的竞争。
@@ -253,16 +269,18 @@ SimpleDateFormat变成了局部变量，就不会被多个线程同时访问到�
 
 如果是Java8应用，可以使用DateTimeFormatter代替SimpleDateFormat，这是一个线程安全的格式化工具类。就像官方文档中说的，这个类 simple beautiful strong immutable thread-safe。
 
-    //解析日期
-    String dateStr= "2016年10月25日";
-    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
-    LocalDate date= LocalDate.parse(dateStr, formatter);
-    
-    //日期转换为字符串
-    LocalDateTime now = LocalDateTime.now();
-    DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy年MM月dd日 hh:mm a");
-    String nowStr = now .format(format);
-    System.out.println(nowStr);
+```java
+//解析日期
+String dateStr= "2016年10月25日";
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
+LocalDate date= LocalDate.parse(dateStr, formatter);
+
+//日期转换为字符串
+LocalDateTime now = LocalDateTime.now();
+DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy年MM月dd日 hh:mm a");
+String nowStr = now .format(format);
+System.out.println(nowStr);
+```
     
 
 ### 总结

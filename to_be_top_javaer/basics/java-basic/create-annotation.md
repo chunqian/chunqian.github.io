@@ -1,29 +1,37 @@
 在Java中，类使用class定义，接口使用interface定义，注解和接口的定义差不多，增加了一个@符号，即@interface，代码如下：
 
-    public @interface EnableAuth {
-    
-    }
+```java
+public @interface EnableAuth {
+
+}
+```
 
 注解中可以定义成员变量，用于信息的描述，跟接口中方法的定义类似，代码如下：
     
-    public @interface EnableAuth {
-        String name();
-    }
+```java
+public @interface EnableAuth {
+    String name();
+}
+```
 
 还可以添加默认值：
 
-    public @interface EnableAuth {
-        String name() default "猿天地";
-    }
+```java
+public @interface EnableAuth {
+    String name() default "猿天地";
+}
+```
 
 上面的介绍只是完成了自定义注解的第一步，开发中日常使用注解大部分是用在类上，方法上，字段上，示列代码如下：
 
-    @Target(ElementType.METHOD)
-    @Retention(RetentionPolicy.RUNTIME)
-    @Documented
-    public @interface EnableAuth {
-    
-    }
+```java
+@Target(ElementType.METHOD)
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+public @interface EnableAuth {
+
+}
+```
 
 Target 
 

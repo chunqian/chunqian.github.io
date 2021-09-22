@@ -24,13 +24,15 @@
 
 所谓扩容，就是扩大HashMap的容量:
 
-    void addEntry(int hash, K key, V value, int bucketIndex) {
-        if ((size >= threshold) && (null != table[bucketIndex])) {
-            resize(2 * table.length);
-            hash = (null != key) ? hash(key) : 0;
-            bucketIndex = indexFor(hash, table.length);        }
-        createEntry(hash, key, value, bucketIndex);
-    }
+```java
+void addEntry(int hash, K key, V value, int bucketIndex) {
+    if ((size >= threshold) && (null != table[bucketIndex])) {
+        resize(2 * table.length);
+        hash = (null != key) ? hash(key) : 0;
+        bucketIndex = indexFor(hash, table.length);        }
+    createEntry(hash, key, value, bucketIndex);
+}
+```
 
 
 从代码中我们可以看到，在向HashMap中添加元素过程中，如果 `元素个数（size）超过临界值（threshold）` 的时候，就会进行自动扩容（resize），并且，在扩容之后，还需要对HashMap中原有元素进行rehash，即将原来通中的元素重新分配到新的桶中。
@@ -104,10 +106,12 @@ HashMap基于链表的数组的数据结构实现的
 
 这个值现在在JDK的源码中是0.75:
 
-    /**
-     * The load factor used when none specified in constructor.
-     */
-    static final float DEFAULT_LOAD_FACTOR = 0.75f;
+```java
+/**
+ * The load factor used when none specified in constructor.
+ */
+static final float DEFAULT_LOAD_FACTOR = 0.75f;
+```
 
 
 那么，为什么选择0.75呢？背后有什么考虑？为什么不是1，不是0.8？不是0.5，而是0.75呢？
@@ -130,12 +134,16 @@ HashMap基于链表的数组的数据结构实现的
 
 用s表示添加的键的大小和n个键的数目。根据二项式定理，桶为空的概率为:
 
-    P(0) = C(n, 0) * (1/s)^0 * (1 - 1/s)^(n - 0)
+```java
+P(0) = C(n, 0) * (1/s)^0 * (1 - 1/s)^(n - 0)
+```
 
 
 因此，如果桶中元素个数小于以下数值，则桶可能是空的：
 
-    log(2)/log(s/(s - 1))
+```java
+log(2)/log(s/(s - 1))
+```
 
 
 当s趋于无穷大时，如果增加的键的数量使P(0) = 0.5，那么n/s很快趋近于log(2):

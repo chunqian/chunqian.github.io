@@ -1,8 +1,10 @@
 在关于java的集合类的学习中，我们发现`ArrayList`类和`Vector`类都是使用数组实现的，但是在定义数组`elementData`这个属性时稍有不同，那就是`ArrayList`使用`transient`关键字
 
-    private transient Object[] elementData;  
-    
-    protected Object[] elementData;  
+```java
+private transient Object[] elementData;  
+
+protected Object[] elementData;
+```
     
 
 那么，首先我们来看一下**transient**关键字的作用是什么。

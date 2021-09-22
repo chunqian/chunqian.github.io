@@ -18,41 +18,45 @@
 
 > 一方库指的是本项目中的依赖 二方库指的是公司内部其他项目提供的依赖 三方库指的是其他组织、公司等来自第三方的依赖
 
-    public interface AFacadeService {
-    
-        public AResponse doSth(ARequest aRequest);
-    }
-    
-    public Class AResponse{
-    
-        private Boolean success;
-    
-        private AType aType;
-    }
-    
-    public enum AType{
-    
-        P_T,
-    
-        A_B
-    }
+```java
+public interface AFacadeService {
+
+    public AResponse doSth(ARequest aRequest);
+}
+
+public Class AResponse{
+
+    private Boolean success;
+
+    private AType aType;
+}
+
+public enum AType{
+
+    P_T,
+
+    A_B
+}
+```
     
 
 然后B系统依赖了这个二方库，并且会通过RPC远程调用的方式调用AFacadeService的doSth方法。
 
-    public class BService {
-    
-        @Autowired
-        AFacadeService aFacadeService;
-    
-        public void doSth(){
-            ARequest aRequest = new ARequest();
-    
-            AResponse aResponse = aFacadeService.doSth(aRequest);
-    
-            AType aType = aResponse.getAType();
-        }
+```java
+public class BService {
+
+    @Autowired
+    AFacadeService aFacadeService;
+
+    public void doSth(){
+        ARequest aRequest = new ARequest();
+
+        AResponse aResponse = aFacadeService.doSth(aRequest);
+
+        AType aType = aResponse.getAType();
     }
+}
+```
     
 
 这时候，如果A和B系统依赖的都是同一个二方库的话，两者使用到的枚举AType会是同一个类，里面的枚举项也都是一致的，这种情况不会有什么问题。
@@ -61,24 +65,28 @@
 
 那么A系统依赖的的AType就是这样的：
 
-    public enum AType{
-    
-        P_T,
-    
-        A_B,
-    
-        P_M
-    }
+```java
+public enum AType{
+
+    P_T,
+
+    A_B,
+
+    P_M
+}
+```
     
 
 而B系统依赖的AType则是这样的：
 
-    public enum AType{
-    
-        P_T,
-    
-        A_B
-    }
+```java
+public enum AType{
+
+    P_T,
+
+    A_B
+}
+```
     
 
 这种情况下**，在B系统通过RPC调用A系统的时候，如果A系统返回的AResponse中的aType的类型位新增的P_M时候，B系统就会无法解析。一般在这种时候，RPC框架就会发生反序列化异常。导致程序被中断。**
@@ -93,16 +101,18 @@
 
 而我们查看枚举类的valueOf方法的实现时，就可以发现，**如果从枚举类中找不到对应的枚举项的时候，就会抛出IllegalArgumentException**：
 
-    public static <T extends Enum<T>> T valueOf(Class<T> enumType,
-                                                String name) {
-        T result = enumType.enumConstantDirectory().get(name);
-        if (result != null)
-            return result;
-        if (name == null)
-            throw new NullPointerException("Name is null");
-        throw new IllegalArgumentException(
-            "No enum constant " + enumType.getCanonicalName() + "." + name);
-    }
+```java
+public static <T extends Enum<T>> T valueOf(Class<T> enumType,
+                                            String name) {
+    T result = enumType.enumConstantDirectory().get(name);
+    if (result != null)
+        return result;
+    if (name == null)
+        throw new NullPointerException("Name is null");
+    throw new IllegalArgumentException(
+        "No enum constant " + enumType.getCanonicalName() + "." + name);
+}
+```
     
 
 关于这个问题，其实在《阿里巴巴Java开发手册》中也有类似的约定：
@@ -147,15 +157,17 @@
 
 **为了方便调用者使用，可以使用javadoc的@see注解表明这个字符串字段的取值从那个枚举中获取。**
 
-    public Class AResponse{
-    
-        private Boolean success;
-    
-        /**
-        *  @see AType 
-        */
-        private String aType;
-    }
+```java
+public Class AResponse{
+
+    private Boolean success;
+
+    /**
+    *  @see AType 
+    */
+    private String aType;
+}
+```
     
 
 对于像阿里这种比较庞大的互联网公司，**随便提供出去的一个接口，可能有上百个调用方**，而接口升级也是常态，**我们根本做不到每次二方库升级之后要求所有调用者跟着一起升级**，这是完全不现实的，并且对于有些调用者来说，他用不到新特性，完全没必要做升级。

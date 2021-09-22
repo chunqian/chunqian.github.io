@@ -13,12 +13,14 @@ ClassLoader中和类加载有关的方法有很多，前面提到了loadClass，
 
 这时候，就可以继承ClassLoader，并且重写findClass方法。findClass()方法是JDK1.2之后的ClassLoader新添加的一个方法。
 
-     /**
-     * @since  1.2
-     */
-    protected Class<?> findClass(String name) throws ClassNotFoundException {
-        throw new ClassNotFoundException(name);
-    }
+```java
+/**
+* @since  1.2
+*/
+protected Class<?> findClass(String name) throws ClassNotFoundException {
+    throw new ClassNotFoundException(name);
+}
+```
     
 这个方法只抛出了一个异常，没有默认实现。
 

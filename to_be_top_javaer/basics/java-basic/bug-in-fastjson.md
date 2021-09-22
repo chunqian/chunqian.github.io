@@ -49,30 +49,32 @@ fastjson的主要功能就是将Java Bean序列化成JSON字符串，这样得�
 
 假设我们有以下一个Java类：
 
-    class Store {
-        private String name;
-        private Fruit fruit;
-        public String getName() {
-            return name;
-        }
-        public void setName(String name) {
-            this.name = name;
-        }
-        public Fruit getFruit() {
-            return fruit;
-        }
-        public void setFruit(Fruit fruit) {
-            this.fruit = fruit;
-        }
+```java
+class Store {
+    private String name;
+    private Fruit fruit;
+    public String getName() {
+        return name;
     }
-    
-    interface Fruit {
+    public void setName(String name) {
+        this.name = name;
     }
-    
-    class Apple implements Fruit {
-        private BigDecimal price;
-        //省略 setter/getter、toString等
+    public Fruit getFruit() {
+        return fruit;
     }
+    public void setFruit(Fruit fruit) {
+        this.fruit = fruit;
+    }
+}
+
+interface Fruit {
+}
+
+class Apple implements Fruit {
+    private BigDecimal price;
+    //省略 setter/getter、toString等
+}
+```
     
 
 **当我们要对他进行序列化的时候，fastjson会扫描其中的getter方法，即找到getName和getFruit，这时候就会将name和fruit两个字段的值序列化到JSON字符串中。**
@@ -81,13 +83,15 @@ fastjson的主要功能就是将Java Bean序列化成JSON字符串，这样得�
 
 我们尝试着验证一下，基于(fastjson v 1.2.68)：
 
-    Store store = new Store();
-    store.setName("Hollis");
-    Apple apple = new Apple();
-    apple.setPrice(new BigDecimal(0.5));
-    store.setFruit(apple);
-    String jsonString = JSON.toJSONString(store);
-    System.out.println("toJSONString : " + jsonString);
+```java
+Store store = new Store();
+store.setName("Hollis");
+Apple apple = new Apple();
+apple.setPrice(new BigDecimal(0.5));
+store.setFruit(apple);
+String jsonString = JSON.toJSONString(store);
+System.out.println("toJSONString : " + jsonString);
+```
     
 
 以上代码比较简单，我们创建了一个store，为他指定了名称，并且创建了一个Fruit的子类型Apple，然后将这个store使用`JSON.toJSONString`进行序列化，可以得到以下JSON内容：
@@ -97,10 +101,12 @@ fastjson的主要功能就是将Java Bean序列化成JSON字符串，这样得�
 
 那么，这个fruit的类型到底是什么呢，能否反序列化成Apple呢？我们再来执行以下代码：
 
-    Store newStore = JSON.parseObject(jsonString, Store.class);
-    System.out.println("parseObject : " + newStore);
-    Apple newApple = (Apple)newStore.getFruit();
-    System.out.println("getFruit : " + newApple);
+```java
+Store newStore = JSON.parseObject(jsonString, Store.class);
+System.out.println("parseObject : " + newStore);
+Apple newApple = (Apple)newStore.getFruit();
+System.out.println("getFruit : " + newApple);
+```
     
 
 执行结果如下：
@@ -113,8 +119,10 @@ fastjson的主要功能就是将Java Bean序列化成JSON字符串，这样得�
 
 可以看到，在将store反序列化之后，我们尝试将Fruit转换成Apple，但是抛出了异常，尝试直接转换成Fruit则不会报错，如：
 
-    Fruit newFruit = newStore.getFruit();
-    System.out.println("getFruit : " + newFruit);
+```java
+Fruit newFruit = newStore.getFruit();
+System.out.println("getFruit : " + newFruit);
+```
     
 
 以上现象，我们知道，**当一个类中包含了一个接口（或抽象类）的时候，在使用fastjson进行序列化的时候，会将子类型抹去，只保留接口（抽象类）的类型，使得反序列化时无法拿到原始类型。**
@@ -123,12 +131,16 @@ fastjson的主要功能就是将Java Bean序列化成JSON字符串，这样得�
 
 使用方法是通过`SerializerFeature.WriteClassName`进行标记，即将上述代码中的
 
-    String jsonString = JSON.toJSONString(store);
+```java
+String jsonString = JSON.toJSONString(store);
+```
     
 
 修改成：
 
-    String jsonString = JSON.toJSONString(store,SerializerFeature.WriteClassName);
+```java
+String jsonString = JSON.toJSONString(store,SerializerFeature.WriteClassName);
+```
     
 
 即可，以上代码，输出结果如下：
@@ -272,7 +284,9 @@ fastjson的主要功能就是将Java Bean序列化成JSON字符串，这样得�
 
 开启safeMode方式如下：
 
-    ParserConfig.getGlobalInstance().setSafeMode(true);
+```java
+ParserConfig.getGlobalInstance().setSafeMode(true);
+```
     
 
 如在本文的最开始的代码示例中，使用以上代码开启safeMode模式，执行代码，会得到以下异常：

@@ -51,12 +51,13 @@ Java 中的整型主要包含`byte`、`short`、`int`和`long`这四种，表示
 ### 超出范围怎么办
 
 上面说过了，整型中，每个类型都有一定的表示范围，但是，在程序中有些计算会导致超出表示范围，即溢出。如以下代码：
-```java
-    int i = Integer.MAX_VALUE;
-    int j = Integer.MAX_VALUE;
 
-    int k = i + j;
-    System.out.println("i (" + i + ") + j (" + j + ") = k (" + k + ")");
+```java
+int i = Integer.MAX_VALUE;
+int j = Integer.MAX_VALUE;
+
+int k = i + j;
+System.out.println("i (" + i + ") + j (" + j + ") = k (" + k + ")");
 ```
 
 输出结果：i (2147483647) + j (2147483647) = k (-2)
@@ -101,7 +102,7 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 在 Java SE5 之前，要进行装箱，可以通过以下代码：
 
 ```java
-    Integer i = new Integer(10);
+Integer i = new Integer(10);
 ```
 
 ## 自动拆箱与自动装箱
@@ -112,8 +113,8 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 
 自动拆箱：就是将包装类自动转换成对应的基本数据类型。
 ```java
-    Integer i = 10;  //自动装箱
-    int b = i;     //自动拆箱
+Integer i = 10;  //自动装箱
+int b = i;     //自动拆箱
 ```
 
 `Integer i=10` 可以替代 `Integer i = new Integer(10);`，这就是因为 Java 帮我们提供了自动装箱的功能，不需要开发者手动去 new 一个 Integer 对象。
@@ -125,19 +126,19 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 我们有以下自动拆装箱的代码：
 
 ```java
-    public static  void main(String[]args){
-        Integer integer=1; //装箱
-        int i=integer; //拆箱
-    }
+public static  void main(String[]args){
+    Integer integer=1; //装箱
+    int i=integer; //拆箱
+}
 ```
 
 对以上代码进行反编译后可以得到以下代码：
 
 ```java
-    public static  void main(String[]args){
-        Integer integer=Integer.valueOf(1);
-        int i=integer.intValue();
-    }
+public static  void main(String[]args){
+    Integer integer=Integer.valueOf(1);
+    int i=integer.intValue();
+}
 ```
 
 从上面反编译后的代码可以看出，int 的自动装箱都是通过 `Integer.valueOf()` 方法来实现的，Integer 的自动拆箱都是通过 `integer.intValue` 来实现的。如果读者感兴趣，可以试着将八种类型都反编译一遍 ，你会发现以下规律：
@@ -155,19 +156,19 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 我们知道，Java 中的集合类只能接收对象类型，那么以下代码为什么会不报错呢？
 
 ```java
-    List<Integer> li = new ArrayList<>();
-    for (int i = 1; i < 50; i ++){
-        li.add(i);
-    }
+List<Integer> li = new ArrayList<>();
+for (int i = 1; i < 50; i ++){
+    li.add(i);
+}
 ```
 
 将上面代码进行反编译，可以得到以下代码：
 
 ```java
-    List<Integer> li = new ArrayList<>();
-    for (int i = 1; i < 50; i += 2){
-        li.add(Integer.valueOf(i));
-    }
+List<Integer> li = new ArrayList<>();
+for (int i = 1; i < 50; i += 2){
+    li.add(Integer.valueOf(i));
+}
 ```
 
 以上，我们可以得出结论，当我们把基本数据类型放入集合类中的时候，会进行自动装箱。
@@ -177,19 +178,19 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 有没有人想过，当我们对 Integer 对象与基本类型进行大小比较的时候，实际上比较的是什么内容呢？看以下代码：
 
 ```java
-    Integer a = 1;
-    System.out.println(a == 1 ? "等于" : "不等于");
-    Boolean bool = false;
-    System.out.println(bool ? "真" : "假");
+Integer a = 1;
+System.out.println(a == 1 ? "等于" : "不等于");
+Boolean bool = false;
+System.out.println(bool ? "真" : "假");
 ```
 
 对以上代码进行反编译，得到以下代码：
 
 ```java
-    Integer a = 1;
-    System.out.println(a.intValue() == 1 ? "等于" : "不等于");
-    Boolean bool = false;
-    System.out.println(bool.booleanValue ? "真" : "假");
+Integer a = 1;
+System.out.println(a.intValue() == 1 ? "等于" : "不等于");
+Boolean bool = false;
+System.out.println(bool.booleanValue ? "真" : "假");
 ```
 
 可以看到，包装类与基本数据类型进行比较运算，是先将包装类进行拆箱成基本数据类型，然后进行比较的。
@@ -199,18 +200,18 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 有没有人想过，当我们对 Integer 对象进行四则运算的时候，是如何进行的呢？看以下代码：
 
 ```java
-    Integer i = 10;
-    Integer j = 20;
+Integer i = 10;
+Integer j = 20;
 
-    System.out.println(i+j);
+System.out.println(i+j);
 ```
 
 反编译后代码如下：
 
 ```java
-    Integer i = Integer.valueOf(10);
-    Integer j = Integer.valueOf(20);
-    System.out.println(i.intValue() + j.intValue());
+Integer i = Integer.valueOf(10);
+Integer j = Integer.valueOf(20);
+System.out.println(i.intValue() + j.intValue());
 ```
 
 我们发现，两个包装类型之间的运算，会被自动拆箱成基本类型进行。
@@ -220,10 +221,10 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 这是很多人不知道的一个场景，作者也是一次线上的血淋淋的 Bug 发生后才了解到的一种案例。看一个简单的三目运算符的代码：
 
 ```java
-    boolean flag = true;
-    Integer i = 0;
-    int j = 1;
-    int k = flag ? i : j;
+boolean flag = true;
+Integer i = 0;
+int j = 1;
+int k = flag ? i : j;
 ```
 
 很多人不知道，其实在 `int k = flag ? i : j;` 这一行，会发生自动拆箱（ JDK1.8 之前，详见：[《阿里巴巴Java开发手册-泰山版》提到的三目运算符的空指针问题到底是个怎么回事？](https://www.hollischuang.com/archives/4749) ）。
@@ -231,11 +232,11 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 反编译后代码如下：
 
 ```java
-    boolean flag = true;
-    Integer i = Integer.valueOf(0);
-    int j = 1;
-    int k = flag ? i.intValue() : j;
-    System.out.println(k);
+boolean flag = true;
+Integer i = Integer.valueOf(0);
+int j = 1;
+int k = flag ? i.intValue() : j;
+System.out.println(k);
 ```
 
 这其实是三目运算符的语法规范。当第二，第三位操作数分别为基本类型和对象时，其中的对象就会拆箱为基本类型进行操作。
@@ -247,14 +248,14 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 这个比较容易理解，直接上代码了：
 
 ```java
-    //自动拆箱
-    public int getNum1(Integer num) {
-     return num;
-    }
-    //自动装箱
-    public Integer getNum2(int num) {
-     return num;
-    }
+//自动拆箱
+public int getNum1(Integer num) {
+ return num;
+}
+//自动装箱
+public Integer getNum2(int num) {
+ return num;
+}
 ```
 
 ## 自动拆装箱与缓存
@@ -262,24 +263,24 @@ Java 语言是一个面向对象的语言，但是 Java 中的基本数据类型
 Java SE 的自动拆装箱还提供了一个和缓存有关的功能，我们先来看以下代码，猜测一下输出结果：
 
 ```java
-    public static void main(String... strings) {
+public static void main(String... strings) {
 
-        Integer integer1 = 3;
-        Integer integer2 = 3;
+    Integer integer1 = 3;
+    Integer integer2 = 3;
 
-        if (integer1 == integer2)
-            System.out.println("integer1 == integer2");
-        else
-            System.out.println("integer1 != integer2");
+    if (integer1 == integer2)
+        System.out.println("integer1 == integer2");
+    else
+        System.out.println("integer1 != integer2");
 
-        Integer integer3 = 300;
-        Integer integer4 = 300;
+    Integer integer3 = 300;
+    Integer integer4 = 300;
 
-        if (integer3 == integer4)
-            System.out.println("integer3 == integer4");
-        else
-            System.out.println("integer3 != integer4");
-    }
+    if (integer3 == integer4)
+        System.out.println("integer3 == integer4");
+    else
+        System.out.println("integer3 != integer4");
+}
 ```
 
 我们普遍认为上面的两个判断的结果都是 false。虽然比较的值是相等的，但是由于比较的是对象，而对象的引用不一样，所以会认为两个 if 判断都是 false 的。在 Java 中，`==` 比较的是对象引用，而 `equals` 比较的是值。所以，在这个例子中，不同的对象有不同的引用，所以在进行比较的时候都将返回 false。奇怪的是，这里两个类似的 if 条件判断返回不同的布尔值。

@@ -16,8 +16,10 @@
 
 其实，所有的所谓字符串拼接，都是重新生成了一个新的字符串。下面一段字符串拼接代码：
 
-    String s = "abcd";
-    s = s.concat("ef");
+```java
+String s = "abcd";
+s = s.concat("ef");
+```
 
 其实最后我们得到的s已经是一个新的字符串了。如下图
 
@@ -31,16 +33,20 @@ s中保存的是一个重新创建出来的String对象的引用。
 
 在Java中，拼接字符串最简单的方式就是直接使用符号`+`来拼接。如：
 
-    String wechat = "Hollis";
-    String introduce = "每日更新Java相关技术文章";
-    String hollis = wechat + "," + introduce;
+```java
+String wechat = "Hollis";
+String introduce = "每日更新Java相关技术文章";
+String hollis = wechat + "," + introduce;
+```
 
 **concat**  
 除了使用`+`拼接字符串之外，还可以使用String类中的方法concat方法来拼接字符串。如：
 
-    String wechat = "Hollis";
-    String introduce = "每日更新Java相关技术文章";
-    String hollis = wechat.concat(",").concat(introduce);
+```java
+String wechat = "Hollis";
+String introduce = "每日更新Java相关技术文章";
+String hollis = wechat.concat(",").concat(introduce);
+```
 
 
 **StringBuffer**
@@ -49,32 +55,40 @@ s中保存的是一个重新创建出来的String对象的引用。
 
 使用`StringBuffer`可以方便的对字符串进行拼接。如：
 
-    StringBuffer wechat = new StringBuffer("Hollis");
-    String introduce = "每日更新Java相关技术文章";
-    StringBuffer hollis = wechat.append(",").append(introduce);
+```java
+StringBuffer wechat = new StringBuffer("Hollis");
+String introduce = "每日更新Java相关技术文章";
+StringBuffer hollis = wechat.append(",").append(introduce);
+```
 
 
 **StringBuilder**  
 除了`StringBuffer`以外，还有一个类`StringBuilder`也可以使用，其用法和`StringBuffer`类似。如：
 
-    StringBuilder wechat = new StringBuilder("Hollis");
-    String introduce = "每日更新Java相关技术文章";
-    StringBuilder hollis = wechat.append(",").append(introduce);
+```java
+StringBuilder wechat = new StringBuilder("Hollis");
+String introduce = "每日更新Java相关技术文章";
+StringBuilder hollis = wechat.append(",").append(introduce);
+```
 
 **StringUtils.join**  
 除了JDK中内置的字符串拼接方法，还可以使用一些开源类库中提供的字符串拼接方法名，如`apache.commons中`提供的`StringUtils`类，其中的`join`方法可以拼接字符串。
 
-    String wechat = "Hollis";
-    String introduce = "每日更新Java相关技术文章";
-    System.out.println(StringUtils.join(wechat, ",", introduce));
+```java
+String wechat = "Hollis";
+String introduce = "每日更新Java相关技术文章";
+System.out.println(StringUtils.join(wechat, ",", introduce));
+```
     
 
 这里简单说一下，StringUtils中提供的join方法，最主要的功能是：将数组或集合以某拼接符拼接到一起形成新的字符串，如：
 
-    String []list  ={"Hollis","每日更新Java相关技术文章"};
-    String result= StringUtils.join(list,",");
-    System.out.println(result);
-    //结果：Hollis,每日更新Java相关技术文章
+```java
+String []list  ={"Hollis","每日更新Java相关技术文章"};
+String result= StringUtils.join(list,",");
+System.out.println(result);
+//结果：Hollis,每日更新Java相关技术文章
+```
     
 
 并且，Java8中的String类中也提供了一个静态的join方法，用法和StringUtils.join类似。
@@ -93,16 +107,18 @@ s中保存的是一个重新创建出来的String对象的引用。
 
 我们再来看一下concat方法的源代码，看一下这个方法又是如何实现的。
 
-    public String concat(String str) {
-        int otherLen = str.length();
-        if (otherLen == 0) {
-            return this;
-        }
-        int len = value.length;
-        char buf[] = Arrays.copyOf(value, len + otherLen);
-        str.getChars(buf, len);
-        return new String(buf, true);
+```java
+public String concat(String str) {
+    int otherLen = str.length();
+    if (otherLen == 0) {
+        return this;
     }
+    int len = value.length;
+    char buf[] = Arrays.copyOf(value, len + otherLen);
+    str.getChars(buf, len);
+    return new String(buf, true);
+}
+```
 
 
 这段代码首先创建了一个字符数组，长度是已有字符串和待拼接字符串的长度之和，再把两个字符串的值复制到新的字符数组中，并使用这个字符数组创建一个新的String对象并返回。
@@ -115,44 +131,54 @@ s中保存的是一个重新创建出来的String对象的引用。
 
 和`String`类类似，`StringBuilder`类也封装了一个字符数组，定义如下：
 
-    char[] value;
+```java
+char[] value;
+```
 
 
 与`String`不同的是，它并不是`final`的，所以他是可以修改的。另外，与`String`不同，字符数组中不一定所有位置都已经被使用，它有一个实例变量，表示数组中已经使用的字符个数，定义如下：
 
-    int count;
+```java
+int count;
+```
 
 
 其append源码如下：
 
-    public StringBuilder append(String str) {
-        super.append(str);
-        return this;
-    }
+```java
+public StringBuilder append(String str) {
+    super.append(str);
+    return this;
+}
+```
 
 
 该类继承了`AbstractStringBuilder`类，看下其`append`方法：
 
-    public AbstractStringBuilder append(String str) {
-        if (str == null)
-            return appendNull();
-        int len = str.length();
-        ensureCapacityInternal(count + len);
-        str.getChars(0, len, value, count);
-        count += len;
-        return this;
-    }
+```java
+public AbstractStringBuilder append(String str) {
+    if (str == null)
+        return appendNull();
+    int len = str.length();
+    ensureCapacityInternal(count + len);
+    str.getChars(0, len, value, count);
+    count += len;
+    return this;
+}
+```
 
 
 append会直接拷贝字符到内部的字符数组中，如果字符数组长度不够，会进行扩展。
 
 `StringBuffer`和`StringBuilder`类似，最大的区别就是`StringBuffer`是线程安全的，看一下`StringBuffer`的`append`方法。
 
-    public synchronized StringBuffer append(String str) {
-        toStringCache = null;
-        super.append(str);
-        return this;
-    }
+```java
+public synchronized StringBuffer append(String str) {
+    toStringCache = null;
+    super.append(str);
+    return this;
+}
+```
 
 
 该方法使用`synchronized`进行声明，说明是一个线程安全的方法。而`StringBuilder`则不是线程安全的。
@@ -161,46 +187,50 @@ append会直接拷贝字符到内部的字符数组中，如果字符数组长�
 
 通过查看`StringUtils.join`的源代码，我们可以发现，其实他也是通过`StringBuilder`来实现的。
 
-    public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
-        if (array == null) {
-            return null;
-        }
-        if (separator == null) {
-            separator = EMPTY;
-        }
-    
-        // endIndex - startIndex &gt; 0:   Len = NofStrings *(len(firstString) + len(separator))
-        //           (Assuming that all Strings are roughly equally long)
-        final int noOfItems = endIndex - startIndex;
-        if (noOfItems &lt;= 0) {
-            return EMPTY;
-        }
-    
-        final StringBuilder buf = new StringBuilder(noOfItems * 16);
-    
-        for (int i = startIndex; i &lt; endIndex; i++) {
-            if (i &gt; startIndex) {
-                buf.append(separator);
-            }
-            if (array[i] != null) {
-                buf.append(array[i]);
-            }
-        }
-        return buf.toString();
+```java
+public static String join(final Object[] array, String separator, final int startIndex, final int endIndex) {
+    if (array == null) {
+        return null;
     }
+    if (separator == null) {
+        separator = EMPTY;
+    }
+
+    // endIndex - startIndex &gt; 0:   Len = NofStrings *(len(firstString) + len(separator))
+    //           (Assuming that all Strings are roughly equally long)
+    final int noOfItems = endIndex - startIndex;
+    if (noOfItems &lt;= 0) {
+        return EMPTY;
+    }
+
+    final StringBuilder buf = new StringBuilder(noOfItems * 16);
+
+    for (int i = startIndex; i &lt; endIndex; i++) {
+        if (i &gt; startIndex) {
+            buf.append(separator);
+        }
+        if (array[i] != null) {
+            buf.append(array[i]);
+        }
+    }
+    return buf.toString();
+}
+```
 
 
 ### 效率比较
 
 既然有这么多种字符串拼接的方法，那么到底哪一种效率最高呢？我们来简单对比一下。
 
-    long t1 = System.currentTimeMillis();
-    //这里是初始字符串定义
-    for (int i = 0; i &lt; 50000; i++) {
-        //这里是字符串拼接代码
-    }
-    long t2 = System.currentTimeMillis();
-    System.out.println("cost:" + (t2 - t1));
+```java
+long t1 = System.currentTimeMillis();
+//这里是初始字符串定义
+for (int i = 0; i &lt; 50000; i++) {
+    //这里是字符串拼接代码
+}
+long t2 = System.currentTimeMillis();
+System.out.println("cost:" + (t2 - t1));
+```
 
 
 我们使用形如以上形式的代码，分别测试下五种字符串拼接代码的运行时间。得到结果如下：
@@ -224,14 +254,16 @@ StringUtils.join也是使用了StringBuilder，并且其中还是有很多其他
 
 我们再把以下代码反编译下：
 
-    long t1 = System.currentTimeMillis();
-    String str = "hollis";
-    for (int i = 0; i &lt; 50000; i++) {
-        String s = String.valueOf(i);
-        str += s;
-    }
-    long t2 = System.currentTimeMillis();
-    System.out.println("+ cost:" + (t2 - t1));
+```java
+long t1 = System.currentTimeMillis();
+String str = "hollis";
+for (int i = 0; i &lt; 50000; i++) {
+    String s = String.valueOf(i);
+    str += s;
+}
+long t2 = System.currentTimeMillis();
+System.out.println("+ cost:" + (t2 - t1));
+```
     
 
 反编译后代码如下：

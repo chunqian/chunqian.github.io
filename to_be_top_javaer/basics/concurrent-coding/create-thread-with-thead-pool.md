@@ -20,11 +20,9 @@ public class MultiThreads {
 
 输出结果：
 
-```
-main
-通过线程池创建线程
-pool-1-thread-1
-```
+    main
+    通过线程池创建线程
+    pool-1-thread-1
     
 
 所谓线程池本质是一个hashSet。多余的任务会放在阻塞队列中。

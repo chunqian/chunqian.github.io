@@ -10,9 +10,11 @@ Java中，想要拼接字符串，最简单的方式就是通过"+"连接两个�
 
 还是这样一段代码。我们把他生成的字节码进行反编译，看看结果。
 
+```java
     String wechat = "Hollis";
     String introduce = "每日更新Java相关技术文章";
     String hollis = wechat + "," + introduce;
+```
     
 反编译后的内容如下，反编译工具为jad。
 

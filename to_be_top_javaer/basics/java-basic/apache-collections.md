@@ -62,17 +62,15 @@ public class BagTester {
 
 它将打印以下结果:
 
-```
 
-d is present 3 times.
-bag: [2:a,1:b,1:c,3:d]
-Unique Set: [a, b, c, d]
-2 occurences of d removed from bag: [2:a,1:b,1:c,1:d]
-d is present 1 times.
-bag: [2:a,1:b,1:c,1:d]
-Unique Set: [a, b, c, d]
+    d is present 3 times.
+    bag: [2:a,1:b,1:c,3:d]
+    Unique Set: [a, b, c, d]
+    2 occurences of d removed from bag: [2:a,1:b,1:c,1:d]
+    d is present 1 times.
+    bag: [2:a,1:b,1:c,1:d]
+    Unique Set: [a, b, c, d]
 
-```
 
 ### Commons Collections - BidiMap
 
@@ -100,13 +98,13 @@ public class BidiMapTester {
 ```
 
 它将打印以下结果。
-```
-1
-One
-Original Map: {One=1, Three=3, Two=2}
-Modified Map: {Three=3, Two=2}
-Inversed Map: {2=Two, 3=Three}
-```
+
+    1
+    One
+    Original Map: {One=1, Three=3, Two=2}
+    Modified Map: {Three=3, Two=2}
+    Inversed Map: {2=Two, 3=Three}
+
 
 ### Commons Collections - MapIterator
 
@@ -139,19 +137,19 @@ public class MapIteratorTester {
 ```
 
 它将打印以下结果。
-```
-key: 3
-Value: Three
-key: 5
-Value: Five
-key: 2
-Value: Two
-key: 4
-Value: Four
-key: 1
-Value: One
-{3=Three_, 5=Five_, 2=Two_, 4=Four_, 1=One_}
-```
+
+    key: 3
+    Value: Three
+    key: 5
+    Value: Five
+    key: 2
+    Value: Two
+    key: 4
+    Value: Four
+    key: 1
+    Value: One
+    {3=Three_, 5=Five_, 2=Two_, 4=Four_, 1=One_}
+
 
 ### Commons Collections - OrderedMap
 
@@ -175,12 +173,12 @@ public class OrderedMapTester {
 
 它将打印以下结果。
 
-```
-One
-Two
-Three
 
-```
+    One
+    Two
+    Three
+
+
 
 ### Commons Collections - Ignore NULL
 
@@ -207,10 +205,10 @@ public class CollectionUtilsTester {
 ```
 
 它将打印以下结果。
-```
-[a]
-Null value is not present
-```
+
+    [a]
+    Null value is not present
+
 
 ### Merge & Sort
 
@@ -233,9 +231,9 @@ public class CollectionUtilsTester {
 
 
 它将打印以下结果。
-```
-[A, B, C, D, E, F]
-```
+
+    [A, B, C, D, E, F]
+
 
 ### 安全空检查(Safe Empty Checks)
 
@@ -264,10 +262,10 @@ public class CollectionUtilsTester {
 ```
 
 它将打印以下结果。
-```
-Non-Empty List Check: false
-Non-Empty List Check: false
-```
+
+    Non-Empty List Check: false
+    Non-Empty List Check: false
+
 
 ### Commons Collections - Inclusion
 
@@ -292,11 +290,11 @@ public class CollectionUtilsTester {
 
 它将打印以下结果。
 
-```
-List 1: [A, A, A, C, B, B]
-List 2: [A, A, B, B]
-Is List 2 contained in List 1: true
-```
+
+    List 1: [A, A, A, C, B, B]
+    List 2: [A, A, B, B]
+    Is List 2 contained in List 1: true
+
 
 ### Commons Collections - Intersection
 
@@ -322,12 +320,12 @@ public class CollectionUtilsTester {
 它将打印以下结果。
 
 
-```
-List 1: [A, A, A, C, B, B]
-List 2: [A, A, B, B]
-Commons Objects of List 1 and List 2: [A, A, B, B]
 
-```
+    List 1: [A, A, A, C, B, B]
+    List 2: [A, A, B, B]
+    Commons Objects of List 1 and List 2: [A, A, B, B]
+
+
 
 ### Commons Collections - Subtraction
 通过从其他集合中减去一个集合的对象来获取新集合
@@ -350,11 +348,11 @@ public class CollectionUtilsTester {
 ```
 
 它将打印以下结果。
-```
-List 1: [A, A, A, C, B, B]
-List 2: [A, A, B, B]
-List 1 - List 2: [A, C]
-```
+
+    List 1: [A, A, A, C, B, B]
+    List 2: [A, A, B, B]
+    List 1 - List 2: [A, C]
+
 
 ### Commons Collections - Union
 
@@ -378,11 +376,11 @@ public class CollectionUtilsTester {
 ```
 
 它将打印以下结果。
-``` 
-List 1: [A, A, A, C, B, B]
-List 2: [A, A, B, B]
-Union of List 1 and List 2: [A, A, A, B, B, C]
 
-```
+    List 1: [A, A, A, C, B, B]
+    List 2: [A, A, B, B]
+    Union of List 1 and List 2: [A, A, A, B, B, C]
+
+
 
 原文地址：https://iowiki.com/commons_collections/commons_collections_index.html

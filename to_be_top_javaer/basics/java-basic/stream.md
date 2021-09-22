@@ -33,8 +33,10 @@ Stream有以下特性及优点：
 
 在Java 8中，除了增加了很多Stream相关的类以外，还对集合类自身做了增强，在其中增加了stream方法，可以将一个集合类转换成流。
 
-    List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
-    Stream<String> stream = strings.stream();
+```java
+List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
+Stream<String> stream = strings.stream();
+```
     
 
 以上，通过一个已有的List创建一个流。除此以外，还有一个parallelStream方法，可以为集合创建一个并行流。
@@ -45,7 +47,9 @@ Stream有以下特性及优点：
 
 可以使用Stream类提供的方法，直接返回一个由指定元素组成的流。
 
-    Stream<String> stream = Stream.of("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
+```java
+Stream<String> stream = Stream.of("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
+```
     
 
 如以上代码，直接通过of方法，创建并返回一个Stream。
@@ -64,54 +68,66 @@ Stream有很多中间操作，多个中间操作可以连接起来形成一个�
 
 filter 方法用于通过设置的条件过滤出元素。以下代码片段使用 filter 方法过滤掉空字符串：
 
-    List<String> strings = Arrays.asList("Hollis", "", "HollisChuang", "H", "hollis");
-    strings.stream().filter(string -> !string.isEmpty()).forEach(System.out::println);
-    //Hollis, HollisChuang, H, hollis
+```java
+List<String> strings = Arrays.asList("Hollis", "", "HollisChuang", "H", "hollis");
+strings.stream().filter(string -> !string.isEmpty()).forEach(System.out::println);
+//Hollis, HollisChuang, H, hollis
+```
     
 
 **map**
 
 map 方法用于映射每个元素到对应的结果，以下代码片段使用 map 输出了元素对应的平方数：
 
-    List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
-    numbers.stream().map(i -> i*i).forEach(System.out::println);
-    //9,4,4,9,49,9,25
+```java
+List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+numbers.stream().map(i -> i*i).forEach(System.out::println);
+//9,4,4,9,49,9,25
+```
     
 
 **limit/skip**
 
 limit 返回 Stream 的前面 n 个元素；skip 则是扔掉前 n 个元素。以下代码片段使用 limit 方法保留4个元素：
 
-    List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
-    numbers.stream().limit(4).forEach(System.out::println);
-    //3,2,2,3
+```java
+List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+numbers.stream().limit(4).forEach(System.out::println);
+//3,2,2,3
+```
     
 
 **sorted**
 
 sorted 方法用于对流进行排序。以下代码片段使用 sorted 方法进行排序：
 
-    List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
-    numbers.stream().sorted().forEach(System.out::println);
-    //2,2,3,3,3,5,7
+```java
+List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+numbers.stream().sorted().forEach(System.out::println);
+//2,2,3,3,3,5,7
+```
     
 
 **distinct**
 
 distinct主要用来去重，以下代码片段使用 distinct 对元素进行去重：
 
-    List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
-    numbers.stream().distinct().forEach(System.out::println);
-    //3,2,7,5
+```java
+List<Integer> numbers = Arrays.asList(3, 2, 2, 3, 7, 3, 5);
+numbers.stream().distinct().forEach(System.out::println);
+//3,2,7,5
+```
     
 
 接下来我们通过一个例子和一张图，来演示下，当一个Stream先后通过filter、map、sort、limit以及distinct处理后会发生什么。
 
 代码如下：
 
-    List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
-    Stream s = strings.stream().filter(string -> string.length()<= 6).map(String::length).sorted().limit(3)
-                .distinct();
+```java
+List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis", "Hello", "HelloWorld", "Hollis");
+Stream s = strings.stream().filter(string -> string.length()<= 6).map(String::length).sorted().limit(3)
+            .distinct();
+```
     
 
 过程及每一步得到的结果如下图：
@@ -137,27 +153,33 @@ Stream的中间操作得到的结果还是一个Stream，那么如何把一个St
 
 Stream 提供了方法 'forEach' 来迭代流中的每个数据。以下代码片段使用 forEach 输出了10个随机数：
 
-    Random random = new Random();
-    random.ints().limit(10).forEach(System.out::println);
+```java
+Random random = new Random();
+random.ints().limit(10).forEach(System.out::println);
+```
     
 
 **count**
 
 count用来统计流中的元素个数。
 
-    List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis", "Hollis666", "Hello", "HelloWorld", "Hollis");
-    System.out.println(strings.stream().count());
-    //7
+```java
+List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis", "Hollis666", "Hello", "HelloWorld", "Hollis");
+System.out.println(strings.stream().count());
+//7
+```
     
 
 **collect**
 
 collect就是一个归约操作，可以接受各种做法作为参数，将流中的元素累积成一个汇总结果：
 
-    List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis","Hollis666", "Hello", "HelloWorld", "Hollis");
-    strings  = strings.stream().filter(string -> string.startsWith("Hollis")).collect(Collectors.toList());
-    System.out.println(strings);
-    //Hollis, HollisChuang, Hollis666, Hollis
+```java
+List<String> strings = Arrays.asList("Hollis", "HollisChuang", "hollis","Hollis666", "Hello", "HelloWorld", "Hollis");
+strings  = strings.stream().filter(string -> string.startsWith("Hollis")).collect(Collectors.toList());
+System.out.println(strings);
+//Hollis, HollisChuang, Hollis666, Hollis
+```
     
 
 接下来，我们还是使用一张图，来演示下，前文的例子中，当一个Stream先后通过filter、map、sort、limit以及distinct处理后，在分别使用不同的最终操作可以得到怎样的结果：

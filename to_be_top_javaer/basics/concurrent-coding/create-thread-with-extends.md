@@ -26,11 +26,9 @@ class SubClassThread extends Thread {
 
 输出结果：
 
-```
-main
-继承Thread类创建线程
-Thread-0
-```
+    main
+    继承Thread类创建线程
+    Thread-0
     
 
 SubClassThread是一个继承了Thread类的子类，继承Thread类，并重写其中的run方法。然后new 一个SubClassThread的对象，并调用其start方法，即可启动一个线程。之后就会运行run中的代码。

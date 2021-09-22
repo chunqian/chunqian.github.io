@@ -22,12 +22,10 @@ class CallableThread implements Callable {
 
 输出结果：
 
-```
-main
-通过Callable和FutureTask创建线程
-Thread-2
-Hollis
-```
+    main
+    通过Callable和FutureTask创建线程
+    Thread-2
+    Hollis
     
 
 Callable位于java.util.concurrent包下，它也是一个接口，在它里面也只声明了一个方法，只不过这个方法call()，和Runnable接口中的run()方法不同的是，call()方法有返回值。

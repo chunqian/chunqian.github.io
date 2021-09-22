@@ -35,29 +35,33 @@
 
 “双重校验锁”实现单例：
 
-    public class Singleton {  
-        private volatile static Singleton singleton;  
-        private Singleton (){}  
-        public static Singleton getSingleton() {  
+```java
+public class Singleton {  
+    private volatile static Singleton singleton;  
+    private Singleton (){}  
+    public static Singleton getSingleton() {  
+    if (singleton == null) {  
+        synchronized (Singleton.class) {  
         if (singleton == null) {  
-            synchronized (Singleton.class) {  
-            if (singleton == null) {  
-                singleton = new Singleton();  
-            }  
-            }  
+            singleton = new Singleton();  
         }  
-        return singleton;  
         }  
     }  
+    return singleton;  
+    }  
+}
+``` 
     
 
 枚举实现单例：
 
-    public enum Singleton {  
-        INSTANCE;  
-        public void whateverMethod() {  
-        }  
+```java
+public enum Singleton {  
+    INSTANCE;  
+    public void whateverMethod() {  
     }  
+}
+```
     
 
 相比之下，你就会发现，枚举实现单例的代码会精简很多。
@@ -80,9 +84,11 @@
 
 而且，枚举中的各个枚举项同时通过`static`来定义的。如：
 
-    public enum T {
-        SPRING,SUMMER,AUTUMN,WINTER;
-    }
+```java
+public enum T {
+    SPRING,SUMMER,AUTUMN,WINTER;
+}
+```
     
 
 反编译后代码为：

@@ -26,14 +26,16 @@
 
 简单举个例子：
 
-    public static void main(String[] args) {
-      ParamTest pt = new ParamTest();
-      pt.sout("Hollis");//实际参数为 Hollis
-    }
-    
-    public void sout(String name) { //形式参数为 name
-      System.out.println(name);
-    }
+```java
+public static void main(String[] args) {
+  ParamTest pt = new ParamTest();
+  pt.sout("Hollis");//实际参数为 Hollis
+}
+
+public void sout(String name) { //形式参数为 name
+  System.out.println(name);
+}
+```
     
 
 实际参数是调用有参方法的时候真正传递的内容，而形式参数是用于接收实参内容的参数。

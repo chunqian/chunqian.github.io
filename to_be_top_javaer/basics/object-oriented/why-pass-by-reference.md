@@ -24,7 +24,7 @@ public void pass(User user) {
   System.out.println("print in pass , user is " + user);
 }
 ```
-    
+
 
 输出结果：
 

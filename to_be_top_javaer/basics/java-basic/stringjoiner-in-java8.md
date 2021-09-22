@@ -16,21 +16,23 @@ StringJoiner类共有2个构造函数，5个公有方法。其中最常用的方
 
 StringJoiner的用法比较简单，下面的代码中，我们使用StringJoiner进行了字符串拼接。
 
-    public class StringJoinerTest {
-    
-        public static void main(String[] args) {
-            StringJoiner sj = new StringJoiner("Hollis");
-    
-            sj.add("hollischuang");
-            sj.add("Java干货");
-            System.out.println(sj.toString());
-    
-            StringJoiner sj1 = new StringJoiner(":","[","]");
-    
-            sj1.add("Hollis").add("hollischuang").add("Java干货");
-            System.out.println(sj1.toString());
-        }
+```java
+public class StringJoinerTest {
+
+    public static void main(String[] args) {
+        StringJoiner sj = new StringJoiner("Hollis");
+
+        sj.add("hollischuang");
+        sj.add("Java干货");
+        System.out.println(sj.toString());
+
+        StringJoiner sj1 = new StringJoiner(":","[","]");
+
+        sj1.add("Hollis").add("hollischuang").add("Java干货");
+        System.out.println(sj1.toString());
     }
+}
+```
     
 
 以上代码输出结果：
@@ -47,19 +49,21 @@ StringJoiner的用法比较简单，下面的代码中，我们使用StringJoine
 
 介绍了简单的用法之后，我们再来看看这个StringJoiner的原理，看看他到底是如何实现的。主要看一下add方法：
 
-    public StringJoiner add(CharSequence newElement) {
-        prepareBuilder().append(newElement);
-        return this;
+```java
+public StringJoiner add(CharSequence newElement) {
+    prepareBuilder().append(newElement);
+    return this;
+}
+
+private StringBuilder prepareBuilder() {
+    if (value != null) {
+        value.append(delimiter);
+    } else {
+        value = new StringBuilder().append(prefix);
     }
-    
-    private StringBuilder prepareBuilder() {
-        if (value != null) {
-            value.append(delimiter);
-        } else {
-            value = new StringBuilder().append(prefix);
-        }
-        return value;
-    }
+    return value;
+}
+```
     
 
 看到了一个熟悉的身影——StringBuilder ，没错，StringJoiner其实就是依赖StringBuilder实现的。
@@ -78,7 +82,9 @@ StringJoiner的用法比较简单，下面的代码中，我们使用StringJoine
 
 试想，在Java中，如果我们有这样一个List：
 
-    List<String> list = ImmutableList.of("Hollis","hollischuang","Java干货");
+```java
+List<String> list = ImmutableList.of("Hollis","hollischuang","Java干货");
+```
     
 
 如果我们想要把他拼接成一个以下形式的字符串：
@@ -88,20 +94,24 @@ StringJoiner的用法比较简单，下面的代码中，我们使用StringJoine
 
 可以通过以下方式：
 
-    StringBuilder builder = new StringBuilder();
-    
-    if (!list.isEmpty()) {
-        builder.append(list.get(0));
-        for (int i = 1, n = list.size(); i < n; i++) {
-            builder.append(",").append(list.get(i));
-        }
+```java
+StringBuilder builder = new StringBuilder();
+
+if (!list.isEmpty()) {
+    builder.append(list.get(0));
+    for (int i = 1, n = list.size(); i < n; i++) {
+        builder.append(",").append(list.get(i));
     }
-    builder.toString();
+}
+builder.toString();
+```
     
 
 还可以使用：
 
-    list.stream().reduce(new StringBuilder(), (sb, s) -> sb.append(s).append(','), StringBuilder::append).toString();
+```java
+list.stream().reduce(new StringBuilder(), (sb, s) -> sb.append(s).append(','), StringBuilder::append).toString();
+```
     
 
 但是输出结果稍有些不同，需要进行二次处理：
@@ -111,26 +121,32 @@ StringJoiner的用法比较简单，下面的代码中，我们使用StringJoine
 
 还可以使用"+"进行拼接：
 
-    list.stream().reduce((a,b)->a + "," + b).toString();
+```java
+list.stream().reduce((a,b)->a + "," + b).toString();
+```
     
 
 以上几种方式，要么是代码复杂，要么是性能不高，或者无法直接得到想要的结果。
 
 为了满足类似这样的需求，Java 8中提供的StringJoiner就派上用场了。以上需求只需要一行代码：
 
-    list.stream().collect(Collectors.joining(":"))
+```java
+list.stream().collect(Collectors.joining(":"))
+```
     
 
 即可。上面用的表达式中，Collectors.joining的源代码如下：
 
-    public static Collector<CharSequence, ?, String> joining(CharSequence delimiter,
-                                                             CharSequence prefix,
-                                                             CharSequence suffix) {
-        return new CollectorImpl<>(
-                () -> new StringJoiner(delimiter, prefix, suffix),
-                StringJoiner::add, StringJoiner::merge,
-                StringJoiner::toString, CH_NOID);
-    }
+```java
+public static Collector<CharSequence, ?, String> joining(CharSequence delimiter,
+                                                         CharSequence prefix,
+                                                         CharSequence suffix) {
+    return new CollectorImpl<>(
+            () -> new StringJoiner(delimiter, prefix, suffix),
+            StringJoiner::add, StringJoiner::merge,
+            StringJoiner::toString, CH_NOID);
+}
+```
     
 
 其实现原理就是借助了StringJoiner。

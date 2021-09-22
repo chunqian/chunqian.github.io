@@ -10,38 +10,40 @@
 
 如我们想要定义一个矩形，先定义一个Rectangle类，并其中通过封装的手段放入一些必备数据。
 
-    /**
-    * 矩形
-    */
-    class Rectangle {
+```java
+/**
+* 矩形
+*/
+class Rectangle {
+
+     /**
+      * 设置矩形的长度和宽度
+      */
+     public Rectangle(int length, int width) {
+         this.length = length;
+         this.width = width;
+     }
     
-         /**
-          * 设置矩形的长度和宽度
-          */
-         public Rectangle(int length, int width) {
-             this.length = length;
-             this.width = width;
-         }
-        
-         /**
-          * 长度
-          */
-         private int length;
-        
-         /**
-          * 宽度
-          */
-         private int width;
-        
-         /**
-          * 获得矩形面积
-          *
-          * @return
-          */
-         public int area() {
-             return this.length * this.width;
-         }
-    }
+     /**
+      * 长度
+      */
+     private int length;
+    
+     /**
+      * 宽度
+      */
+     private int width;
+    
+     /**
+      * 获得矩形面积
+      *
+      * @return
+      */
+     public int area() {
+         return this.length * this.width;
+     }
+}
+```
     
 我们通过封装的方式，给"矩形"定义了"长度"和"宽度"，这就完成了对现实世界中的"矩形"的抽象的第一步。
          
@@ -55,21 +57,22 @@
 
 我们想要定义一个正方形，因为已经有了矩形，所以我们可以直接继承Rectangle类，因为正方形是长方形的一种特例。
 
+```java
+/**
+ * 正方形，继承自矩形
+ */
+class Square extends Rectangle {
 
     /**
-     * 正方形，继承自矩形
+     * 设置正方形边长
+     *
+     * @param length
      */
-    class Square extends Rectangle {
-    
-        /**
-         * 设置正方形边长
-         *
-         * @param length
-         */
-        public Square(int length) {
-            super(length, length);
-        }
+    public Square(int length) {
+        super(length, length);
     }
+}
+```
     
 现实世界中，"正方形"是"矩形"的特例，或者说正方形是通过矩形派生出来的，这种派生关系，在面向对象中可以用继承来表达。
 

@@ -21,17 +21,19 @@
 
 如以下代码：
 
-    Map<String, String> map = new HashMap<String, String>();
-    map.put("hollis", "hollischuang");
-    
-    Class<?> mapType = map.getClass();
-    Method capacity = mapType.getDeclaredMethod("capacity");
-    capacity.setAccessible(true);
-    System.out.println("capacity : " + capacity.invoke(map));
-    
-    Field size = mapType.getDeclaredField("size");
-    size.setAccessible(true);
-    System.out.println("size : " + size.get(map));
+```java
+Map<String, String> map = new HashMap<String, String>();
+map.put("hollis", "hollischuang");
+
+Class<?> mapType = map.getClass();
+Method capacity = mapType.getDeclaredMethod("capacity");
+capacity.setAccessible(true);
+System.out.println("capacity : " + capacity.invoke(map));
+
+Field size = mapType.getDeclaredField("size");
+size.setAccessible(true);
+System.out.println("size : " + size.get(map));
+```
     
 
 输出结果：
@@ -70,9 +72,11 @@
 
 为了聚焦本文的重点，我们只来看一下indexFor方法。我们先来看下Java 7（Java8中虽然没有这样一个单独的方法，但是查询下标的算法也是和Java 7一样的）中该实现细节：
 
-    static int indexFor(int h, int length) {
-        return h & (length-1);
-    }
+```java
+static int indexFor(int h, int length) {
+    return h & (length-1);
+}
+```
     
 
 indexFor方法其实主要是将hashcode换成链表数组中的下标。其中的两个参数h表示元素的hashcode值，length表示HashMap的容量。那么return h & (length-1) 是什么意思呢？
@@ -129,13 +133,15 @@ indexFor方法其实主要是将hashcode换成链表数组中的下标。其中�
 
 看一下JDK是如何找到比传入的指定值大的第一个2的幂的：
 
-    int n = cap - 1;
-    n |= n >>> 1;
-    n |= n >>> 2;
-    n |= n >>> 4;
-    n |= n >>> 8;
-    n |= n >>> 16;
-    return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+```java
+int n = cap - 1;
+n |= n >>> 1;
+n |= n >>> 2;
+n |= n >>> 4;
+n |= n >>> 8;
+n |= n >>> 16;
+return (n < 0) ? 1 : (n >= MAXIMUM_CAPACITY) ? MAXIMUM_CAPACITY : n + 1;
+```
     
 
 上面的算法目的挺简单，就是：根据用户传入的容量值（代码中的cap），通过计算，得到第一个比他大的2的幂并返回。
@@ -206,10 +212,12 @@ loadFactor是装载因子，表示HashMap满的程度，默认值为0.75f，设�
 
 下面是HashMap中的扩容方法(resize)中的一段：
 
+```java
     if ((newCap = oldCap << 1) < MAXIMUM_CAPACITY &&
-                     oldCap >= DEFAULT_INITIAL_CAPACITY)
+                     oldCap >= DEFAULT_INITIAL_CAPACITY) {
         newThr = oldThr << 1; // double threshold
     }
+```
     
 
 从上面代码可以看出，扩容后的table大小变为原来的两倍，这一步执行之后，就会进行扩容后table的调整，这部分非本文重点，省略。

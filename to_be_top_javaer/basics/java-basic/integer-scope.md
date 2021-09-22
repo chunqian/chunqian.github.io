@@ -21,11 +21,13 @@ Java中的整型主要包含byte、short、int和long这四种，表示的数字
 
 上面说过了，整型中，每个类型都有一定的表示范围，但是，在程序中有些计算会导致超出表示范围，即溢出。如以下代码：
 
-        int i = Integer.MAX_VALUE;
-        int j = Integer.MAX_VALUE;
+```java
+int i = Integer.MAX_VALUE;
+int j = Integer.MAX_VALUE;
 
-        int k = i + j;
-        System.out.println("i (" + i + ") + j (" + j + ") = k (" + k + ")");
+int k = i + j;
+System.out.println("i (" + i + ") + j (" + j + ") = k (" + k + ")");
+```
 
 输出结果：`i (2147483647) + j (2147483647) = k (-2)`
 

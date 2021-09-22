@@ -6,9 +6,11 @@ static表示“静态”的意思，用来修饰成员变量和成员方法，�
 
 通常，静态变量常用final关键来修饰，表示通用资源或可以被所有的对象所使用。如果静态变量未被私有化，可以用“类名.变量名”的方式来使用。
 
-    //static variable example
-    private static int count;
-    public static String str;
+```java
+//static variable example
+private static int count;
+public static String str;
+```
 
 ### 静态方法
 
@@ -18,18 +20,20 @@ static表示“静态”的意思，用来修饰成员变量和成员方法，�
 
 Java的包装类和实用类包含许多静态方法。main()方法就是Java程序入口点，是静态方法。
 
-    //static method example
-    public static void setCount(int count) {
-        if(count &gt; 0)
-        StaticExample.count = count;
-    }
-    
-    //static util method
-    public static int addInts(int i, int...js){
-        int sum=i;
-        for(int x : js) sum+=x;
-        return sum;
-    }
+```java
+//static method example
+public static void setCount(int count) {
+    if(count &gt; 0)
+    StaticExample.count = count;
+}
+
+//static util method
+public static int addInts(int i, int...js){
+    int sum=i;
+    for(int x : js) sum+=x;
+    return sum;
+}
+```
     
 从Java8以上版本开始也可以有接口类型的静态方法了。
 
@@ -41,13 +45,15 @@ Java的静态块是一组指令在类装载的时候在内存中由Java ClassLoa
 
 Java不允许在静态块中使用非静态变量。一个类中可以有多个静态块，尽管这似乎没有什么用。静态块只在类装载入内存时，执行一次。
 
-    static{
-        //can be used to initialize resources when class is loaded
-        System.out.println(&quot;StaticExample static block&quot;);
-        //can access only static variables and methods
-        str=&quot;Test&quot;;
-        setCount(2);
-    }
+```java
+static{
+    //can be used to initialize resources when class is loaded
+    System.out.println(&quot;StaticExample static block&quot;);
+    //can access only static variables and methods
+    str=&quot;Test&quot;;
+    setCount(2);
+}
+```
     
 ### 静态类
 
