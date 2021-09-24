@@ -1,5 +1,7 @@
 <!-- sidebar -->
 
+- [learning_notes](/learning_notes/)
+
 - [to_be_top_javaer](/to_be_top_javaer/)
 
 <!-- - [xc_tplusstd_server](/xc_tplusstd_server/) -->
