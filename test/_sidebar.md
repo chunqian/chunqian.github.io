@@ -1,3 +1,3 @@
 <!-- sidebar -->
 
-- [back](/)
+* [back](/)

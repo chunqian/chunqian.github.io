@@ -543,7 +543,7 @@
     
         * ~~synchronized~~
             
-            * [synchronized是如何实现的? ](to_be_top_javaer/basics/concurrent-coding/synchronized.md)
+            * ~~[synchronized是如何实现的? ]~~
             
             * ~~synchronized和lock之间关系~~
             

@@ -1,8 +1,7 @@
 <!-- sidebar -->
 
-- [back](/)
+* [back](/)
 
-    - [guide](/rizz/guide/)
+    * [guide](/rizz/guide/)
 
-        - [basics](/rizz/guide/basics/)
-        
+        * [basics](/rizz/guide/basics/)
