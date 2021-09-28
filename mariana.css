@@ -57,7 +57,7 @@ body {
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  color: #a2acbe;
+  color: #99a4b8;
   font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
   font-size: 1.2rem;
   letter-spacing: 0;
@@ -198,7 +198,7 @@ main.hidden {
   transition: all 0.3s;
 }
 .anchor span {
-  color: #a2acbe;
+  color: #99a4b8;
 }
 .anchor:hover {
   text-decoration: underline;
@@ -330,7 +330,7 @@ body.sticky .sidebar-toggle {
   min-width: 100%;
 }
 .markdown-section table {
-  border: 1px solid #8a92a3;
+  border: 1px solid #818a9c;
   border-collapse: collapse;
   border-spacing: 0;
   display: block;
@@ -363,7 +363,7 @@ body.sticky .sidebar-toggle {
   background-color: #3c464f;
 }
 .markdown-section p.tip em {
-  color: #a2acbe;
+  color: #99a4b8;
 }
 .markdown-section p.warn {
   background: rgba(153,199,148,0.1);
@@ -740,7 +740,7 @@ body {
   word-wrap: normal;
 }
 .markdown-section pre > code {
-  color: #a2acbe;
+  color: #99a4b8;
   font-size: 1.2rem;
   padding: 2.2em 5px;
   line-height: inherit;
@@ -751,7 +751,7 @@ body {
 }
 .markdown-section output {
   padding: 1.7rem 1.4rem;
-  border: 1px dotted #a2acbe;
+  border: 1px dotted #99a4b8;
 }
 .markdown-section output > :first-child {
   margin-top: 0;
@@ -767,7 +767,7 @@ body {
 }
 .markdown-section pre::after,
 .markdown-section output::after {
-  color: #a2acbe;
+  color: #99a4b8;
   font-size: 1.2rem;
   font-weight: normal;
   height: 15px;
@@ -787,7 +787,7 @@ body {
 .token.prolog,
 .token.doctype,
 .token.cdata {
-  color: #8a92a3;
+  color: #818a9c;
 }
 .token.namespace {
   opacity: 0.7;
