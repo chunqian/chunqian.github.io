@@ -4,6 +4,8 @@
 
 - [bash-tutorial](/bash-tutorial/)
 
+- [ssh-tutorial](/ssh-tutorial/)
+
 - [learning_notes](/learning_notes/)
 
 - [to_be_top_javaer](/to_be_top_javaer/)
