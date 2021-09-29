@@ -126,7 +126,7 @@
 
     * ~~deleted~~
 
-        * [标准I/O](bash-tutorial/docs/archives/deleted/stdid.md)
+        * [标准I/O](bash-tutorial/docs/archives/deleted/stdio.md)
 
     * [归档和备份](bash-tutorial/docs/archives/archiving.md)
 
