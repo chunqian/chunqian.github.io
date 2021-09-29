@@ -2,6 +2,8 @@
 
 - [clang-tutorial](/clang-tutorial/)
 
+- [bash-tutorial](/bash-tutorial/)
+
 - [learning_notes](/learning_notes/)
 
 - [to_be_top_javaer](/to_be_top_javaer/)
