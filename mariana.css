@@ -32,7 +32,7 @@ div#app:empty::before {
   vertical-align: middle;
 }
 .progress {
-  background-color: var(--theme-color, #99c794);
+  background-color: var(--theme-color, #90c18a);
   height: 2px;
   left: 0px;
   position: fixed;
@@ -43,10 +43,10 @@ div#app:empty::before {
   z-index: 999999;
 }
 .search a:hover {
-  color: var(--theme-color, #99c794);
+  color: var(--theme-color, #90c18a);
 }
 .search .search-keyword {
-  color: var(--theme-color, #99c794);
+  color: var(--theme-color, #90c18a);
   font-style: normal;
   font-weight: normal;
 }
@@ -116,11 +116,11 @@ li input[type='checkbox'] {
   transition: color 0.3s;
 }
 .app-nav a:hover {
-  color: var(--theme-color, #99c794);
+  color: var(--theme-color, #90c18a);
 }
 .app-nav a.active {
-  border-bottom: 2px solid var(--theme-color, #99c794);
-  color: var(--theme-color, #99c794);
+  border-bottom: 2px solid var(--theme-color, #90c18a);
+  color: var(--theme-color, #90c18a);
 }
 .app-nav li {
   display: inline-block;
@@ -178,7 +178,7 @@ li input[type='checkbox'] {
 }
 .github-corner svg {
   color: #323b43;
-  fill: var(--theme-color, #99c794);
+  fill: var(--theme-color, #90c18a);
   height: 80px;
   width: 80px;
 }
@@ -286,7 +286,7 @@ main.hidden {
   opacity: 1;
 }
 .sidebar-toggle span {
-  background-color: var(--theme-color, #99c794);
+  background-color: var(--theme-color, #90c18a);
   display: block;
   margin-bottom: 4px;
   width: 16px;
@@ -366,7 +366,7 @@ body.sticky .sidebar-toggle {
   color: #99a4b8;
 }
 .markdown-section p.warn {
-  background: rgba(153,199,148,0.1);
+  background: rgba(144,193,138,0.1);
   border-radius: 2px;
   padding: 1rem;
 }
@@ -557,12 +557,12 @@ section.cover ul {
   padding: 0;
 }
 section.cover .cover-main > p:last-child a {
-  border-color: var(--theme-color, #99c794);
+  border-color: var(--theme-color, #90c18a);
   border-radius: 2rem;
   border-style: solid;
   border-width: 1px;
   box-sizing: border-box;
-  color: var(--theme-color, #99c794);
+  color: var(--theme-color, #90c18a);
   display: inline-block;
   font-size: 1.6rem;
   letter-spacing: 0.1rem;
@@ -572,7 +572,7 @@ section.cover .cover-main > p:last-child a {
   transition: all 0.15s ease;
 }
 section.cover .cover-main > p:last-child a:last-child {
-  background-color: var(--theme-color, #99c794);
+  background-color: var(--theme-color, #90c18a);
   color: #fff;
 }
 section.cover .cover-main > p:last-child a:last-child:hover {
@@ -583,11 +583,11 @@ section.cover .cover-main > p:last-child a:hover {
   color: inherit;
 }
 section.cover blockquote > p > a {
-  border-bottom: 2px solid var(--theme-color, #99c794);
+  border-bottom: 2px solid var(--theme-color, #90c18a);
   transition: color 0.3s;
 }
 section.cover blockquote > p > a:hover {
-  color: var(--theme-color, #99c794);
+  color: var(--theme-color, #90c18a);
 }
 body {
   background-color: #323b43;
@@ -644,7 +644,7 @@ body {
   font-weight: normal;
 }
 .markdown-section a {
-  color: var(--theme-color, #99c794);
+  color: var(--theme-color, #90c18a);
   font-weight: normal;
 }
 .markdown-section h1 {
@@ -684,7 +684,7 @@ body {
   padding-left: 1.5rem;
 }
 .markdown-section blockquote {
-  border-left: 4px solid var(--theme-color, #99c794);
+  border-left: 4px solid var(--theme-color, #90c18a);
   color: #858585;
   margin: 2em 0;
   padding-left: 20px;
@@ -725,7 +725,7 @@ body {
 }
 .markdown-section code {
   border-radius: 2px;
-  color: #c695c6;
+  color: #c18bc1;
   margin: 0 2px;
   padding: 1px 5px 2px 5px;
   white-space: pre-wrap;
@@ -789,30 +789,27 @@ body {
 .token.cdata {
   color: #818a9c;
 }
-.token.namespace {
-  opacity: 0.7;
-}
 .token.boolean,
 .token.number {
   color: #f9ae58;
 }
 .token.punctuation {
-  color: #fff;
+  color: #ccc;
 }
 .token.property {
-  color: #99c794;
+  color: #90c18a;
 }
 .token.tag {
-  color: #2973b7;
+  color: #69c;
 }
 .token.string {
-  color: var(--theme-color, #99c794);
+  color: var(--theme-color, #90c18a);
 }
 .token.selector {
   color: #6679cc;
 }
 .token.attr-name {
-  color: #2973b7;
+  color: #c18bc1;
 }
 .token.entity,
 .token.url,
@@ -824,11 +821,11 @@ body {
 .token.control,
 .token.directive,
 .token.unit {
-  color: var(--theme-color, #99c794);
+  color: var(--theme-color, #90c18a);
 }
 .token.keyword,
 .token.function {
-  color: #c695c6;
+  color: #c18bc1;
 }
 .token.statement,
 .token.regex,
