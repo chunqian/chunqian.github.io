@@ -1,5 +1,7 @@
 <!-- navbar -->
 
-- Languages
-  - [:cn: 中文](/zh-cn/)
-  - [:uk: English](/)
+* Languages
+
+  * [:cn: 中文](/zh-cn/)
+  
+  * [:uk: English](/)
