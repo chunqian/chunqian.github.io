@@ -170,16 +170,16 @@
 
 * ~~附录：网页元素接口~~
 
-    * [<a>](javascript-tutorial/docs/elements/a.md)
+    * [\<a\>](javascript-tutorial/docs/elements/a.md)
 
-    * [<img>](javascript-tutorial/docs/elements/image.md)
+    * [\<img\>](javascript-tutorial/docs/elements/image.md)
 
-    * [<form>](javascript-tutorial/docs/elements/form.md)
+    * [\<form\>](javascript-tutorial/docs/elements/form.md)
 
-    * [<input>](javascript-tutorial/docs/elements/input.md)
+    * [\<input\>](javascript-tutorial/docs/elements/input.md)
 
-    * [<button>](javascript-tutorial/docs/elements/button.md)
+    * [\<button\>](javascript-tutorial/docs/elements/button.md)
 
-    * [<option>](javascript-tutorial/docs/elements/option.md)
+    * [\<option\>](javascript-tutorial/docs/elements/option.md)
 
-    * [<video>，<audio>](javascript-tutorial/docs/elements/video.md)
+    * [\<video\>，\<audio\>](javascript-tutorial/docs/elements/video.md)
