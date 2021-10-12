@@ -42,14 +42,10 @@
         '/learning_notes/.*/_navbar.md': '/learning_notes/_navbar.md',
         '/to_be_top_javaer/.*/_sidebar.md': '/to_be_top_javaer/_sidebar.md',
         '/to_be_top_javaer/.*/_navbar.md': '/to_be_top_javaer/_navbar.md',
-        '/cute_framework/.*/_sidebar.md': '/cute_framework/_sidebar.md',
-        '/cute_framework/.*/_navbar.md': '/cute_framework/_navbar.md',
         '/xmake/.*/_sidebar.md': '/xmake/_sidebar.md',
         '/xmake/.*/_navbar.md': '/xmake/_navbar.md',
         '/deepnight.net/.*/_sidebar.md': '/deepnight.net/_sidebar.md',
-        '/deepnight.net/.*/_navbar.md': '/deepnight.net/_navbar.md',
-        '/rizz/.*/_sidebar.md': '/rizz/_sidebar.md',
-        '/rizz/.*/_navbar.md': '/rizz/_navbar.md'
+        '/deepnight.net/.*/_navbar.md': '/deepnight.net/_navbar.md'
       },
       search: {
         maxAge: 86400000, 
@@ -82,18 +78,6 @@
                 html = html.replace(
                   /https:\/\/github.com\/chunqian\/chunqian.github.io\/blob\/main\/deepnight.net\//gi,
                   '/deepnight.net/'
-                  )
-                break
-              case '/cute_framework/':
-                html = html.replace(
-                  /https:\/\/github.com\/RandyGaul\/cute_framework\/(blob|tree)\/master\/doc\//gi,
-                  '/cute_framework/'
-                  )
-                break
-              case '/rizz/':
-                html = html.replace(
-                  /https:\/\/raw.githubusercontent.com\/chunqian\/chunqian.github.io\/main\//gi,
-                  'https://chunqian.github.io/'
                   )
                 break
             }
