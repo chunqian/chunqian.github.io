@@ -1,5 +1,7 @@
 <!-- sidebar -->
 
+* [rust-tutorial](/rust-tutorial/)
+
 * [clang-tutorial](/clang-tutorial/)
 
 * [bash-tutorial](/bash-tutorial/)
