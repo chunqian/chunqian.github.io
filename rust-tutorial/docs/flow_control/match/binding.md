@@ -47,6 +47,6 @@ fn main() {
 ### 参见：
 [`函数`][functions], [`枚举`][enums] and [`Option`][option]
 
-[functions]: ../../fn.md
-[enums]: ../../custom_types/enum.md
-[option]: ../../std/option.md
+[functions]: rust-tutorial/docs/fn.md
+[enums]: rust-tutorial/docs/custom_types/enum.md
+[option]: rust-tutorial/docs/std/option.md

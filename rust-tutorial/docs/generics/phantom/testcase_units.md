@@ -78,12 +78,12 @@ fn main() {
 [Borrowing (`&`)], [Bounds (`X: Y`)], [enum], [impl & self],
 [Overloading], [ref], [Traits (`X for Y`)], 和 [TupleStructs].
 
-[Borrowing (`&`)]: ../../scope/borrow.md
-[Bounds (`X: Y`)]: ../../generics/bounds.md
-[enum]: ../../custom_types/enum.md
-[impl & self]: ../../fn/methods.md
-[Overloading]: ../../trait/ops.md
-[ref]: ../../scope/borrow/ref.md
-[Traits (`X for Y`)]: ../../trait.md
-[TupleStructs]: ../../custom_types/structs.md
+[Borrowing (`&`)]: rust-tutorial/docs/scope/borrow.md
+[Bounds (`X: Y`)]: rust-tutorial/docs/generics/bounds.md
+[enum]: rust-tutorial/docs/custom_types/enum.md
+[impl & self]: rust-tutorial/docs/fn/methods.md
+[Overloading]: rust-tutorial/docs/trait/ops.md
+[ref]: rust-tutorial/docs/scope/borrow/ref.md
+[Traits (`X for Y`)]: rust-tutorial/docs/trait.md
+[TupleStructs]: rust-tutorial/docs/custom_types/structs.md
 [std::marker::PhantomData]: https://doc.rust-lang.org/std/marker/struct.PhantomData.html

@@ -34,4 +34,4 @@ fn main() {
 
 [解构][destructuring]
 
-[destructuring]: ../../flow_control/match/destructuring.md
+[destructuring]: rust-tutorial/docs/flow_control/match/destructuring.md

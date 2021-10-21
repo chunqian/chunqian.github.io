@@ -34,4 +34,4 @@ fn main() {
 
 [类型转换][cast]
 
-[cast]: ../../types/cast.md
+[cast]: rust-tutorial/docs/types/cast.md

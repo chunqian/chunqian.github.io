@@ -45,4 +45,4 @@ fn main() {
 [result]: https://doc.rust-lang.org/std/result/enum.Result.html
 [parse]: https://doc.rust-lang.org/std/primitive.str.html#method.parse
 [`Debug`]: https://doc.rust-lang.org/std/fmt/trait.Debug.html
-[the following section]: result/early_returns.md
+[the following section]: rust-tutorial/docs/error/result/early_returns.md

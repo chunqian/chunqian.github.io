@@ -65,9 +65,9 @@ fn main() {
 [`for`][for], [`ref`][ref], [`Result`][result], [`struct`][struct],
 [`?`][q_mark], 和 [`vec!`][vec]
 
-[for]: ../../../flow_control/for.md
-[result]: ../../../std/result.md
-[ref]: ../../../scope/borrow/ref.md
-[struct]: ../../../custom_types/structs.md
-[q_mark]: ../../../std/result/question_mark.md
-[vec]: ../../../std/vec.md
+[for]: rust-tutorial/docs/flow_control/for.md
+[result]: rust-tutorial/docs/std/result.md
+[ref]: rust-tutorial/docs/scope/borrow/ref.md
+[struct]: rust-tutorial/docs/custom_types/structs.md
+[q_mark]: rust-tutorial/docs/std/result/question_mark.md
+[vec]: rust-tutorial/docs/std/vec.md

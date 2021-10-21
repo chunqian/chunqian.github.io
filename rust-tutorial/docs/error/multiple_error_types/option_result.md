@@ -52,4 +52,4 @@ fn main() {
 }
 ```
 
-[enter_question_mark]: ../result/enter_question_mark.md
+[enter_question_mark]: rust-tutorial/docs/error/result/enter_question_mark.md

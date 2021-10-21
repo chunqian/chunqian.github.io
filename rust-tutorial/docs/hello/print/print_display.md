@@ -112,9 +112,9 @@ Debug: Complex { real: 3.3, imag: 7.2 }
 [`derive`][derive], [`std::fmt`][fmt], [macros], [`struct`][structs],
 [`trait`][traits], 和 [use][use]
 
-[derive]: ../../trait/derive.md
+[derive]: rust-tutorial/docs/trait/derive.md
 [fmt]: https://doc.rust-lang.org/std/fmt/
-[macros]: ../../macros.md
-[structs]: ../../custom_types/structs.md
-[traits]: ../../trait.md
-[use]: ../../mod/use.md
+[macros]: rust-tutorial/docs/macros.md
+[structs]: rust-tutorial/docs/custom_types/structs.md
+[traits]: rust-tutorial/docs/trait.md
+[use]: rust-tutorial/docs/mod/use.md

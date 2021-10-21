@@ -55,7 +55,7 @@ fn main() {
 
 [Derive], [结构体][struct], 和 [元组结构体][TupleStructs]
 
-[Derive]: ../trait/derive.md
-[struct]: ../custom_types/structs.md
-[TupleStructs]: ../custom_types/structs.md
+[Derive]: rust-tutorial/docs/trait/derive.md
+[struct]: rust-tutorial/docs/custom_types/structs.md
+[TupleStructs]: rust-tutorial/docs/custom_types/structs.md
 [std::marker::PhantomData]: https://doc.rust-lang.org/std/marker/struct.PhantomData.html

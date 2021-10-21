@@ -21,4 +21,4 @@ fn main() {
 
 ### 参见：
 
-[元组](../../../primitives/tuples.md)
+[元组](rust-tutorial/docs/primitives/tuples.md)

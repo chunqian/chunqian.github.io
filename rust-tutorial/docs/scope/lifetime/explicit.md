@@ -62,7 +62,7 @@ fn main() {
 
 [泛型][generics] 和 [闭包][closures]
 
-[anonymity]: ../../fn/closures/anonymity.md
-[closures]: ../../fn/closures.md
-[elision]: elision.md
-[generics]: ../../generics.md
+[anonymity]: rust-tutorial/docs/fn/closures/anonymity.md
+[closures]: rust-tutorial/docs/fn/closures.md
+[elision]: rust-tutorial/docs/scope/lifetime/elision.md
+[generics]: rust-tutorial/docs/generics.md

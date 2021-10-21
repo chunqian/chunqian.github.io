@@ -70,8 +70,8 @@ fn main() {
 
 [`std::fmt`][fmt], [`struct`][structs], 和 [`trait`][traits]
 
-[fmt]: ../hello/print.md
-[methods]: ../fn/methods.md
-[structs]: ../custom_types/structs.md
-[traits]: ../trait.md
-[where]: ../generics/where.md
+[fmt]: rust-tutorial/docs/hello/print.md
+[methods]: rust-tutorial/docs/fn/methods.md
+[structs]: rust-tutorial/docs/custom_types/structs.md
+[traits]: rust-tutorial/docs/trait.md
+[where]: rust-tutorial/docs/generics/where.md

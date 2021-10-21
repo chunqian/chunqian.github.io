@@ -6,6 +6,6 @@
 - [重载][overloading]
 - [重复][repetition]
 
-[designators]: designators.md
-[overloading]: overload.md
-[repetition]: repeat.md
+[designators]: rust-tutorial/docs/macros/designators.md
+[overloading]: rust-tutorial/docs/macros/overload.md
+[repetition]: rust-tutorial/docs/macros/repeat.md

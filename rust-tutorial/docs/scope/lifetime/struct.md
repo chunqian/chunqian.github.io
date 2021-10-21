@@ -42,4 +42,4 @@ fn main() {
 
 [结构体][structs]
 
-[structs]: ../../custom_types/structs.md
+[structs]: rust-tutorial/docs/custom_types/structs.md

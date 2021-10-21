@@ -48,6 +48,6 @@ fn main() {
 
 [`#[allow(...)]`][allow], [色彩模型][color_models] 和 [`enum`][enum] 
 
-[allow]: ../../../attribute/unused.md
+[allow]: rust-tutorial/docs/attribute/unused.md
 [color_models]: http://en.wikipedia.org/wiki/Color_model
-[enum]: ../../../custom_types/enum.md
+[enum]: rust-tutorial/docs/custom_types/enum.md

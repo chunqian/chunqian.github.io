@@ -72,6 +72,6 @@ fn main() {
 [attributes][attributes], [`derive`][derive], [`std::fmt`][fmt] 和 [`struct`][structs]
 
 [attributes]: https://doc.rust-lang.org/reference/attributes.html
-[derive]: ../../trait/derive.md
+[derive]: rust-tutorial/docs/trait/derive.md
 [fmt]: https://doc.rust-lang.org/std/fmt/
-[structs]: ../../custom_types/structs.md
+[structs]: rust-tutorial/docs/custom_types/structs.md

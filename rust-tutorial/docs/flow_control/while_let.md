@@ -56,6 +56,6 @@ fn main() {
 
 [`枚举`][enum]，[`Option`][option]，和相关的 [RFC][while_let_rfc]
 
-[enum]: ../custom_types/enum.md
-[option]: ../std/option.md
+[enum]: rust-tutorial/docs/custom_types/enum.md
+[option]: rust-tutorial/docs/std/option.md
 [while_let_rfc]: https://github.com/rust-lang/rfcs/pull/214

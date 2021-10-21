@@ -6,7 +6,7 @@ Rust 提供了多种机制，用于改变或定义原生类型和用户定义类
 * 使用[类型推断][type inference]（type inference）。
 * 给类型[取别名][Aliasing]（alias）。
 
-[Casting]: types/cast.md
-[literals]: types/literals.md
-[type inference]: types/inference.md
-[Aliasing]: types/alias.md
+[Casting]: rust-tutorial/docs/types/cast.md
+[literals]: rust-tutorial/docs/types/literals.md
+[type inference]: rust-tutorial/docs/types/inference.md
+[Aliasing]: rust-tutorial/docs/types/alias.md

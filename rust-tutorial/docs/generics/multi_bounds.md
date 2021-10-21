@@ -32,5 +32,5 @@ fn main() {
 
 [`std::fmt`][fmt] 和 [`trait`][traits]
 
-[fmt]: ../hello/print.md
-[traits]: ../trait.md
+[fmt]: rust-tutorial/docs/hello/print.md
+[traits]: rust-tutorial/docs/trait.md

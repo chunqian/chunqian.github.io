@@ -55,4 +55,4 @@ fn main() {
 ### 参见：
 [`static`][static]
 
-[static]: ../lifetime/static_lifetime.md
+[static]: rust-tutorial/docs/scope/lifetime/static_lifetime.md

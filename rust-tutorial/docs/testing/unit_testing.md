@@ -219,7 +219,7 @@ running 0 tests
 test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out
 ```
 
-[attribute]: ../attribute.md
-[panic]: ../std/panic.md
-[macros]: ../macros.md
-[mod]: ../mod.md
+[attribute]: rust-tutorial/docs/attribute.md
+[panic]: rust-tutorial/docs/std/panic.md
+[macros]: rust-tutorial/docs/macros.md
+[mod]: rust-tutorial/docs/mod.md

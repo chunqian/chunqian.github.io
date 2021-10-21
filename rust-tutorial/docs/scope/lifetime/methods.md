@@ -28,4 +28,4 @@ fn main() {
 
 [方法][methods]
 
-[methods]: ../../fn/methods.md
+[methods]: rust-tutorial/docs/fn/methods.md

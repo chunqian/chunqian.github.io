@@ -65,7 +65,7 @@ fn main() {
 
 [`derive`][derive]
 
-[attribute]: ../attribute.md
+[attribute]: rust-tutorial/docs/attribute.md
 [eq]: https://doc.rust-lang.org/std/cmp/trait.Eq.html
 [partial-eq]: https://doc.rust-lang.org/std/cmp/trait.PartialEq.html
 [ord]: https://doc.rust-lang.org/std/cmp/trait.Ord.html

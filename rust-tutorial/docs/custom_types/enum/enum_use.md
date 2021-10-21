@@ -45,5 +45,5 @@ fn main() {
 
 [`match`][match] 和 [`use`][use]
 
-[use]: ../../mod/use.md
-[match]: ../../flow_control/match.md
+[use]: rust-tutorial/docs/mod/use.md
+[match]: rust-tutorial/docs/flow_control/match.md

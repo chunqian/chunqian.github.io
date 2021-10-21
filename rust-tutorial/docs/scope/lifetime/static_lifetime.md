@@ -47,4 +47,4 @@ fn main() {
 
 [`'static` 常量][static_const]
 
-[static_const]: ../../custom_types/constants.md
+[static_const]: rust-tutorial/docs/custom_types/constants.md

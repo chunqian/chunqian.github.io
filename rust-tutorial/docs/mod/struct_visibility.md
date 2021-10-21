@@ -55,5 +55,5 @@ fn main() {
 
 [泛型][generics] 和 [方法][methods]
 
-[generics]: ../generics.md
-[methods]: ../fn/methods.md
+[generics]: rust-tutorial/docs/generics.md
+[methods]: rust-tutorial/docs/fn/methods.md

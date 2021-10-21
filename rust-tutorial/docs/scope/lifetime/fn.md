@@ -56,5 +56,5 @@ fn main() {
 
 [函数][fn]
 
-[elision]: elision.md
-[fn]: fn.md
+[elision]: rust-tutorial/docs/scope/lifetime/elision.md
+[fn]: rust-tutorial/docs/scope/lifetime/fn.md

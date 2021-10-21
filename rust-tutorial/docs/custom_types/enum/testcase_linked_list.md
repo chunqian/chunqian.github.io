@@ -75,5 +75,5 @@ fn main() {
 
 [`Box`][box] 和 [方法][methods]
 
-[box]: ../../std/box.md
-[methods]: ../../fn/methods.md
+[box]: rust-tutorial/docs/std/box.md
+[methods]: rust-tutorial/docs/fn/methods.md

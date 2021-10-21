@@ -35,6 +35,6 @@ fn main() {
   在 `mem` 模块中定义的，而 `mem` 模块又是在 `std` **crate** 中定义的。更多细节
   请看[模块][mod]和[crate][crate].
 
-[borrow]: ../scope/borrow.md
-[mod]: ../mod.md
-[crate]: ../crates.md
+[borrow]: rust-tutorial/docs/scope/borrow.md
+[mod]: rust-tutorial/docs/mod.md
+[crate]: rust-tutorial/docs/crates.md

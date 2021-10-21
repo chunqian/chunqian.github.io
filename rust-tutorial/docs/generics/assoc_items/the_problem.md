@@ -61,5 +61,5 @@ fn main() {
 
 [`struct`][structs], 和 [`trait`][traits]
 
-[structs]: ../../custom_types/structs.md
-[traits]: ../../trait.md
+[structs]: rust-tutorial/docs/custom_types/structs.md
+[traits]: rust-tutorial/docs/trait.md

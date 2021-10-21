@@ -1,4 +1,4 @@
-* [back](rust-tutorial/docs//)
+* [back](/)
 
 * [简介](rust-tutorial/docs/index.md)
 

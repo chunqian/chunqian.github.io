@@ -95,9 +95,9 @@ impl VeryVerboseEnumOfThingsToDoWithNumbers {
 
 [`match`][match], [`fn`][fn], 和 [`String`][str], [“类型别名枚举变量” 的 RFC][type_alias_rfc]
 
-[attributes]: ../attribute.md
+[attributes]: rust-tutorial/docs/attribute.md
 [c_struct]: http://en.wikipedia.org/wiki/Struct_(C_programming_language)
-[match]: ../flow_control/match.md
-[fn]: ../fn.md
-[str]: ../std/str.md
+[match]: rust-tutorial/docs/flow_control/match.md
+[fn]: rust-tutorial/docs/fn.md
+[str]: rust-tutorial/docs/std/str.md
 [type_alias_rfc]: https://rust-lang.github.io/rfcs/2338-type-alias-enum-variants.html

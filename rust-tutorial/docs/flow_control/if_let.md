@@ -113,6 +113,6 @@ fn main() {
 
 [`枚举`][enum]，[`Option`][option]，和相关的 [RFC][if_let_rfc]
 
-[enum]: ../custom_types/enum.md
+[enum]: rust-tutorial/docs/custom_types/enum.md
 [if_let_rfc]: https://github.com/rust-lang/rfcs/pull/160
-[option]: ../std/option.md
+[option]: rust-tutorial/docs/std/option.md

@@ -30,6 +30,6 @@
             value4, value5)]
 ```
 
-[cfg]: ./attribute/cfg.md
-[crate]: ./attribute/crate.md
+[cfg]: rust-tutorial/docs/attribute/cfg.md
+[crate]: rust-tutorial/docs/attribute/crate.md
 [lint]: https://en.wikipedia.org/wiki/Lint_%28software%29

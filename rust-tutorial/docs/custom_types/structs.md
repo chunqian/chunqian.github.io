@@ -89,6 +89,6 @@ fn main() {
 
 [`attributes`][attributes] 和 [解构][destructuring]
 
-[attributes]: ../attribute.md
+[attributes]: rust-tutorial/docs/attribute.md
 [c_struct]: http://en.wikipedia.org/wiki/Struct_(C_programming_language)
-[destructuring]: ../flow_control/match/destructuring.md
+[destructuring]: rust-tutorial/docs/flow_control/match/destructuring.md

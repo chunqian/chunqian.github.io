@@ -17,9 +17,9 @@ Rust 也支持在测试中指定额外的依赖：
 * [TRPL][doc-testing] 中关于测试的章节
 * [API 指导原则][doc-nursery]中关于文档测试的部分
 
-[unit]: testing/unit_testing.md
-[doc]: testing/doc_testing.md
-[integration]: testing/integration_testing.md
-[dev-dependencies]: testing/dev_dependencies.md
+[unit]: rust-tutorial/docs/testing/unit_testing.md
+[doc]: rust-tutorial/docs/testing/doc_testing.md
+[integration]: rust-tutorial/docs/testing/integration_testing.md
+[dev-dependencies]: rust-tutorial/docs/testing/dev_dependencies.md
 [doc-testing]: https://doc.rust-lang.org/book/second-edition/ch11-00-testing.html
 [doc-nursery]: https://rust-lang-nursery.github.io/api-guidelines/documentation.html

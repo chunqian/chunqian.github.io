@@ -52,4 +52,4 @@ fn main() {
 }
 ```
 
-[references]: ../flow_control/match/destructuring/destructure_pointers.md
+[references]: rust-tutorial/docs/flow_control/match/destructuring/destructure_pointers.md

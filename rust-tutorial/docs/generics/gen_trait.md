@@ -38,5 +38,5 @@ fn main() {
 [`Drop`][Drop], [`struct`][structs], 和 [`trait`][traits]
 
 [Drop]: http://doc.rust-lang.org/std/ops/trait.Drop.html
-[structs]: ../custom_types/structs.md
-[traits]: ../trait.md
+[structs]: rust-tutorial/docs/custom_types/structs.md
+[traits]: rust-tutorial/docs/trait.md

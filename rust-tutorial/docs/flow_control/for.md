@@ -111,4 +111,4 @@ fn main() {
 
 [Iterator][iter]
 
-[iter]: ../trait/iter.md
+[iter]: rust-tutorial/docs/trait/iter.md

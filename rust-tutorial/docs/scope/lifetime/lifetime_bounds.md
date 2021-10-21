@@ -45,6 +45,6 @@ fn main() {
 [泛型][generics], [泛型中的约束][bounds], 以及
 [泛型中的多重约束][multibounds]
 
-[generics]: ../../generics.md
-[bounds]: ../../generics/bounds.md
-[multibounds]: ../../generics/multi_bounds.md
+[generics]: rust-tutorial/docs/generics.md
+[bounds]: rust-tutorial/docs/generics/bounds.md
+[multibounds]: rust-tutorial/docs/generics/multi_bounds.md

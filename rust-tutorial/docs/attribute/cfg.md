@@ -37,5 +37,5 @@ fn main() {
 [引用][ref], [`cfg!`][cfg], 和 [宏][macros].
 
 [cfg]: http://doc.rust-lang.org/std/macro.cfg!.html
-[macros]: ../macros.md
+[macros]: rust-tutorial/docs/macros.md
 [ref]: http://doc.rust-lang.org/reference.html#conditional-compilation

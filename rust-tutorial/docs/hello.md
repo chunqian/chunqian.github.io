@@ -43,4 +43,4 @@ Hello World!
 I'm a Rustacean!
 ```
 
-[macros]: macros.md
+[macros]: rust-tutorial/docs/macros.md

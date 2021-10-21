@@ -91,4 +91,4 @@ called `my::indirect_access()`, that
 called `my::nested::function()`
 ```
 
-[visibility]: visibility.md
+[visibility]: rust-tutorial/docs/mod/visibility.md

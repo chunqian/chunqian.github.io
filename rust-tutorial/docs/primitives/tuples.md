@@ -90,4 +90,4 @@ fn main() {
      ( 1.2 2.2 )
      ```
 
-[print_display]: ../hello/print/print_display.md
+[print_display]: rust-tutorial/docs/hello/print/print_display.md

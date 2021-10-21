@@ -50,5 +50,5 @@ fn main() {
 
 [函数][fn] 和 [`structs`][structs]
 
-[fn]: ../fn.md
-[structs]: ../custom_types/structs.md
+[fn]: rust-tutorial/docs/fn.md
+[structs]: rust-tutorial/docs/custom_types/structs.md

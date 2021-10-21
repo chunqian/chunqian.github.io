@@ -32,4 +32,4 @@ fn main() {
 
 ### See also:
 
-[Attributes](../attribute.md)
+[Attributes](rust-tutorial/docs/attribute.md)

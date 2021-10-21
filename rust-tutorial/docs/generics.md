@@ -57,5 +57,5 @@ fn main() {
 
 [`struct`][structs]
 
-[structs]: custom_types/structs.md
+[structs]: rust-tutorial/docs/custom_types/structs.md
 [camelcase]: https://en.wikipedia.org/wiki/CamelCase

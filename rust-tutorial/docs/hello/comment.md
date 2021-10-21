@@ -40,4 +40,4 @@ fn main() {
 
 [文档注释][docs]
 
-[docs]: ../meta/doc.md
+[docs]: rust-tutorial/docs/meta/doc.md

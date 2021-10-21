@@ -13,53 +13,53 @@
 
 现在让我们开始学习吧！
 
-- [Hello World](hello.html) - 从经典的 “Hello World” 程序开始学习。
+- [Hello World](rust-tutorial/docs/hello.md) - 从经典的 “Hello World” 程序开始学习。
 
-- [原生类型](primitives.html) - 学习有符号整型，无符号整型和其他原生类型。
+- [原生类型](rust-tutorial/docs/primitives.md) - 学习有符号整型，无符号整型和其他原生类型。
 
-- [自定义类型](custom_types.html) - 结构体 `struct` 和 枚举 `enum`。
+- [自定义类型](rust-tutorial/docs/custom_types.md) - 结构体 `struct` 和 枚举 `enum`。
 
-- [变量绑定](variable_bindings.html) - 变量绑定，作用域，变量遮蔽。
+- [变量绑定](rust-tutorial/docs/variable_bindings.md) - 变量绑定，作用域，变量遮蔽。
 
-- [类型系统](types.html) - 学习改变和定义类型。
+- [类型系统](rust-tutorial/docs/types.md) - 学习改变和定义类型。
 
-- [类型转换](conversion.html)
+- [类型转换](rust-tutorial/docs/conversion.md)
 
-- [表达式](expression.html)
+- [表达式](rust-tutorial/docs/expression.md)
 
-- [流程控制](flow_control.html) - `if`/`else`，`for`，以及其他流程控制有关内容。
+- [流程控制](rust-tutorial/docs/flow_control.md) - `if`/`else`，`for`，以及其他流程控制有关内容。
 
-- [函数](fn.html) - 学习方法、闭包和高阶函数。
+- [函数](rust-tutorial/docs/fn.md) - 学习方法、闭包和高阶函数。
 
-- [模块](mod.html) - 使用模块来组织代码。
+- [模块](rust-tutorial/docs/mod.md) - 使用模块来组织代码。
 
-- [`crate`](crates.html) - crate 是 Rust 中的编译单元。学习创建一个库。
+- [`crate`](rust-tutorial/docs/crates.md) - crate 是 Rust 中的编译单元。学习创建一个库。
 
-- [cargo](cargo.html) - 学习官方的 Rust 包管理工具的一些基本功能。
+- [cargo](rust-tutorial/docs/cargo.md) - 学习官方的 Rust 包管理工具的一些基本功能。
 
-- [属性](attribute.html) - 属性是应用于某些模块、crate 或项的元数据（metadata）。
+- [属性](rust-tutorial/docs/attribute.md) - 属性是应用于某些模块、crate 或项的元数据（metadata）。
 
-- [泛型](generics.html) - 学习编写能够适用于多类型参数的函数或数据类型。
+- [泛型](rust-tutorial/docs/generics.md) - 学习编写能够适用于多类型参数的函数或数据类型。
 
-- [作用域规则](scope.html) - 作用域在所有权（ownership）、借用（borrowing）和生命周期（lifetime）中起着重要作用。
+- [作用域规则](rust-tutorial/docs/scope.md) - 作用域在所有权（ownership）、借用（borrowing）和生命周期（lifetime）中起着重要作用。
 
-- [特性 trait](trait.html) - trait 是对未知类型(`Self`)定义的方法集。
+- [特性 trait](rust-tutorial/docs/trait.md) - trait 是对未知类型(`Self`)定义的方法集。
 
-- [宏](macros.html)
+- [宏](rust-tutorial/docs/macros.md)
 
-- [错误处理](error.html) - 学习 Rust 语言处理失败的方式。
+- [错误处理](rust-tutorial/docs/error.md) - 学习 Rust 语言处理失败的方式。
 
-- [标准库类型](std.html) - 学习 `std` 标准库提供的一些自定义类型。
+- [标准库类型](rust-tutorial/docs/std.md) - 学习 `std` 标准库提供的一些自定义类型。
 
-- [标准库更多介绍](std_misc.html) - 更多关于文件处理、线程的自定义类型。
+- [标准库更多介绍](rust-tutorial/docs/std_misc.md) - 更多关于文件处理、线程的自定义类型。
 
-- [测试](testing.html) - Rust 语言的各种测试手段。
+- [测试](rust-tutorial/docs/testing.md) - Rust 语言的各种测试手段。
 
-- [不安全操作](unsafe.html)
+- [不安全操作](rust-tutorial/docs/unsafe.md)
 
-- [兼容性](compatibility.html)
+- [兼容性](rust-tutorial/docs/compatibility.md)
 
-- [补充](meta.html) - 文档和基准测试
+- [补充](rust-tutorial/docs/meta.md) - 文档和基准测试
 
 [website]: https://doc.rust-lang.org/rust-by-example/
 [rust]: http://www.rust-lang.org/

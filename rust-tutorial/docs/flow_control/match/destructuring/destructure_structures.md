@@ -28,4 +28,4 @@ fn main() {
 
 ### 参见：
 
-[结构体](../../../custom_types/structs.md), [ref 模式](../../../scope/borrow/ref.md)
+[结构体](rust-tutorial/docs/custom_types/structs.md), [ref 模式](rust-tutorial/docs/scope/borrow/ref.md)

@@ -133,13 +133,13 @@ fn main() {
 * [unwrap vs. expect][unwrap]
 * [枚举类型][enumerate]
 
-[thread]: ../threads.md
-[vectors]: ../../std/vec.md
-[iterators]: ../../trait/iter.md
+[thread]: rust-tutorial/docs/std_misc/threads.md
+[vectors]: rust-tutorial/docs/std/vec.md
+[iterators]: rust-tutorial/docs/trait/iter.md
 [destructuring]: https://doc.rust-lang.org/book/ch18-03-pattern-syntax.html#destructuring-to-break-apart-values
-[closures]: ../../fn/closures.md
-[move]: ../../scope/move.md
+[closures]: rust-tutorial/docs/fn/closures.md
+[move]: rust-tutorial/docs/scope/move.md
 [move_closure]: https://doc.rust-lang.org/book/ch13-01-closures.html#closures-can-capture-their-environment
 [turbofish]: https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect
-[unwrap]: ../../error/option_unwrap.md
+[unwrap]: rust-tutorial/docs/error/option_unwrap.md
 [enumerate]: https://doc.rust-lang.org/book/loops.html#enumerate
