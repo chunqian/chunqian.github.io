@@ -1,4 +1,4 @@
-* [back](/)
+* [< Back](/)
 
 * [CSS 概述](css-tutorial/docs/intro.md)
 

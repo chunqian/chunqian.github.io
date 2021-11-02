@@ -1,4 +1,4 @@
-* [back](/)
+* [< Back](/)
 
 * [HTML 简介](html-tutorial/docs/intro.md)
 

@@ -1,4 +1,4 @@
-* [back](/)
+* [< Back](/)
 
 * [简介](bash-tutorial/docs/intro.md)
 

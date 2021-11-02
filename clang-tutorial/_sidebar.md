@@ -1,4 +1,4 @@
-* [back](/)
+* [< Back](/)
 
 * [简介](clang-tutorial/docs/intro.md)
 

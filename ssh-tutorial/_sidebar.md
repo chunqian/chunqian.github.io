@@ -1,4 +1,4 @@
-* [back](/)
+* [< Back](/)
 
 * [SSH 基本知识](ssh-tutorial/docs/basic.md)
 

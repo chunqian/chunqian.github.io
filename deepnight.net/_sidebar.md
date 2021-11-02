@@ -1,6 +1,6 @@
 <!-- sidebar -->
 
-* [back](/)
+* [< Back](/)
 
     * [tutorials](/deepnight.net/tutorials/)
 

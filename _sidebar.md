@@ -1,27 +1,29 @@
 <!-- sidebar -->
 
-* [rust-tutorial](/rust-tutorial/)
+* [bash-tutorial](/bash-tutorial/)
 
 * [clang-tutorial](/clang-tutorial/)
 
-* [bash-tutorial](/bash-tutorial/)
-
-* [ssh-tutorial](/ssh-tutorial/)
-
-* [html-tutorial](/html-tutorial/)
-
 * [css-tutorial](/css-tutorial/)
 
-* [javascript-tutorial](/javascript-tutorial/)
+* [dome-tutorial](/dome-tutorial/)
 
 * [es6-tutorial](/es6-tutorial/)
 
-* [webapi-tutorial](/webapi-tutorial/)
+* [html-tutorial](/html-tutorial/)
 
-* [learning_notes](/learning_notes/)
+* [javascript-tutorial](/javascript-tutorial/)
+
+* [rust-tutorial](/rust-tutorial/)
+
+* [ssh-tutorial](/ssh-tutorial/)
+
+* [webapi-tutorial](/webapi-tutorial/)
 
 * [to_be_top_javaer](/to_be_top_javaer/)
 
-* [xmake](/xmake/)
-
 * [deepnight.net](/deepnight.net/)
+
+* [learning_notes](/learning_notes/)
+
+* [xmake](/xmake/)

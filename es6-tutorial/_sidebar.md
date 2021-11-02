@@ -1,4 +1,4 @@
-* [back](/)
+* [< Back](/)
 
 * [ECMAScript 6 简介](es6-tutorial/docs/intro.md)
 

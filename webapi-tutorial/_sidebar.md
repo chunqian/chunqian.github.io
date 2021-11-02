@@ -1,4 +1,4 @@
-* [back](/)
+* [< Back](/)
 
 * [Canvas API](webapi-tutorial/docs/canvas.md)
 
