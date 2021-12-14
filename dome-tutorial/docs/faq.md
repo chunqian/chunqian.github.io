@@ -1,4 +1,4 @@
-<!-- [< Back](.) -->
+[< Back](.)
 
 Frequently Asked Questions
 =================

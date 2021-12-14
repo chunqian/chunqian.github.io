@@ -38,6 +38,20 @@
 
     * [example](dome-tutorial/docs/plugins/example)
 
+    * ~~API Services~~
+
+        * [Core](dome-tutorial/docs/plugins/core)
+
+        * [Wren](dome-tutorial/docs/plugins/wren)
+
+        * [Audio](dome-tutorial/docs/plugins/audio)
+
+        * [Bitmap](dome-tutorial/docs/plugins/bitmap)
+
+        * [Canvas](dome-tutorial/docs/plugins/canvas)
+
+        * [I/O](dome-tutorial/docs/plugins/io)
+
 * ~~Examples~~
 
     * [DOMEjam](https://itch.io/jam/domejam)
