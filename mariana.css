@@ -676,7 +676,6 @@ body {
 .markdown-section p,
 .markdown-section ul,
 .markdown-section ol {
-  line-height: 1.6rem;
   word-spacing: 0.05rem;
 }
 .markdown-section ul,

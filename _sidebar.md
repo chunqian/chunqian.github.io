@@ -10,6 +10,8 @@
 
 * [es6-tutorial](/es6-tutorial/)
 
+* [haxe-tutorial](/haxe-tutorial/)
+
 * [html-tutorial](/html-tutorial/)
 
 * [javascript-tutorial](/javascript-tutorial/)
