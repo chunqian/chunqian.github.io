@@ -22,6 +22,8 @@
 
 * [webapi-tutorial](/webapi-tutorial/)
 
+* [wren-tutorial](/wren-tutorial/)
+
 * [to_be_top_javaer](/to_be_top_javaer/)
 
 * [deepnight.net](/deepnight.net/)
