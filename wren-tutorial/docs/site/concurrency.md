@@ -1,4 +1,4 @@
-<!-- ^title Concurrency -->
+# Concurrency
 
 Lightweight concurrency is a key feature of Wren and it is expressed using
 *fibers*. They control how all code is executed, and take the place of
@@ -188,7 +188,3 @@ Where `call()` and `yield()` are analogous to calling and returning from
 functions, `transfer()` works more like an unstructured goto. It lets you freely
 switch control between a number of fibers, all of which act as peers to one
 another.
-
-<!-- <br><hr>
-<a class="right" href="error-handling.html">Error Handling &rarr;</a>
-<a href="classes.html">&larr; Classes</a> -->

@@ -1,4 +1,4 @@
-<!-- ^title Functions -->
+# Functions
 
 Like many languages today, functions in Wren are little bundles of code 
 you can store in a variable, or pass as an argument to a method. 
@@ -235,8 +235,3 @@ onClick(1, onEvent)
 **Fn.new**   
 As you may have noticed by now, `Fn` accepts a block argument for the `Fn.new`.
 All the constructor does is return that argument right back to you!
-
-
-<!-- <br><hr>
-<a class="right" href="classes.html">Classes &rarr;</a>
-<a href="variables.html">&larr; Variables</a> -->

@@ -1,13 +1,9 @@
-^title
-
-## Wren is a small, fast, class-based concurrent scripting language
-
----
+# Wren is a small, fast, class-based concurrent scripting language
 
 Think Smalltalk in a Lua-sized package with a dash of Erlang and wrapped up in
 a familiar, modern [syntax][].
 
-<pre class="snippet">
+```wren
 System.print("Hello, world!")
 
 class Wren {
@@ -21,7 +17,7 @@ var adjectives = Fiber.new {
 }
 
 while (!adjectives.isDone) System.print(adjectives.call())
-</pre>
+```
 
  *  **Wren is small.** The VM implementation is under [4,000 semicolons][src].
     You can skim the whole thing in an afternoon. It's *small*, but not
@@ -43,8 +39,6 @@ while (!adjectives.isDone) System.print(adjectives.call())
     applications. It has no dependencies, a small standard library,
     and [an easy-to-use C API][embedding]. It compiles cleanly as C99, C++98
     or anything later.
-
----
 
 You can try it [in your browser][browser]!   
 If you like the sound of this, [let's get started][started].    

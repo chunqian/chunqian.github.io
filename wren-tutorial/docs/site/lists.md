@@ -1,4 +1,4 @@
-<!-- ^title Lists -->
+# Lists
 
 A list is a compound object that holds a collection of elements identified by
 integer index. You can create a list by placing a sequence of comma-separated
@@ -146,7 +146,3 @@ If you want to remove everything from the list, you can clear it:
 trees.clear()
 System.print(trees) //> []
 ```
-
-<!-- <br><hr>
-<a class="right" href="maps.html">Maps &rarr;</a>
-<a href="values.html">&larr; Values</a> -->

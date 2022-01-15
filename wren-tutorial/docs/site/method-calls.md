@@ -1,4 +1,4 @@
-<!-- ^title Method Calls -->
+# Method Calls
 
 Wren is deeply object oriented, so most code consists of invoking methods on
 objects, usually something like this:
@@ -192,7 +192,3 @@ map["key"] = "value"
 These are equivalent to method calls whose signature is `[_]=(_)` and whose
 arguments are both the subscript (or subscripts) and the value on the right-hand
 side.
-
-<!-- <br><hr>
-<a class="right" href="control-flow.html">Control Flow &rarr;</a>
-<a href="maps.html">&larr; Maps</a> -->

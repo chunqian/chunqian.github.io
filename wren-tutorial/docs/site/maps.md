@@ -1,4 +1,4 @@
-<!-- ^title Maps -->
+# Maps
 
 A map is an *associative* collection. It holds a set of entries, each of which
 maps a *key* to a *value*. The same data structure has a variety of names in
@@ -161,7 +161,3 @@ for (state in birds.keys) {
   System.print("The state bird of %(state) is " + birds[state])
 }
 ```
-
-<!-- <br><hr>
-<a class="right" href="method-calls.html">Method Calls &rarr;</a>
-<a href="lists.html">&larr; Lists</a> -->

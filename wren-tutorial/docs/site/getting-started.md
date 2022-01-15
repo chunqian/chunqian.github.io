@@ -1,4 +1,4 @@
-^title Getting Started
+# Getting Started
 
 ## Trying out the language
 

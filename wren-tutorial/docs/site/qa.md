@@ -1,4 +1,4 @@
-^title Q & A
+# Q & A
 
 ## Why did you create Wren?
 
@@ -32,7 +32,7 @@ prototypes) that classes are more usable.
 
 Here's an example of that kind of object-oriented programming in Lua:
 
-<pre class="snippet">
+```wren
 -- account.lua
 
 Account = {}
@@ -52,11 +52,11 @@ end
 -- create and use an Account
 account = Account.create(1000)
 account:withdraw(100)
-</pre>
+```
 
 Here's the same example in Wren:
 
-<pre class="snippet">
+```wren
 //account.wren
 
 class Account {
@@ -67,7 +67,7 @@ class Account {
 // create and use an Account
 var account = Account.new(1000)
 account.withdraw(100)
-</pre>
+```
 
 Classes have a reputation for complexity because most of the widely used
 languages with them are quite complex: C++, Java, C#, Ruby, and Python. I hope
@@ -104,9 +104,9 @@ Register-based VMs have big instructions (usually 32 bits) that contain both an
 opcode and a couple of numbers indicating where in the stack the operands can
 be found. This is cool because it means, that, for example, this Lua statement:
 
-<pre class="snippet">
+```wren
 a = b + c
-</pre>
+```
 
 Can be a single bytecode instruction. In a stack-based language, it would be
 four&mdash;push `b`, push `c`, add, store `a`. (Though note that in both cases

@@ -1,4 +1,4 @@
-<!-- ^title Modularity -->
+# Modularity
 
 Once you start writing programs that are more than little toys, you quickly run
 into two problems:
@@ -319,6 +319,3 @@ System.print(3)    //>  not reached
 ```
 
 Although it is not invalid to return a value, there is no way to access that value and it is therefore simply discarded.
-
-<!-- <br><hr>
-<a href="error-handling.html">&larr; Error Handling</a> -->

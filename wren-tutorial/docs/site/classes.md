@@ -1,4 +1,4 @@
-<!-- ^title Classes -->
+# Classes
 
 Every value in Wren is an object, and every object is an instance of a class.
 Even `true` and `false` are full-featured objects&mdash;instances of the
@@ -759,7 +759,3 @@ class Example {
   foreign static example()
 }
 ```
-
-<!-- <br><hr>
-<a class="right" href="concurrency.html">Concurrency &rarr;</a>
-<a href="functions.html">&larr; Functions</a> -->

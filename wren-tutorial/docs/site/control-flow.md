@@ -1,4 +1,4 @@
-<!-- ^title Control Flow -->
+# Control Flow
 
 Control flow is used to determine which chunks of code are executed and how many
 times. *Branching* statements and expressions decide whether or not to execute
@@ -269,7 +269,3 @@ that to look up and return the appropriate element.
 The built-in [List](lists.html) and [Range](values.html#ranges) types implement
 `iterate()` and `iteratorValue()` to walk over their respective sequences. You
 can implement the same methods in your classes to make your own types iterable.
-
-<!-- <br><hr>
-<a class="right" href="variables.html">Variables &rarr;</a>
-<a href="method-calls.html">&larr; Method Calls</a> -->

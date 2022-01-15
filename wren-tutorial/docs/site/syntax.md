@@ -1,4 +1,4 @@
-<!-- ^title Syntax -->
+# Syntax
 
 Wren's syntax is designed to be familiar to people coming from C-like languages
 while being a bit simpler and more streamlined.
@@ -277,7 +277,3 @@ tightest to loosest, is:
     </tr>
   </tbody>
 </table>
-
-<!-- <br><hr>
-<a class="right" href="values.html">Values &rarr;</a>
-<a href="getting-started.html">&larr; Getting Started</a> -->

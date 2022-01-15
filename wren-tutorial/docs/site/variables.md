@@ -1,4 +1,4 @@
-<!-- ^title Variables -->
+# Variables
 
 Variables are named slots for storing values. You define a new variable in Wren
 using a `var` statement, like so:
@@ -77,7 +77,3 @@ If the left-hand side is some more complex expression than a bare variable name,
 then it isn't an assignment. Instead, it's calling a [setter method][].
 
 [setter method]: method-calls.html#setters
-
-<!-- <br><hr>
-<a class="right" href="functions.html">Functions &rarr;</a>
-<a href="control-flow.html">&larr; Control Flow</a> -->

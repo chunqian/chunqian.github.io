@@ -1,4 +1,4 @@
-<!-- ^title Values -->
+# Values
 
 Values are the built-in atomic object types that all other objects are composed
 of. They can be created through *literals*, expressions that evaluate to a
@@ -230,7 +230,3 @@ languages: it indicates the absence of a value. If you call a method that
 doesn't return anything and get its returned value, you get `null` back.
 
 [null]: modules/core/null.html
-
-<!-- <br><hr>
-<a class="right" href="lists.html">Lists &rarr;</a>
-<a href="syntax.html">&larr; Syntax</a> -->

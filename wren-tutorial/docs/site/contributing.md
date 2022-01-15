@@ -1,4 +1,4 @@
-^title Contributing
+# Contributing
 
 Like the bird, Wren's ecosystem is small but full of life. Almost everything is
 under active development and there's lots to do. We'd be delighted to have you
