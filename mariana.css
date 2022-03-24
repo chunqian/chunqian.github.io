@@ -330,6 +330,8 @@ body.sticky .sidebar-toggle {
   min-width: 100%;
 }
 .markdown-section table {
+  font-family: 'IBM Plex Mono', Monaco, courier, monospace;
+  font-size: 1.2rem;
   border: 1px solid #818a9c;
   border-collapse: collapse;
   border-spacing: 0;
